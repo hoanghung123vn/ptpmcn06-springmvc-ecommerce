@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema computerStore
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema computerStore
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `computerStore` DEFAULT CHARACTER SET utf8 ;
+USE `computerStore` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`hãng_sản_xuất`
+-- Table `computerStore`.`hãng_sản_xuất`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`hãng_sản_xuất` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`hãng_sản_xuất` (
   `id_hãng_sản_xuất` INT NOT NULL AUTO_INCREMENT,
   `tên_hãng_sản_xuất` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id_hãng_sản_xuất`))
@@ -25,9 +25,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`thể loại`
+-- Table `computerStore`.`thể loại`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`thể loại` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`thể loại` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `tên_thể_loại` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`))
@@ -35,9 +35,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`xuất_xứ`
+-- Table `computerStore`.`xuất_xứ`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`xuất_xứ` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`xuất_xứ` (
   `id_quoc_gia` INT NOT NULL,
   `ten` VARCHAR(30) NULL,
   PRIMARY KEY (`id_quoc_gia`))
@@ -45,9 +45,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`sản_phẩm`
+-- Table `computerStore`.`sản_phẩm`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sản_phẩm` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`sản_phẩm` (
   `mã_sản_phẩm` INT NOT NULL AUTO_INCREMENT,
   `tên_CPU` VARCHAR(100) NULL,
   `số_lõi_CPU` INT NULL,
@@ -75,26 +75,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`sản_phẩm` (
   INDEX `fk_sản_phẩm_xuất_xứ1_idx` (`id_quoc_gia` ASC),
   CONSTRAINT `fk_máy_tính_hãng_sản_xuất`
     FOREIGN KEY (`id_hãng_sản_xuất`)
-    REFERENCES `mydb`.`hãng_sản_xuất` (`id_hãng_sản_xuất`)
+    REFERENCES `computerStore`.`hãng_sản_xuất` (`id_hãng_sản_xuất`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_máy_tính_thể_loại1`
     FOREIGN KEY (`id_thể_loại`)
-    REFERENCES `mydb`.`thể loại` (`id`)
+    REFERENCES `computerStore`.`thể loại` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_sản_phẩm_xuất_xứ1`
     FOREIGN KEY (`id_quoc_gia`)
-    REFERENCES `mydb`.`xuất_xứ` (`id_quoc_gia`)
+    REFERENCES `computerStore`.`xuất_xứ` (`id_quoc_gia`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`người_dùng`
+-- Table `computerStore`.`người_dùng`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`người_dùng` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`người_dùng` (
   `id_người_dùng` INT NOT NULL AUTO_INCREMENT,
   `tên_người_dùng` VARCHAR(100) NOT NULL,
   `SĐT` VARCHAR(100) NOT NULL,
@@ -111,9 +111,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`đơn_hàng`
+-- Table `computerStore`.`đơn_hàng`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`đơn_hàng` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`đơn_hàng` (
   `id_đơn_hàng` INT NOT NULL AUTO_INCREMENT,
   `ngày_phát_sinh` DATETIME NOT NULL,
   `id_shiper` INT NOT NULL,
@@ -126,21 +126,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`đơn_hàng` (
   INDEX `fk_đơn_hàng_bán_shiper_idx` (`id_shiper` ASC),
   CONSTRAINT `fk_đơn_hàng_bán_khách_hàng1`
     FOREIGN KEY (`id_khách_hàng`)
-    REFERENCES `mydb`.`người_dùng` (`id_người_dùng`)
+    REFERENCES `computerStore`.`người_dùng` (`id_người_dùng`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_đơn_hàng_bán_shiper`
     FOREIGN KEY (`id_shiper`)
-    REFERENCES `mydb`.`người_dùng` (`id_người_dùng`)
+    REFERENCES `computerStore`.`người_dùng` (`id_người_dùng`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`chi_tiết_đơn_hàng`
+-- Table `computerStore`.`chi_tiết_đơn_hàng`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`chi_tiết_đơn_hàng` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`chi_tiết_đơn_hàng` (
   `giá_bán` INT NOT NULL,
   `id_đơn_hàng` INT NOT NULL,
   `số_lượng` INT NULL,
@@ -149,37 +149,37 @@ CREATE TABLE IF NOT EXISTS `mydb`.`chi_tiết_đơn_hàng` (
   INDEX `fk_chi_tiết_đơn_hàng_sản_phẩm1_idx` (`mã_sản_phẩm` ASC),
   CONSTRAINT `fk_chi_tiết_đơn_hàng_bán_đơn_hàng_bán1`
     FOREIGN KEY (`id_đơn_hàng`)
-    REFERENCES `mydb`.`đơn_hàng` (`id_đơn_hàng`)
+    REFERENCES `computerStore`.`đơn_hàng` (`id_đơn_hàng`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_chi_tiết_đơn_hàng_sản_phẩm`
     FOREIGN KEY (`mã_sản_phẩm`)
-    REFERENCES `mydb`.`sản_phẩm` (`mã_sản_phẩm`)
+    REFERENCES `computerStore`.`sản_phẩm` (`mã_sản_phẩm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`giỏ_hàng`
+-- Table `computerStore`.`giỏ_hàng`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`giỏ_hàng` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`giỏ_hàng` (
   `id_giỏ_hàng` INT NOT NULL,
   `id_khách_hàng` INT NOT NULL,
   PRIMARY KEY (`id_giỏ_hàng`),
   INDEX `fk_giỏ_hàng_khách_hàng1_idx` (`id_khách_hàng` ASC),
   CONSTRAINT `fk_giỏ_hàng_khách_hàng1`
     FOREIGN KEY (`id_khách_hàng`)
-    REFERENCES `mydb`.`người_dùng` (`id_người_dùng`)
+    REFERENCES `computerStore`.`người_dùng` (`id_người_dùng`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`chi_tiết_giỏ_hàng`
+-- Table `computerStore`.`chi_tiết_giỏ_hàng`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`chi_tiết_giỏ_hàng` (
+CREATE TABLE IF NOT EXISTS `computerStore`.`chi_tiết_giỏ_hàng` (
   `mã_sản_phẩm` INT NOT NULL,
   `id_giỏ_hàng` INT NOT NULL,
   `số_lượng` INT NOT NULL,
@@ -188,12 +188,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`chi_tiết_giỏ_hàng` (
   INDEX `fk_chi_tiết_giỏ_hàng_sản_phẩm_idx` (`mã_sản_phẩm` ASC),
   CONSTRAINT `fk_chi_tiết_giỏ_hàng_giỏ_hàng1`
     FOREIGN KEY (`id_giỏ_hàng`)
-    REFERENCES `mydb`.`giỏ_hàng` (`id_giỏ_hàng`)
+    REFERENCES `computerStore`.`giỏ_hàng` (`id_giỏ_hàng`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_chi_tiết_giỏ_hàng_sản_phẩm`
     FOREIGN KEY (`mã_sản_phẩm`)
-    REFERENCES `mydb`.`sản_phẩm` (`mã_sản_phẩm`)
+    REFERENCES `computerStore`.`sản_phẩm` (`mã_sản_phẩm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
