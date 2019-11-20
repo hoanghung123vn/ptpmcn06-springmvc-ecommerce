@@ -9,5 +9,5 @@ package com.example.demo.config;
  * @description TODO
  */
 public enum UserRole {
-    MEMBER, ADMIN, SHIPPER, MANAGER, STOCKER
+    ROLE_MEMBER, ROLE_ADMIN, ROLE_SHIPPER, ROLE_MANAGER, ROLE_STOCKER
 }
