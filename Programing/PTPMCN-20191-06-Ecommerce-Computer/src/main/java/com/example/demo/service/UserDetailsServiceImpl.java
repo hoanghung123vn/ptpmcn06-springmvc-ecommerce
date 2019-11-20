@@ -9,10 +9,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.config.UserRole;
 import com.example.demo.dao.UserRepository;
+import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 
 /**
@@ -23,22 +24,28 @@ import com.example.demo.entity.User;
  * @class_name UserDetailServiceImpl.java
  * @description TODO
  */
-public class UserDetailServiceImpl implements UserDetailsService {
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
-    private UserRepository UserRepository;
+    private UserRepository userRepository;
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = UserRepository.findByEmail(username);
-        if (user == null)
-            throw new UsernameNotFoundException("User not found!!!");
+        User user = userRepository.findByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
 
-        Set<GrantedAuthority> grandAuthorities = new HashSet<>();
-        UserRole role = user.getRole();
-        grandAuthorities.add(new SimpleGrantedAuthority(String.valueOf(role)));
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                grandAuthorities);
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        Set<Role> roles = user.getRoles();
+        for (Role role : roles) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(), user.getPassword(), grantedAuthorities);
     }
 
 }
