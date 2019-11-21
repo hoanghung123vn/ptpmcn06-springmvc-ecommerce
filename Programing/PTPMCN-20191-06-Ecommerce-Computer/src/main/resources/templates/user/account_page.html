@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Basic page needs -->
+  <meta charset="utf-8">
+  <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <![endif]-->
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Register and Login page</title>
+ <!-- Mobile specific metas  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon  -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700italic,700,400italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic' rel='stylesheet'
+    type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,200,500,600,700,800' rel='stylesheet'
+    type='text/css'>
+
+  <!-- CSS Style -->
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <!-- font-awesome & simple line icons CSS -->
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
+  <link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
+
+  <!-- owl.carousel CSS -->
+  <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+
+  <!-- animate CSS  -->
+  <link rel="stylesheet" type="text/css" href="css/animate.css" media="all">
+
+  <!-- jquery-ui.min CSS  -->
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+
+
+
+  <!-- style CSS -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+  <link rel="stylesheet" type="text/css" href="css/custom.css" media="all">
+</head>
+
+<body class="shop_grid_page">
+  <!--[if lt IE 8]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+	
+  <div id="page">
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <div class="header-top">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-sm-4 hidden-xs">
+                <!-- Default Welcome Message -->
+                <div class="welcome-msg ">Welcome to MyStore! </div>
+                <span class="phone hidden-sm">Call Us: +123.456.789</span>
+              </div>         
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3 col-md-3 col-xs-12">
+              <!-- Header Logo -->
+              <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce"
+                    src="images/logo.png"></a> </div>
+              <!-- End Header Logo -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+    <!-- Navbar -->
+    
+    <!-- end nav -->
+    <!-- Breadcrumbs -->
+
+    <div class="breadcrumbs">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul>
+              <li class="home"> <a title="Go to Home Page" href="index-2.html">Home</a><span>&raquo;</span></li>
+              <li><strong>Login | Register</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumbs End -->
+
+    <!-- Main Container -->
+    <section class="main-container col1-layout">
+      <div class="main container">
+        <div class="page-content">
+          <div class="account-login">
+            <div class="box-authentication">
+              <form th:action="@{/login}" method="post">
+                <h4>Login</h4>
+                <p th:if="${param.error}" class="alert alert-danger">Invalid email or password</p>
+                <p th:if="${param.logout}" class="alert alert-danger">You have been logged out</p>
+                <p class="before-login-text">Welcome back! Sign in to your account</p>
+                <label for="email">Email address<span class="required">*</span></label>
+                <input name="email" type="email" class="form-control" required>
+                <label for="password">Password<span class="required">*</span></label>
+                <input name="password" type="password" class="form-control" required>
+                <p class="forgot-pass"><a href="#">Lost your password?</a></p>
+                <button class="button" type="submit"><i class="fa fa-lock"></i>&nbsp; <span>Login</span></button>
+                <label class="inline" for="rememberme">
+                  <input type="checkbox" value="forever" id="rememberme" name="rememberme"> Remember me
+                </label>
+              </form>
+            </div>
+            <div class="box-authentication">
+            	<form th:action="@{/register}" method="post">
+	              <h4>Register</h4>
+	              <p th:if="${param.register_success}" class="alert alert-success">Register success, please login</p>
+	              <p th:if="${param.register_error}" class="alert alert-danger">Invalid email or password</p>
+	              <p>Create your very own account</p>
+	              <label for="email_register">Email address<span class="required">*</span></label>
+	              <input name="email_register" type="email" class="form-control" required>
+	              <label for="password_register">Password<span class="required">*</span></label>
+	              <input name="password_register" type="password" class="form-control" required>
+	              <label for="confirm">Re-password<span class="required">*</span></label>
+	              <input name="confirm" type="password" class="form-control" required>
+	              <button class="button" type="submit"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
+	              <div class="register-benefits">
+	                <h5>Sign up today and you will be able to :</h5>
+	                <ul>
+	                  <li>Speed your way through checkout</li>
+	                  <li>Track your orders easily</li>
+	                  <li>Keep a record of all your purchases</li>
+	                </ul>
+	              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Main Container End -->
+    <!-- Footer -->
+
+    <footer>
+      <div class="footer-newsletter">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-7">
+              <form id="newsletter-validate-detail" method="post" action="#">
+                <h3 class="hidden-sm">Sign up for newsletter</h3>
+                <div class="newsletter-inner">
+                  <input class="newsletter-email" name='Email' placeholder='Enter Your Email' />
+                  <button class="button subscribe" type="submit" title="Subscribe">Subscribe</button>
+                </div>
+              </form>
+            </div>
+            <div class="social col-md-4 col-sm-5">
+              <ul class="inline-mode">
+                <li class="social-network fb"><a title="Connect us on Facebook" target="_blank"
+                    href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                <li class="social-network googleplus"><a title="Connect us on Google+" target="_blank"
+                    href="https://plus.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                <li class="social-network tw"><a title="Connect us on Twitter" target="_blank"
+                    href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                <li class="social-network linkedin"><a title="Connect us on Linkedin" target="_blank"
+                    href="https://www.pinterest.com/"><i class="fa fa-linkedin"></i></a></li>
+                <li class="social-network rss"><a title="Connect us on Instagram" target="_blank"
+                    href="https://instagram.com/"><i class="fa fa-rss"></i></a></li>
+                <li class="social-network instagram"><a title="Connect us on Instagram" target="_blank"
+                    href="https://instagram.com/"><i class="fa fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
+            <div class="footer-logo"><a href="index-2.html"><img src="images/footer-logo.png" alt="fotter logo"></a>
+            </div>
+            <p>Lorem Ipsum is simply dummy text of the print and typesetting industry.</p>
+            <div class="footer-content">
+              <div class="email"> <i class="fa fa-envelope"></i>
+                <p>Support@themes.com</p>
+              </div>
+              <div class="phone"> <i class="fa fa-phone"></i>
+                <p>(800) 0123 456 789</p>
+              </div>
+              <div class="address"> <i class="fa fa-map-marker"></i>
+                <p> My Company, 12/34 - West 21st Street, New York, USA</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+            <div class="footer-links">
+              <h3 class="links-title">Information<a class="expander visible-xs" href="#TabBlock-1">+</a></h3>
+              <div class="tabBlock" id="TabBlock-1">
+                <ul class="list-links list-unstyled">
+                  <li><a href="#s">Delivery Information</a></li>
+                  <li><a href="#">Discount</a></li>
+                  <li><a href="sitemap.html">Sitemap</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="faq.html">FAQs</a></li>
+                  <li><a href="#">Terms &amp; Condition</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
+            <div class="footer-links">
+              <h3 class="links-title">Insider<a class="expander visible-xs" href="#TabBlock-3">+</a></h3>
+              <div class="tabBlock" id="TabBlock-3">
+                <ul class="list-links list-unstyled">
+                  <li> <a href="sitemap.html"> Sites Map </a> </li>
+                  <li> <a href="#">News</a> </li>
+                  <li> <a href="#">Trends</a> </li>
+                  <li> <a href="about_us.html">About Us</a> </li>
+                  <li> <a href="contact_us.html">Contact Us</a> </li>
+                  <li> <a href="#">My Orders</a> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-2 col-xs-12 col-lg-3 collapsed-block">
+            <div class="footer-links">
+              <h3 class="links-title">Service<a class="expander visible-xs" href="#TabBlock-4">+</a></h3>
+              <div class="tabBlock" id="TabBlock-4">
+                <ul class="list-links list-unstyled">
+                  <li> <a href="account_page.html">Account</a> </li>
+                  <li> <a href="wishlist.html">Wishlist</a> </li>
+                  <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
+                  <li> <a href="#">Return Policy</a> </li>
+                  <li> <a href="#">Special</a> </li>
+                  <li> <a href="#">Lookbook</a> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-coppyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2016 <a href="#"> MyStore </a>. All Rights Reserved.
+            </div>
+            <div class="col-sm-6 col-xs-12">
+              <div class="payment">
+                <ul>
+                  <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
+                  <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
+                  <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a></li>
+                  <li><a href="#"><img title="Master Card" alt="Master Card" src="images/master-card.png"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <a href="#" class="totop"> </a>
+  </div>
+
+  <!-- End Footer -->
+  <!-- JS -->
+
+  <!-- jquery js -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+  <!-- owl.carousel.min js -->
+  <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+
+  <!-- bxslider js -->
+  <script type="text/javascript" src="js/jquery.bxslider.js"></script>
+
+  <!--jquery-slider js -->
+  <script type="text/javascript" src="js/slider.html"></script>
+
+  <!-- megamenu js -->
+  <script type="text/javascript" src="js/megamenu.js"></script>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var mega_menu = '0';
+
+    /* ]]> */
+  </script>
+
+  <!-- jquery.mobile-menu js -->
+  <script type="text/javascript" src="js/mobile-menu.js"></script>
+
+
+
+  <!--jquery-ui.min js -->
+  <script type="text/javascript" src="js/jquery-ui.js"></script>
+
+  <!-- main js -->
+  <script type="text/javascript" src="js/main.js"></script>
+
+
+</body>
+
+<!-- Mirrored from htmlmystore.justthemevalley.com/account_page.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 18:39:52 GMT -->
+
+</html>
