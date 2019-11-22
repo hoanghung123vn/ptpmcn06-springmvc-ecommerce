@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.user;
 
 import java.util.HashSet;
 import java.util.List;
