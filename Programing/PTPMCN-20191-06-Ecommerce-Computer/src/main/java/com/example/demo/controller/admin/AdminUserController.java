@@ -63,10 +63,10 @@ public class AdminUserController {
                 .orElse("failed");
     }
     
-    @DeleteMapping("/customer/{id}/delete")
-    public @ResponseBody String delete(@PathVariable("id") Integer id, RedirectAttributes redirect) {
+    @GetMapping("/customer/{id}/delete")
+    public String delete(@PathVariable("id") Integer id, RedirectAttributes redirect) {
         userService.deleteById(id);
-        redirect.addFlashAttribute("success", "Xóa thành công!");
+        redirect.addFlashAttribute("success", "Xóa thành công, xem kết quả bên dưới :)");
         return "redirect:/admin/customers";
     }
 }

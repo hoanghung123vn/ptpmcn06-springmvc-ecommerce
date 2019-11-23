@@ -66,4 +66,9 @@ public class MainController {
         }
         return "redirect:/login?register_error";
     }
+    
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 }

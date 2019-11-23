@@ -1059,7 +1059,15 @@
                                     <a class="breadcrumb-item active" href="/admin/customers">Danh sách người dùng</a>
                                 </nav>
                             </div>
-                        </div>  
+                        </div>
+                        <div class="alert alert-success-gradient" th:if="${success}">
+                            <div class="d-flex align-items-center justify-content-start">
+                                <span class="alert-icon">
+                                    <i class="mdi mdi-check-circle-outline"></i>
+                                </span>
+                                <span th:text="${success}"></span>
+                            </div>
+                        </div>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-overflow">
@@ -1071,7 +1079,6 @@
                                                 <th>Số điện thoại</th>
                                                 <th>Trạng thái</th>
                                                 <th>Vai trò</th>
-                                                <th>Ngày tạo</th>
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
@@ -1097,10 +1104,24 @@
                                                 	<span th:case="2" class="badge badge-pill badge-gradient-danger">Đã khóa</span>
                                                 </td>
                                                 <td><div th:each="role: *{customer.getRoles()}"><h6 th:text="*{role.getName()}"></h6></div></td>
-                                                <td>08 May 2018</td>
                                                 <td class="text-center font-size-18">
+                                                    <a th:href="'/admin/customer/'+*{customer.getId()}+'/orders'" class="text-gray m-r-15"><i class="mdi mdi-information-outline"></i></a>
                                                     <a href="#" class="text-gray m-r-15"><i class="ti-pencil"></i></a>
-                                                    <a href="#" class="text-gray"><i class="ti-trash"></i></a>
+                                                    <button data-toggle="modal" th:data-target="'#modal-delete'+*{customer.getId()}" class="btn btn-danger">Xóa</button>
+                                                    <div class="modal fade" th:id="'modal-delete'+*{customer.getId()}">
+							                            <div class="modal-dialog modal-sm" role="document">
+							                                <div class="modal-content">
+							                                    <div class="modal-body text-left">
+							                                        <h4 class="m-b-15">Xóa tài khoản?</h4>
+							                                        <p>Bạn có chắc chắn muốn xóa, thao tác này sẽ không thể quay lại?</p>
+							                                        <div class="m-t-20 text-right">
+							                                            <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+							                                            <a th:href="'/admin/customer/'+*{customer.getId()}+'/delete'" class="btn btn-danger delete">Xóa</a>
+							                                        </div>
+							                                    </div>
+							                                </div>
+							                            </div>
+							                        </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -1140,6 +1161,8 @@
     <script src="/assets/vendor/datatables/media/js/jquery.dataTables.js"></script>
     <script src="/assets/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/js/tables/data-table.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/assets/js/main.js"></script>
     
 </body>
 
