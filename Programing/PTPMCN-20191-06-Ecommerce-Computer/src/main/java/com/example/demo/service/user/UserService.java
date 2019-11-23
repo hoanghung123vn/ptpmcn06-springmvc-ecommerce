@@ -23,4 +23,6 @@ public interface UserService {
     void deleteById(Integer id);
     
     boolean register(String email, String password);
+    
+    User createEmployee(User user);
 };

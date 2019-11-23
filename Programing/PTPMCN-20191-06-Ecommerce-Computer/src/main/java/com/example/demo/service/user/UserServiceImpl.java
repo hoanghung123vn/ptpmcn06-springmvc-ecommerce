@@ -73,5 +73,12 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    @Override
+    @Transactional
+    public User createEmployee(User user) {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
