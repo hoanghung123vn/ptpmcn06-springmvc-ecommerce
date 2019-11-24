@@ -60,15 +60,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean register(String email, String password) {
-        if (userRepository.findByEmail(email) == null) {
-            User user = new User();
-            user.setEmail(email);
-            user.setPassword(passwordEncoder.encode(password));
+    public boolean register(User customer) {
+        if (userRepository.findByEmail(customer.getEmail()) == null) {
+            customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+            customer.setStatus(1);
             HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByName("ROLE_MEMBER"));
-            user.setRoles(roles);
-            userRepository.save(user);
+            customer.setRoles(roles);
+            userRepository.save(customer);
             return true;
         }
         return false;

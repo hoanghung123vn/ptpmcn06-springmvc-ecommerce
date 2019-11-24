@@ -1103,7 +1103,15 @@
                                                 	<span th:case="1" class="badge badge-pill badge-gradient-success">Hoạt động</span>
                                                 	<span th:case="2" class="badge badge-pill badge-gradient-danger">Đã khóa</span>
                                                 </td>
-                                                <td><div th:each="role: *{customer.getRoles()}"><h6 th:text="*{role.getName()}"></h6></div></td>
+                                                <td>
+	                                                <div th:each="role: *{customer.getRoles()}" th:switch="*{role.getName()}">
+	                                                	<h6 th:case="ROLE_ADMIN">Admin</h6>
+	                                                	<h6 th:case="ROLE_MEMBER">Khách hàng</h6>
+	                                                	<h6 th:case="ROLE_MANAGER">Quản lý</h6>
+	                                                	<h6 th:case="ROLE_STOCKER">Thủ kho</h6>
+	                                                	<h6 th:case="ROLE_SHIPPER">Shipper</h6>
+	                                                </div>
+                                                </td>
                                                 <td class="text-center font-size-18">
                                                     <a th:href="'/admin/customer/'+*{customer.getId()}+'/orders'" class="text-gray m-r-15"><i class="mdi mdi-information-outline"></i></a>
                                                     <a href="#" class="text-gray m-r-15"><i class="ti-pencil"></i></a>

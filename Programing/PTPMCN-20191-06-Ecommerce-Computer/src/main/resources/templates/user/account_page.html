@@ -125,18 +125,27 @@
               </form>
             </div>
             <div class="box-authentication">
-            	<form th:action="@{/register}" method="post">
+            	<form th:action="@{/register}" method="post" th:object="${customer}">
 	              <h4>Register</h4>
 	              <p th:if="${param.register_success}" class="alert alert-success">Register success, please login</p>
 	              <p th:if="${param.register_error}" class="alert alert-danger">Invalid email or password</p>
 	              <p>Create your very own account</p>
 	              <label for="email_register">Email address<span class="required">*</span></label>
-	              <input name="email_register" type="email" class="form-control" required>
+	              <input id="email_register" type="email" class="form-control" required th:field="*{email}">
 	              <label for="password_register">Password<span class="required">*</span></label>
-	              <input name="password_register" type="password" class="form-control" required>
+	              <input id="password_register" type="password" class="form-control" minlength="6" maxlength="14" required th:field="*{password}">
 	              <label for="confirm">Re-password<span class="required">*</span></label>
-	              <input name="confirm" type="password" class="form-control" required>
-	              <button class="button" type="submit"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
+	              <input id="confirm" type="password" class="form-control" minlength="6" maxlength="14" required onkeyup="checkPass(); return false;">
+	              <div id="confirmMessage" class="confirmMessage"></div>
+	              <label for="name">Tên<span class="required">*</span></label>
+	              <input id="name" type="text" class="form-control" required th:field="*{name}" minlength="4" maxlength="16">
+	              <label for="phone">Số điện thoại<span class="required">*</span></label>
+	              <input id="phone" type="tel" class="form-control" required th:field="*{phone}" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+	              <label for="address">Địa chỉ<span class="required">*</span></label>
+	              <input id="address" type="text" class="form-control" required th:field="*{address}" minlength="10" maxlength="60">
+	              <label for="tax_code">Mã số thuế(không bắt buộc)<span class=""></span></label>
+	              <input id="tax_code" type="text" class="form-control" th:field="*{taxCode}" minlength="10" maxlength="10">
+	              <button id="btn_register" class="button" type="submit"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
 	              <div class="register-benefits">
 	                <h5>Sign up today and you will be able to :</h5>
 	                <ul>
