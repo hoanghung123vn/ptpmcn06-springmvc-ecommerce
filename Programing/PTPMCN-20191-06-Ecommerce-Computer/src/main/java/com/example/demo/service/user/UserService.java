@@ -22,7 +22,7 @@ public interface UserService {
     
     void deleteById(Integer id);
     
-    boolean register(String email, String password);
+    boolean register(User customer);
     
     User createEmployee(User user);
 };
