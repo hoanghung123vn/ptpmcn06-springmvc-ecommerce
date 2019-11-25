@@ -1073,10 +1073,9 @@
                                 <div class="table-overflow">
                                     <table id="dt-opt" class="table table-hover table-xl">
                                         <thead>
-                                            <tr>
+                                            <tr class="text-center">
                                                 <th>Tên</th>
                                                 <th>Email</th>
-                                                <th>Số điện thoại</th>
                                                 <th>Trạng thái</th>
                                                 <th>Vai trò</th>
                                                 <th>Hành động</th>
@@ -1098,7 +1097,6 @@
                                                     </div>
                                                 </td>
                                                 <td th:text="*{customer.getEmail()}"></td>
-                                                <td th:text="*{customer.getPhone()}"></td>
                                                 <td th:switch="*{customer.getStatus()}">
                                                 	<span th:case="1" class="badge badge-pill badge-gradient-success">Hoạt động</span>
                                                 	<span th:case="2" class="badge badge-pill badge-gradient-danger">Đã khóa</span>
@@ -1113,9 +1111,9 @@
 	                                                </div>
                                                 </td>
                                                 <td class="text-center font-size-18">
-                                                    <a th:href="'/admin/customer/'+*{customer.getId()}+'/orders'" class="text-gray m-r-15"><i class="mdi mdi-information-outline"></i></a>
-                                                    <a href="#" class="text-gray m-r-15"><i class="ti-pencil"></i></a>
-                                                    <button data-toggle="modal" th:data-target="'#modal-delete'+*{customer.getId()}" class="btn btn-danger">Xóa</button>
+                                                    <a th:href="'/admin/customer/'+*{customer.getId()}+'/orders'" class="btn btn-primary btn-sm">Chi tiết</a>
+                                                    <a href="#" class="btn btn-warning btn-sm">Cập nhật</a>
+                                                    <button data-toggle="modal" th:data-target="'#modal-delete'+*{customer.getId()}" class="btn btn-danger btn-sm">Xóa</button>
                                                     <div class="modal fade" th:id="'modal-delete'+*{customer.getId()}">
 							                            <div class="modal-dialog modal-sm" role="document">
 							                                <div class="modal-content">
