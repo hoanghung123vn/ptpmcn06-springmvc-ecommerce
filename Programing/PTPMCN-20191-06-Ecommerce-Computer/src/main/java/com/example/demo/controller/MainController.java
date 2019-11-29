@@ -8,12 +8,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.service.UserService;
+import com.example.demo.entity.User;
+import com.example.demo.service.user.UserService;
+
+import javassist.expr.NewArray;
 
 /**
  * @author Hung Hoang
@@ -46,7 +51,8 @@ public class MainController {
     }
     
     @GetMapping("/login")
-    public String login(){
+    public String login(Model model){
+        model.addAttribute("customer", new User());
         return "user/account_page";
     }
     
@@ -60,10 +66,15 @@ public class MainController {
     }
     
     @PostMapping("/register")
-    public String register(@RequestParam String email_register, @RequestParam String password_register) {
-        if(userService.register(email_register, password_register)) {
+    public String register(@ModelAttribute User customer) {
+        if(userService.register(customer)) {
             return "redirect:/login?register_success";
         }
         return "redirect:/login?register_error";
+    }
+    
+    @GetMapping("/error")
+    public String error() {
+        return "error";
     }
 }

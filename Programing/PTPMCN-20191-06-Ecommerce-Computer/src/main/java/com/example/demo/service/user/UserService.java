@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,5 +22,7 @@ public interface UserService {
     
     void deleteById(Integer id);
     
-    boolean register(String email, String password);
+    boolean register(User customer);
+    
+    User createEmployee(User user);
 };
