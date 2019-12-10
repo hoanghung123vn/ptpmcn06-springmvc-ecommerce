@@ -73,12 +73,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "customer")
     @OrderBy("id_order DESC")
     @JsonBackReference // prevent load products when load category (REST)
-    private Set<Order> ordersOfCustomer = new HashSet<Order>();
+    private Set<Orders> ordersOfCustomer = new HashSet<Orders>();
     
     @OneToMany(mappedBy = "shipper")
     @OrderBy("id_order DESC")
     @JsonBackReference // prevent load products when load category (REST)
-    private Set<Order> ordersOfShipper = new HashSet<Order>();
+    private Set<Orders> ordersOfShipper = new HashSet<Orders>();
     
     @OneToMany(mappedBy = "pk.customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference // prevent load products when load category (REST)
@@ -96,19 +96,19 @@ public class User implements Serializable {
         this.items = items;
     }
 
-    public Set<Order> getOrdersOfCustomer() {
+    public Set<Orders> getOrdersOfCustomer() {
         return ordersOfCustomer;
     }
 
-    public void setOrdersOfCustomer(Set<Order> ordersOfCustomer) {
+    public void setOrdersOfCustomer(Set<Orders> ordersOfCustomer) {
         this.ordersOfCustomer = ordersOfCustomer;
     }
 
-    public Set<Order> getOrdersOfShipper() {
+    public Set<Orders> getOrdersOfShipper() {
         return ordersOfShipper;
     }
 
-    public void setOrdersOfShipper(Set<Order> ordersOfShipper) {
+    public void setOrdersOfShipper(Set<Orders> ordersOfShipper) {
         this.ordersOfShipper = ordersOfShipper;
     }
 
@@ -199,22 +199,22 @@ public class User implements Serializable {
         role.getUsers().remove(this);
     }
     
-    public void addOrderOfCustomer(Order order) {
+    public void addOrderOfCustomer(Orders order) {
         ordersOfCustomer.add(order);
         order.setCustomer(this);
     }
     
-    public void removeOrderofCustomer(Order order) {
+    public void removeOrderofCustomer(Orders order) {
         ordersOfCustomer.remove(order);
         order.setCustomer(null);
     }
     
-    public void addOrderOfShipper(Order order) {
+    public void addOrderOfShipper(Orders order) {
         ordersOfShipper.add(order);
         order.setShipper(this);
     }
   
-    public void removeOrderOfShipper(Order order) {
+    public void removeOrderOfShipper(Orders order) {
         ordersOfShipper.remove(order);
         order.setShipper(null);
     }

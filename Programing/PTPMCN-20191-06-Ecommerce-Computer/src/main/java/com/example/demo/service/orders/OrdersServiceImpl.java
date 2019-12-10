@@ -1,0 +1,38 @@
+package com.example.demo.service.orders;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dao.OrdersRepository;
+import com.example.demo.entity.Orders;
+
+@Service
+public class OrdersServiceImpl implements OrdersService {
+
+	@Autowired
+	OrdersRepository ordersRepository;
+	
+	@Override
+	public List<Orders> findAll() {
+		return ordersRepository.findAll();
+	}
+
+	@Override
+	public Orders findById(int id) {
+		return ordersRepository.findById(id);
+	}
+
+	@Override
+	public Orders save(Orders orders) {
+		return ordersRepository.save(orders);
+	}
+
+	@Override
+	public List<Orders> findByStatus(int status) {
+		return ordersRepository.findByStatus(status);
+		
+	}
+
+}

@@ -28,8 +28,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @description TODO
  */
 @Entity
-@Table(name = "order")
-public class Order implements Serializable {
+@Table(name = "orders")
+public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -169,9 +169,10 @@ public class Order implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Order other = (Order) obj;
+        Orders other = (Orders) obj;
         if (id != other.id)
             return false;
         return true;
     }
+    
 }
