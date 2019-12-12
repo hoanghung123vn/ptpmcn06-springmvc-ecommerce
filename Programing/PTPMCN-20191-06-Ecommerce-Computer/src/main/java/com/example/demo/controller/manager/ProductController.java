@@ -96,37 +96,36 @@ public class ProductController {
 
 
 	@PostMapping("/save")
-	public String saveEmployee(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile[] fileDatas) {
-		// Thư mục gốc upload file.
-        String uploadRootPath = "src/main/resources/static/products";
-        System.out.println("uploadRootPath=" + uploadRootPath);
+	public String saveEmployee(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile fileData) {
+		if(!fileData.isEmpty()) {
+			// Thư mục gốc upload file.
+	        String uploadRootPath = "src/main/resources/static/products";
+	        System.out.println("uploadRootPath=" + uploadRootPath);
 
-        File uploadRootDir = new File(uploadRootPath);
-        // Tạo thư mục gốc upload nếu nó không tồn tại.
-        if (!uploadRootDir.exists()) {
-            uploadRootDir.mkdirs();
-        }
-        for (MultipartFile fileData : fileDatas) {
+	        File uploadRootDir = new File(uploadRootPath);
+	        // Tạo thư mục gốc upload nếu nó không tồn tại.
+	        if (!uploadRootDir.exists()) {
+	            uploadRootDir.mkdirs();
+	        }
+	            // Tên file gốc tại Client.
+	        String name = fileData.getOriginalFilename();
+	        System.out.println("Client File Name = " + name);
 
-            // Tên file gốc tại Client.
-            String name = fileData.getOriginalFilename();
-            System.out.println("Client File Name = " + name);
+	        if (name != null && name.length() > 0) {
+	            try {
+	                // Tạo file tại Server.
+	                File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + name);
 
-            if (name != null && name.length() > 0) {
-                try {
-                    // Tạo file tại Server.
-                    File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + name);
-
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                    stream.write(fileData.getBytes());
-                    stream.close();
-                    System.out.println("Write file: " + serverFile);
-                } catch (Exception e) {
-                    System.out.println("Error Write file: " + name);
-                }
-            }
-            product.setImageLink("/products/" + name);
-        }
+	                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+	                stream.write(fileData.getBytes());
+	                stream.close();
+	                System.out.println("Write file: " + serverFile);
+	            } catch (Exception e) {
+	                System.out.println("Error Write file: " + name);
+	            }
+	        }
+	        product.setImageLink("/products/" + name);
+		}
 
 		productService.save(product);
 
