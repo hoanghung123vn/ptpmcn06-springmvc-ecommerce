@@ -129,7 +129,7 @@ public class ProductController {
 
 		productService.save(product);
 
-		return "redirect:/manager/products/list";
+		return "redirect:/manager/products/details?code=" + product.getCode();
 	}
 
 
