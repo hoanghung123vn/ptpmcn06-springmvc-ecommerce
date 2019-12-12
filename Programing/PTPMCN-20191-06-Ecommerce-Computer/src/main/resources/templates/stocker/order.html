@@ -903,47 +903,39 @@
 				<div class="main-content">
 					<div class="container-fluid">
 						<div class="page-header">
-							<h2 class="header-title">Thêm sản phẩm</h2>
+							<h2 class="header-title">Chi tiết đơn hàng</h2>
 							<div class="header-sub-title">
 								<nav class="breadcrumb breadcrumb-dash">
 									<a href="#" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Home</a> <a
-										class="breadcrumb-item" href="#">Sản phẩm</a> <span
-										class="breadcrumb-item active">Thêm
-										sản phẩm</span>
+										class="breadcrumb-item" href="#">Chi tiết đơn hàng</a> 
 								</nav>
 							</div>
 						</div>
 
 						<div class="card-body">
-							<table class="table">
+							<!-- <table class="table">
 								<thead>
 									<tr>
 										<th scope="col">ID</th>
 										<th scope="col">Thời điểm giao hàng</th>
 
-
-										<th scope="col" class="dropdown dropdown-animated">
-											<div style="border-style:none" class="dropdown-toggle pointer"
-												data-toggle="dropdown" aria-expanded="false">
-												<span>Trạng thái đơn hàng</span>
-											</div>
-											<div class="dropdown-menu" x-placement="top-start"
-												style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=0)}">Chưa xác
-													nhận</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=1)}">Đã xác
-													nhận</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=2)}">Đã
-													hủy</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=3)}">Đã phân
-													công</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=4)}">Trên
-													đường vận chuyển</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=5)}">Đã hoàn
-													thành</a>
-											</div>
-										</th>
-
+										
+											<th scope="col" class="dropdown dropdown-animated">
+												<div style="border-style:none" class="dropdown-toggle pointer" data-toggle="dropdown"
+													aria-expanded="false">
+													<span>Trạng thái đơn hàng</span>
+												</div>
+												<div class="dropdown-menu" x-placement="top-start"
+													style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
+													<a class="dropdown-item" th:href="@{/stocker/orders(status=0)}">Chưa xác nhận</a>
+													<a class="dropdown-item" th:href="@{/stocker/orders(status=1)}">Đã xác nhận</a>
+													<a class="dropdown-item" th:href="@{/stocker/orders(status=2)}">Đã hủy</a>
+													<a class="dropdown-item" th:href="@{/stocker/orders(status=3)}">Đã phân công</a>
+													<a class="dropdown-item" th:href="@{/stocker/orders(status=4)}">Trên đường vận chuyển</a>
+													<a class="dropdown-item" th:href="@{/stocker/orders(status=5)}">Đã hoàn thành</a>
+												</div>
+											</th>
+										
 										<th scope="col">Tên Shipper</th>
 										<th scope="col">Hành động</th>
 
@@ -962,137 +954,56 @@
 												<td th:case="4">Trên đường vận chuyển</td>
 												<td th:case="5">Đã hoàn thành</td>
 											</th:block>
-											<td>
-												<div th:text="${order.shipper.name}" data-toggle="modal"
-													th:data-target="'#modal-detail-shipper'+${order.shipper.id}"
-													title="xem chi tiết"></div>
-												<div class="modal fade"
-													th:id="'modal-detail-shipper'+${order.shipper.id}">
-													<div class="modal-dialog modal-lg" role="document">
-														<div class="modal-content">
-															<div class="modal-body">
-																<div class="card">
-																	<div class="card-header border bottom">
-																		<h4 class="card-title">Thông tin Shipper</h4>
-																	</div>
-																	<div class="card-body">
-																		<div class="row">
-																			<div class="col-md-12">
-																				<div class="form-group row">
-																					<label
-																						class="col-sm-3 col-form-label control-label text-dark">Tên
-																						Shipper: </label>
-																					<div class="col-sm-9">
-																						<p class="form-control-plaintext"
-																							th:text="${order.shipper.name}">
-																						</p>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label
-																						class="col-sm-3 col-form-label control-label text-dark">Số
-																						điện thoại: </label>
-																					<div class="col-sm-9">
-																						<p class="form-control-plaintext"
-																							th:text="${order.shipper.phone}">
-																						</p>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label
-																						class="col-sm-3 col-form-label control-label text-dark">Email
-																						liên lạc: </label>
-																					<div class="col-sm-9">
-																						<p class="form-control-plaintext"
-																							th:text="${order.shipper.email}">
-																						</p>
-																					</div>
-																				</div>
-																			</div>
-
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-
-											<td>
-												<button data-toggle="modal"
-													th:data-target="'#modal-detail-orders'+${order.id}"
-													class="btn btn-info">Chi tiết</button>
-												<div class="modal fade" th:id="'modal-detail-orders'+${order.id}">
-													<div class="modal-dialog modal-lg" role="document">
-														<div class="modal-content">
-															<div class="modal-body">
-																<div class="card">
-																	<div class="card-header border bottom">
-																		<h4 class="card-title">Chi tiết Đơn hàng</h4>
-																	</div>
-																	<div class="card-body">
-																		<table class="table">
-																			<thead class="thead-light">
-																				<tr>
-																					<th scope="col">STT</th>
-																					<th scope="col">Mã Sản phẩm</th>
-																					<th scope="col">Tên Sản phẩm</th>
-																					<th scope="col">Số lượng</th>
-																					<th scope="col">Đơn Giá</th>
-																				</tr>
-																			</thead>
-																			<tbody>
-																				<tr th:each="item,iter: ${order.items}">
-																					<th th:text="${iter.index + 1}"
-																						scope="row"></th>
-																					<td th:text="${item.product.code}">
-																					</td>
-																					<td
-																						th:text="${item.product.productName}">
-																					</td>
-																					<td th:text="${item.quantity}"></td>
-																					<td th:text="${item.price}"></td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</div>
-																	<div class="card-header border top text-right">
-																		<h4 class="card-title">Tổng số tiền: <span
-																				th:text="${order.getTotal()}"></span>
-																			VND</h4>
-
-																	</div>
-																	<div align="right">
-																		<a th:if="${order.status==3}"
-																			class="btn btn-success col-sm-3"
-																			th:href="@{/stocker/order/xacNhanGiaoHang(id=${order.id})}">Xác
-																			nhận giao hàng</a>
-																	</div>
-																	<div>
-																		<span>
-																			<a th:if="${order.status==4}"
-																				class="btn btn-success col-sm-3"
-																				th:href="@{/stocker/order/hoanThanh(id=${order.id})}"
-																				>Xác nhận hoàn thành</a>
-																		</span>
-																		<span>
-																			<a th:if="${order.status==4}"
-																				class="btn bg-danger col-sm-3"
-																				th:href="@{/stocker/order/receiveProduct(id=${order.id})}">Nhận trả
-																				hàng</a>
-																		</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
+											
+											
 										</tr>
 									</th:block>
 								</tbody>
-							</table>
+							</table> -->
+							<div class="card">
+								<div class="card-header border bottom">
+									<h4 class="card-title">Chi tiết Đơn hàng</h4>
+								</div>
+								<div class="card-body">
+									<span class="col-md-12">Mã Đơn Hàng: <span th:text="${order.id}"></span></span>
+									<span class="col-md-12"></span>
+									<span class="col-md-12">Shipper: <span th:text="${order.shipper.name}"></span></span>
+									<table class="table">
+										<thead class="thead-light">
+											<tr>
+												<th scope="col">STT</th>
+												<th scope="col">Mã Sản phẩm</th>
+												<th scope="col">Tên Sản phẩm</th>
+												<th scope="col">Số lượng</th>
+												<th scope="col">Đơn Giá</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="item,iter: ${order.items}">
+												<th th:text="${iter.index + 1}"
+													scope="row"></th>
+												<td th:text="${item.product.code}">
+												</td>
+												<td
+													th:text="${item.product.productName}">
+												</td>
+												<td th:text="${item.quantity}"></td>
+												<td th:text="${item.price}"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="card-header border top text-right">
+									<h4 class="card-title">Tổng số tiền: <span
+											th:text="${order.getTotal()}"></span>
+										VND</h4>
+
+								</div>
+								<!-- <a th:if="${order.status==3}"
+									class="btn btn-success"
+									th:href="@{/stocker/order/xacNhanGiaoHang(id=${order.id})}">Xác
+									nhận giao hàng</a> -->
+							</div>
 						</div>
 					</div>
 				</div>
