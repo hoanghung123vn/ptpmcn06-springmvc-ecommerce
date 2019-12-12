@@ -5,7 +5,13 @@ import java.util.List;
 import com.example.demo.entity.Product;
 
 public interface ProductService {
-	Product findByCode(Integer code);
+
 	List<Product> findAll();
-	void deleteByCode(Integer id);
+
+	Product findByCode(int code);
+
+	void save(Product product);
+
+	void deleteByCode(int code);
+
 }
