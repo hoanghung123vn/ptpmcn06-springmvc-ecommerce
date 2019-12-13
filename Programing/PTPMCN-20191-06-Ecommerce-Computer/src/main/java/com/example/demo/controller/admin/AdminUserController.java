@@ -32,9 +32,6 @@ public class AdminUserController {
     @Autowired
     private UserService userService;
     
-    //@Autowired
-    //private OrderService orderService;
-    
     @GetMapping("/customers")
     public String index(Model model) {
         model.addAttribute("customers", userService.findAll());
@@ -43,9 +40,9 @@ public class AdminUserController {
     
     @GetMapping("/customer/{id}/orders")
     public String singleUser(@PathVariable("id") Integer id, Model model) {
-        Optional<User> customer = userService.findById(id);
-        model.addAttribute("customer", customer);
-        //model.addAttribute("orders", orderService.FindByUser(customer));
+        Optional<User> user = userService.findById(id);
+        model.addAttribute("user", user.get());
+        model.addAttribute("items", user.get().getOrdersOfCustomer());
         return "admin/single_customer";
     }
     
@@ -65,7 +62,7 @@ public class AdminUserController {
     @GetMapping("/customer/{id}/delete")
     public String delete(@PathVariable("id") Integer id, RedirectAttributes redirect) {
         userService.deleteById(id);
-        redirect.addFlashAttribute("success", "Xóa thành công, xem kết quả bên dưới :)");
+        redirect.addFlashAttribute("success", "Xóa thành công, xem kết quả bên dưới");
         return "redirect:/admin/customers";
     }
 }
