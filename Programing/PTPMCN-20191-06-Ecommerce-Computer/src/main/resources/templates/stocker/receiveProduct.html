@@ -911,7 +911,8 @@
 								</nav>
 							</div>
 						</div>
-						<!-- <form th:action="@{/stocker/order/receiveProduct}" method="POST" th:object="${order}"> -->
+						<form th:action="@{/stocker/receiveProduct}" method="get" th:object="${order}">
+							<input type="text" th:field="*{id}" hidden>
 							<div class="card-body">
 
 								<div class="card">
@@ -934,7 +935,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr th:each="item,iter: ${order.items}">
+													<tr th:each="item,iter: *{items}">
 														<th th:text="${iter.index + 1}"
 															scope="row"></th>
 														<td th:text="${item.product.code}">
@@ -945,7 +946,7 @@
 														<td th:text="${item.quantity}"></td>
 														<td th:text="${item.price}"></td>
 														<td >
-															<input th:value="${item.quantity}" type="number" min="0" th:max="${item.quantity}" class="form-control"/>															
+														<input th:field="*{items[__${iter.index}__].quantity}" type="number" min="0" th:max="${item.quantity}" class="form-control"/>															
 														</td>
 													</tr>
 												</tbody>
@@ -958,14 +959,11 @@
 
 									</div>
 									<button type="submit" class="btn btn-success">Xác Nhận
-										<!-- <a 
-										class="btn btn-success"
-										th:href="@{/stocker/orderDetail(id=${order.id})}">Xác Nhận
-										</a> -->
+									
 									</button>
 								</div>
 							</div>
-						<!-- </form> -->
+						</form>
 					</div>
 				</div>
 				<!-- Content Wrapper END -->

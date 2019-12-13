@@ -1,6 +1,7 @@
 package com.example.demo.service.orders;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class OrdersServiceImpl implements OrdersService {
 	}
 
 	@Override
-	public Orders findById(int id) {
+	public Optional<Orders> findById(int id) {
 		return ordersRepository.findById(id);
 	}
 

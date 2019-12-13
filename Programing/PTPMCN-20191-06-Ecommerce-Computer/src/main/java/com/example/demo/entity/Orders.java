@@ -1,8 +1,9 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -46,18 +47,18 @@ public class Orders implements Serializable {
     @JoinColumn(name = "id_shipper", referencedColumnName = "id")
     private User shipper;
     
-    @OneToMany(mappedBy = "pk.order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pk.order", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
     @JsonBackReference
-    private Set<OrderDetail> items = new HashSet<>();
+    private List<OrderDetail> items = new ArrayList<OrderDetail>();
     
     @Column(name = "note", nullable = true)
     private String note;
     
-    public Set<OrderDetail> getItems() {
+    public List<OrderDetail> getItems() {
         return items;
     }
 
-    public void setItems(Set<OrderDetail> items) {
+    public void setItems(List<OrderDetail> items) {
         this.items = items;
     }
 

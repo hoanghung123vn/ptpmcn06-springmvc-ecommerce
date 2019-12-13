@@ -2,6 +2,9 @@ package com.example.demo.controller.stocker;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.OrderDetail;
 import com.example.demo.entity.Orders;
 import com.example.demo.service.orders.OrdersService;
 
@@ -50,7 +54,7 @@ public class StockerOrderController {
 	 */
 	@GetMapping("/order/xacNhanGiaoHang")
 	public String changeStatusOrders34(@RequestParam("id")int id) {
-		Orders orders = orderService.findById(id);
+		Orders orders = orderService.findById(id).get();
 		if (orders.getStatus() == 3) orders.setStatus(4);
 		orderService.save(orders);
 		return "redirect:/stocker/orders";
@@ -65,7 +69,7 @@ public class StockerOrderController {
 	 */
 	@GetMapping("/order/hoanThanh")
 	public String changeStatusOrders45(@RequestParam("id")int id) {
-		Orders orders = orderService.findById(id);
+		Orders orders = orderService.findById(id).get();
 		if (orders.getStatus() == 4) orders.setStatus(5);
 		orderService.save(orders);
 		return "redirect:/stocker/orders";
@@ -77,11 +81,14 @@ public class StockerOrderController {
 	 * @param id
 	 * @return html to see result
 	 */
-	@PostMapping("/order/receiveProduct")
+	@GetMapping("/receiveProduct")
 	public String changeItemsOrders(@ModelAttribute("order") Orders order) {
-//		orderService.save(order);
-		System.out.println("Hello ");
-		System.out.println(order.getId());
+		Orders old = orderService.findById(order.getId()).get();
+		for (int i = 0; i< order.getItems().size();i++) {
+			old.getItems().get(i).setQuantity(order.getItems().get(i).getQuantity());
+		}
+		old.setStatus(5);
+		orderService.save(old);
 		return "stocker/listOrder";
 	}
 	
@@ -94,7 +101,9 @@ public class StockerOrderController {
 	 */
 	@GetMapping("/order/receiveProduct")
 	public String getFormReceive(Model model, @RequestParam("id")int id) {
-		Orders order = orderService.findById(id);
+		System.out.println(id);
+		Orders order = orderService.findById(id).get();
+		System.out.println(order.getShipAddress());
 		model.addAttribute("order", order);
 		return "stocker/receiveProduct";
 	}
@@ -108,7 +117,7 @@ public class StockerOrderController {
 	 */
 	@GetMapping("/orderDetail")
 	public String getDetailOrder(Model model,@RequestParam("id")int id) {
-		Orders order = orderService.findById(id);
+		Orders order = orderService.findById(id).get();
 		model.addAttribute("order", order);
 		return "stocker/order";
 	}

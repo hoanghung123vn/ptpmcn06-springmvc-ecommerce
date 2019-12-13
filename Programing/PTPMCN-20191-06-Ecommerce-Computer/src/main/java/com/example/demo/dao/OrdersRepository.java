@@ -8,6 +8,6 @@ import com.example.demo.entity.Orders;
 
 public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 	List<Orders> findAll();
-	Orders findById(int id);
+
 	List<Orders> findByStatus(int status);
 }
