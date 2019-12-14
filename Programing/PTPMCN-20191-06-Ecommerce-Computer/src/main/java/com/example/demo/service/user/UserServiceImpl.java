@@ -79,5 +79,21 @@ public class UserServiceImpl implements UserService {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public void toggleStatus(Integer id) {
+        User user = userRepository.findById(id).get();
+        if (user.getStatus() == 1) {
+            user.setStatus(2);
+        } else if (user.getStatus() == 2) {
+            user.setStatus(1);
+        }
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<User> search(String email) {
+        return userRepository.findByEmailContaining(email);
+    }
     
 }
