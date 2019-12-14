@@ -47,6 +47,7 @@ public class AdminUserController {
     public String singleUser(@PathVariable("id") Integer id, Model model) {
         Optional<User> user = userService.findById(id);
         model.addAttribute("user", user.get());
+        model.addAttribute("items", user.get().getOrdersOfCustomer());
         return "admin/single_customer";
     }
     
