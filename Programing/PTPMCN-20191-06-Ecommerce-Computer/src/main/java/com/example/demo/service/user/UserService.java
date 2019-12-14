@@ -3,6 +3,7 @@ package com.example.demo.service.user;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entity.Cart;
 import com.example.demo.entity.User;
 
 /**
@@ -25,4 +26,8 @@ public interface UserService {
     boolean register(User customer);
     
     User createEmployee(User user);
+    
+    void save(User user);
+    
+//    List<Cart> getItems(int id);
 };
