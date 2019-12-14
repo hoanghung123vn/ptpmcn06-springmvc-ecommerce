@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,8 +34,12 @@ public class AdminUserController {
     private UserService userService;
     
     @GetMapping("/customers")
-    public String index(Model model) {
-        model.addAttribute("customers", userService.findAll());
+    public String index(Model model, @RequestParam(name = "email", required = false) String email) {
+        if(email == null) {
+            model.addAttribute("customers", userService.findAll());
+        } else {
+            model.addAttribute("customers", userService.search(email));
+        }       
         return "admin/customer_list";
     }
     
@@ -42,7 +47,6 @@ public class AdminUserController {
     public String singleUser(@PathVariable("id") Integer id, Model model) {
         Optional<User> user = userService.findById(id);
         model.addAttribute("user", user.get());
-        model.addAttribute("items", user.get().getOrdersOfCustomer());
         return "admin/single_customer";
     }
     
@@ -63,6 +67,13 @@ public class AdminUserController {
     public String delete(@PathVariable("id") Integer id, RedirectAttributes redirect) {
         userService.deleteById(id);
         redirect.addFlashAttribute("success", "Xóa thành công, xem kết quả bên dưới");
+        return "redirect:/admin/customers";
+    }
+    
+    @GetMapping("/customer/{id}/toggle-status")
+    public String toggle(@PathVariable("id") Integer id, RedirectAttributes redirect) {
+        userService.toggleStatus(id);
+        redirect.addFlashAttribute("success", "Thành công, xem kết quả bên dưới");
         return "redirect:/admin/customers";
     }
 }

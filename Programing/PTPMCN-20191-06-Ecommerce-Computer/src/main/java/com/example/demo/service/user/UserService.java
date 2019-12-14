@@ -25,4 +25,8 @@ public interface UserService {
     boolean register(User customer);
     
     User createEmployee(User user);
+    
+    void toggleStatus(Integer id);
+    
+    List<User> search(String email);
 };
