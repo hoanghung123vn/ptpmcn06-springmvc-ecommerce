@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- Mirrored from htmlmystore.justthemevalley.com/shopping_cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 18:39:47 GMT -->
 <head>
@@ -27,30 +27,30 @@
 <!-- CSS Style -->
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 
 <!-- font-awesome & simple line icons CSS -->
-<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href="/css/simple-line-icons.css" media="all">
 
 <!-- owl.carousel CSS -->
-<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+<link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/css/owl.theme.css">
 
 <!-- animate CSS  -->
-<link rel="stylesheet" type="text/css" href="css/animate.css" media="all">
+<link rel="stylesheet" type="text/css" href="/css/animate.css" media="all">
 
 <!-- flexslider CSS -->
-<link rel="stylesheet" type="text/css" href="css/flexslider.css" >
+<link rel="stylesheet" type="text/css" href="/css/flexslider.css" >
 
 <!-- jquery-ui.min CSS  -->
-<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 
 <!-- Revolution Slider CSS -->
-<link rel="stylesheet" type="text/css" href="css/revolution-slider.css">
+<link rel="stylesheet" type="text/css" href="/css/revolution-slider.css">
 
 <!-- style CSS -->
-<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
 
 
 </head>
@@ -289,14 +289,14 @@
               <div class="language-currency-wrapper">
                 <div class="inner-cl">
                   <div class="block block-language form-language">
-                    <div class="lg-cur"> <span> <img src="images/flag-default.jpg" alt="French"> <span class="lg-fr">French</span> <i class="fa fa-angle-down"></i> </span> </div>
+                    <div class="lg-cur"> <span> <img src="/images/flag-default.jpg" alt="French"> <span class="lg-fr">French</span> <i class="fa fa-angle-down"></i> </span> </div>
                     <ul>
-                      <li> <a class="selected" href="#"> <img src="images/flag-english.jpg" alt="flag"> <span>English</span> </a> </li>
-                      <li> <a href="#"> <img src="images/flag-default.jpg" alt="flag"> <span>French</span> </a> </li>
-                      <li> <a href="#"> <img src="images/flag-german.jpg" alt="flag"> <span>German</span> </a> </li>
-                      <li> <a href="#"> <img src="images/flag-brazil.jpg" alt="flag"> <span>Brazil</span> </a> </li>
-                      <li> <a href="#"> <img src="images/flag-chile.jpg" alt="flag"> <span>Chile</span> </a> </li>
-                      <li> <a href="#"> <img src="images/flag-spain.jpg" alt="flag"> <span>Spain</span> </a> </li>
+                      <li> <a class="selected" href="#"> <img src="/images/flag-english.jpg" alt="flag"> <span>English</span> </a> </li>
+                      <li> <a href="#"> <img src="/images/flag-default.jpg" alt="flag"> <span>French</span> </a> </li>
+                      <li> <a href="#"> <img src="/images/flag-german.jpg" alt="flag"> <span>German</span> </a> </li>
+                      <li> <a href="#"> <img src="/images/flag-brazil.jpg" alt="flag"> <span>Brazil</span> </a> </li>
+                      <li> <a href="#"> <img src="/images/flag-chile.jpg" alt="flag"> <span>Chile</span> </a> </li>
+                      <li> <a href="#"> <img src="/images/flag-spain.jpg" alt="flag"> <span>Spain</span> </a> </li>
                     </ul>
                   </div>
                   <div class="block block-currency">
@@ -319,7 +319,7 @@
         <div class="row">
           <div class="col-sm-3 col-md-3 col-xs-12"> 
             <!-- Header Logo -->
-            <div class="logo"><a title="e-commerce" href="index-2.html"><img alt="e-commerce" src="images/logo.png"></a> </div>
+            <div class="logo"><a title="e-commerce" href="index-2.html"><img alt="e-commerce" src="/images/logo.png"></a> </div>
             <!-- End Header Logo --> 
           </div>
           <div class="col-xs-9 col-sm-6 col-md-6"> 
@@ -359,29 +359,19 @@
               <div class="mini-cart">
                 <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="#">
                   <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
-                  <div class="shoppingcart-inner hidden-xs"><span class="cart-title">Shopping Cart</span> <span class="cart-total">4 Item(s): $520.00</span></div>
+                  <div class="shoppingcart-inner hidden-xs"><span class="cart-title" >Shopping Cart</span> <span class="cart-total" id="cart-total"></span></div>
                   </a></div>
                 <div>
                   <div class="top-cart-content">
                     <div class="block-subtitle hidden-xs">Recently added item(s)</div>
-                    <ul id="cart-sidebar" class="mini-products-list">
-                      <li class="item odd"> <a href="#" title="Ipsums Dolors Untra" class="product-image"><img src="images/products/img07.jpg" alt="Lorem ipsum dolor" width="65"></a>
+                    <ul id="cart-sidebar" class="mini-products-list" th:each="item: ${user.items}">
+                      <li class="item odd"> <a href="#" th:title="${item.product.productName}" class="product-image"><img th:src="'/images' + *{item.product.imageLink}" th:alt="${item.product.productName}" width="65"></a>
                         <div class="product-details"> <a href="#" title="Remove This Item" class="remove-cart"><i class="icon-close"></i></a>
-                          <p class="product-name"><a href="#">Lorem ipsum dolor sit amet Consectetur</a> </p>
-                          <strong>1</strong> x <span class="price">$20.00</span> </div>
-                      </li>
-                      <li class="item even"> <a href="#" title="Ipsums Dolors Untra" class="product-image"><img src="images/products/img08.jpg" alt="Lorem ipsum dolor" width="65"></a>
-                        <div class="product-details"> <a href="#" title="Remove This Item" class="remove-cart"><i class="icon-close"></i></a>
-                          <p class="product-name"><a href="#">Consectetur utes anet adipisicing elit</a> </p>
-                          <strong>1</strong> x <span class="price">$230.00</span> </div>
-                      </li>
-                      <li class="item last odd"> <a href="#" title="Ipsums Dolors Untra" class="product-image"><img src="images/products/img10.jpg" alt="Lorem ipsum dolor" width="65"></a>
-                        <div class="product-details"> <a href="#" title="Remove This Item" class="remove-cart"><i class="icon-close"></i></a>
-                          <p class="product-name"><a href="#">Sed do eiusmod tempor incidist</a> </p>
-                          <strong>2</strong> x <span class="price">$420.00</span> </div>
+                          <p class="product-name" th:text="${item.product.productName}"><a href="#"></a> </p>
+                          <strong th:id="'item-quantity'+${item.product.code}"></strong> x <span class="price" th:text="${item.price}"></span> </div>
                       </li>
                     </ul>
-                    <div class="top-subtotal">Subtotal: <span class="price">$520.00</span></div>
+                    <div class="top-subtotal">Subtotal: <span class="price" id="top-subtotal"></span></div>
                     <div class="actions">
                       <button class="btn-checkout" type="button"><i class="fa fa-check"></i><span>Checkout</span></button>
                       <button class="view-cart" type="button"><i class="fa fa-shopping-cart"></i> <span>View Cart</span></button>
@@ -445,7 +435,7 @@
                           <div class="col-md-4 has-sep hidden-sm">
                             <div class="custom-menu-right">
                               <div class="box-banner menu-banner">                                
-                               <div class="add-right"><a href="#"><img src="images/menu-img4.jpg" alt=""></a></div>
+                               <div class="add-right"><a href="#"><img src="/images/menu-img4.jpg" alt=""></a></div>
                               </div>
                               
                             </div>
@@ -500,14 +490,14 @@
                                     Services </h3>
                                   <div class="price-sale">2016</div>
                                   <a href="#">Shop Now</a> </div>
-                               <div class="add-right"><a href="#"><img src="images/menu-img1.jpg" alt=""></a></div>
+                               <div class="add-right"><a href="#"><img src="/images/menu-img1.jpg" alt=""></a></div>
                               </div>
                               <div class="box-banner media">
                                 <div class="add-desc">
                                   <h3>Save up to</h3>
                                   <div class="price-sale">75 <sup>%</sup><sub>off</sub></div>
                                   <a href="#">Shopping Now</a> </div>
-                                <div class="add-right"><a href="#"><img src="images/menu-img2.jpg" alt=""></a></div>
+                                <div class="add-right"><a href="#"><img src="/images/menu-img2.jpg" alt=""></a></div>
                               </div>
                             </div>
                           </div>
@@ -537,7 +527,7 @@
                               <li> <a href="shop_grid.html"> Sport Watch </a> </li>
                             </ul>
                           </div>
-                          <div class="col-sm-12"> <a class="ads1" href="#"><img class="img-responsive" src="images/menu-img3.jpg" alt=""></a> </div>
+                          <div class="col-sm-12"> <a class="ads1" href="#"><img class="img-responsive" src="/images/menu-img3.jpg" alt=""></a> </div>
                         </div>
                       </div>
                     </div>
@@ -770,7 +760,7 @@
                         <div class="product-thumbnail">
                           <div class="icon-sale-label sale-left">Sale</div>
                           <div class="pr-img-area">
-                            <figure> <img class="first-img" src="images/products/img06.jpg" alt=""> <img class="hover-img" src="images/products/img06.jpg" alt=""></figure>
+                            <figure> <img class="first-img" src="/images/products/img06.jpg" alt=""> <img class="hover-img" src="/images/products/img06.jpg" alt=""></figure>
                             <button type="button" class="add-to-cart-mt"> <i class="fa fa-shopping-cart"></i><span> Add to Cart</span> </button>
                           </div>
                           <div class="pr-info-area">
@@ -801,7 +791,7 @@
                         <div class="product-thumbnail">
                           <div class="icon-sale-label sale-left">Sale</div>
                           <div class="pr-img-area">
-                            <figure> <img class="first-img" src="images/products/img02.jpg" alt=""> <img class="hover-img" src="images/products/img02.jpg" alt=""></figure>
+                            <figure> <img class="first-img" src="/images/products/img02.jpg" alt=""> <img class="hover-img" src="/images/products/img02.jpg" alt=""></figure>
                             <button type="button" class="add-to-cart-mt"> <i class="fa fa-shopping-cart"></i><span> Add to Cart</span> </button>
                           </div>
                           <div class="pr-info-area">
@@ -834,7 +824,7 @@
                         <div class="product-thumbnail">
                           <div class="icon-sale-label sale-left">Sale</div>
                           <div class="pr-img-area">
-                            <figure> <img class="first-img" src="images/products/img03.jpg" alt=""> <img class="hover-img" src="images/products/img03.jpg" alt=""></figure>
+                            <figure> <img class="first-img" src="/images/products/img03.jpg" alt=""> <img class="hover-img" src="/images/products/img03.jpg" alt=""></figure>
                             <button type="button" class="add-to-cart-mt"> <i class="fa fa-shopping-cart"></i><span> Add to Cart</span> </button>
                           </div>
                           <div class="pr-info-area">
@@ -879,7 +869,7 @@
             <h2>Shopping Cart</h2>
           </div>
             
-            
+          <form th:action="@{/user/cart/checkout(userId=${user.id})}" th:object="${user}" method="POST">
             <div class="order-detail-content">
               <div class="table-responsive">
                 <table class="table table-bordered cart_summary">
@@ -894,56 +884,38 @@
                       <th  class="action"><i class="fa fa-trash-o"></i></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="images/products/img01.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Red</a></small><br>
-                        <small><a href="#">Size : M</a></small></td>
-                      <td class="availability in-stock"><span class="label">In stock</span></td>
-                      <td class="price"><span>$49.88</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="1"></td>
-                      <td class="price"><span>$49.88</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="images/products/img02.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Green</a></small><br>
-                        <small><a href="#">Size : XL</a></small></td>
-                      <td class="availability out-of-stock"><span class="label">No stock</span></td>
-                      <td class="price"><span>$00.00</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="0"></td>
-                      <td class="price"><span>00.00</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td class="cart_product"><a href="#"><img src="images/products/img03.jpg" alt="Product"></a></td>
-                      <td class="cart_description"><p class="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Blue</a></small><br>
-                        <small><a href="#">Size : S</a></small></td>
-                      <td class="availability in-stock"><span class="label">In stock</span></td>
-                      <td class="price"><span>$99.00</span></td>
-                      <td class="qty"><input class="form-control input-sm" type="text" value="2"></td>
-                      <td class="price"><span>$188.00</span></td>
-                      <td class="action"><a href="#"><i class="icon-close"></i></a></td>
-                    </tr>
-                  </tbody>
+                    <tbody th:each="item, rowStat: *{items}">
+                      <tr>
+                        <td class="cart_product"><a href="#"><img th:src="'/images' + ${item.product.imageLink}" alt="Product"></a></td>
+                        <td class="cart_description"><p class="product-name" th:text="${item.product.productName}"><a href="#"></a></p>
+                          <small><a href="#">Color : Red</a></small><br>
+                          <small><a href="#">Size : M</a></small></td>
+                        <td class="availability in-stock"><span class="label">In stock</span></td>
+                        <td class="price"><span th:text="${item.price}" th:id="'price' + ${item.product.code}"></span></td>
+                        <td class="qty"><input class="form-control input-sm quantity" min="1" max="10" type="number" th:field="*{items[__${rowStat.index}__].quantity}" th:id="${item.product.code}"></td>
+                        <td class="price"><span th:id="'subtotal'+${item.product.code}"></span></td>
+                        <td class="action"><a href="#"><i class="icon-close"></i></a></td>
+                      </tr>
+                    </tbody>
                   <tfoot>
                     <tr>
                       <td colspan="2" rowspan="2"></td>
                       <td colspan="3">Total products (tax incl.)</td>
-                      <td colspan="2">$237.88 </td>
+                      <td colspan="2" id="total1"></td>
                     </tr>
                     <tr>
                       <td colspan="3"><strong>Total</strong></td>
-                      <td colspan="2"><strong>$237.88 </strong></td>
+                      <td colspan="2"><strong id="total2"></strong></td>
                     </tr>
                   </tfoot>
                 </table>
               </div>
-              <div class="cart_navigation"> <a class="continue-btn" href="#"><i class="fa fa-arrow-left"> </i>&nbsp; Continue shopping</a> <a class="checkout-btn" href="#"><i class="fa fa-check"></i> Proceed to checkout</a> </div>
+              <div class="cart_navigation"> 
+                <a class="continue-btn" href="#"><i class="fa fa-arrow-left"> </i>&nbsp; Continue shopping</a>
+                <button type="submit" class="checkout-btn" href="#"><i class="fa fa-check"></i> Proceed to checkout</button>
+              </div>
             </div>
+          </form>
           </div>
         </div>
       </div>
@@ -980,7 +952,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
-          <div class="footer-logo"><a href="index-2.html"><img src="images/footer-logo.png" alt="fotter logo"></a> </div>
+          <div class="footer-logo"><a href="index-2.html"><img src="/images/footer-logo.png" alt="fotter logo"></a> </div>
           <p>Lorem Ipsum is simply dummy text of the print and typesetting industry.</p>
           <div class="footer-content">
             <div class="email"> <i class="fa fa-envelope"></i>
@@ -1048,10 +1020,10 @@
           <div class="col-sm-6 col-xs-12">
             <div class="payment">
               <ul>
-                <li><a href="#"><img title="Visa" alt="Visa" src="images/visa.png"></a></li>
-                <li><a href="#"><img title="Paypal" alt="Paypal" src="images/paypal.png"></a></li>
-                <li><a href="#"><img title="Discover" alt="Discover" src="images/discover.png"></a></li>
-                <li><a href="#"><img title="Master Card" alt="Master Card" src="images/master-card.png"></a></li>
+                <li><a href="#"><img title="Visa" alt="Visa" src="/images/visa.png"></a></li>
+                <li><a href="#"><img title="Paypal" alt="Paypal" src="/images/paypal.png"></a></li>
+                <li><a href="#"><img title="Discover" alt="Discover" src="/images/discover.png"></a></li>
+                <li><a href="#"><img title="Master Card" alt="Master Card" src="/images/master-card.png"></a></li>
               </ul>
             </div>
           </div>
@@ -1065,22 +1037,22 @@
 <!-- JS --> 
 
 <!-- jquery js --> 
-<script type="text/javascript" src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.min.js"></script> 
 
 <!-- bootstrap js --> 
-<script type="text/javascript" src="js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="/js/bootstrap.min.js"></script> 
 
 <!-- owl.carousel.min js --> 
-<script type="text/javascript" src="js/owl.carousel.min.js"></script> 
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script> 
 
 <!-- bxslider js --> 
-<script type="text/javascript" src="js/jquery.bxslider.js"></script> 
+<script type="text/javascript" src="/js/jquery.bxslider.js"></script> 
 
 <!--jquery-slider js --> 
-<script type="text/javascript" src="js/slider.html"></script> 
+<script type="text/javascript" src="/js/slider.html"></script> 
 
 <!-- megamenu js --> 
-<script type="text/javascript" src="js/megamenu.js"></script> 
+<script type="text/javascript" src="/js/megamenu.js"></script> 
 <script type="text/javascript">
         /* <![CDATA[ */   
         var mega_menu = '0';
@@ -1089,15 +1061,17 @@
         </script> 
 
 <!-- jquery.mobile-menu js --> 
-<script type="text/javascript" src="js/mobile-menu.js"></script> 
+<script type="text/javascript" src="/js/mobile-menu.js"></script> 
 
  
 
 <!--jquery-ui.min js --> 
-<script type="text/javascript" src="js/jquery-ui.js"></script> 
+<script type="text/javascript" src="/js/jquery-ui.js"></script> 
 
 <!-- main js --> 
-<script type="text/javascript" src="js/main.js"></script> 
+<script type="text/javascript" src="/js/main.js"></script> 
+
+<script type="text/javascript" src="/js/cart.js"></script> 
 
  
 </body>
