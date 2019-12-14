@@ -6218,7 +6218,7 @@ p.note {
 .page-order .cart_description {
 	font-size: 14px
 }
-.page-order .cart_navigation a.checkout-btn {
+.page-order .cart_navigation button.checkout-btn {
 	float: right;
 	background: #fe0100;
 	color: #fff;
@@ -6230,11 +6230,11 @@ p.note {
 	padding: 10px 30px
 }
 @media (max-width:480px) {
-.page-order .cart_navigation a.checkout-btn {
+.page-order .cart_navigation button.checkout-btn {
 	float: left
 }
 }
-.page-order .cart_navigation a.checkout-btn:hover {
+.page-order .cart_navigation button.checkout-btn:hover {
 	border: 2px solid #0083c1;
 	background: #0083c1
 }
@@ -7331,7 +7331,7 @@ nav {
 .checkout-page .box-border .button {
 	margin-bottom: 18px;
 }
-.page-order .cart_navigation a.checkout-btn {
+.page-order .cart_navigation button.checkout-btn {
 	font-size: 14px;
 	padding: 10px 20px;
 }
