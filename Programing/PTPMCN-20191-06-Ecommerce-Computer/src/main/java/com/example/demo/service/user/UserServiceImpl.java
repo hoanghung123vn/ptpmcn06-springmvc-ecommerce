@@ -34,6 +34,9 @@ public class UserServiceImpl implements UserService {
     @Autowired 
     private PasswordEncoder passwordEncoder;
     
+//    @Autowired
+//    private CartRepository cartRepository;
+    
     @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
@@ -79,5 +82,15 @@ public class UserServiceImpl implements UserService {
         // TODO Auto-generated method stub
         return null;
     }
+
+	@Override
+	@Transactional
+	public void save(User user) {
+		userRepository.save(user);
+		
+	}
+    
+    
+
     
 }
