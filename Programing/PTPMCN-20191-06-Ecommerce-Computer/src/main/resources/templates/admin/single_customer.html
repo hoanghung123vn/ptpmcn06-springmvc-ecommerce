@@ -1186,6 +1186,8 @@
                                                 <tr class="text-center">
                                                     <th>ID</th>
                                                     <th>Ngày tạo</th>
+                                                    <th>Ngày giao</th>
+                                                    <th>Địa chỉ</th>
                                                     <th>Trạng thái</th>
                                                     <th>Tổng tiền</th>
                                                 </tr>
@@ -1194,7 +1196,105 @@
                                                 <tr th:each="order: ${user.ordersOfCustomer}" class="text-center">
                                                     <td th:text="${order.id}">
                                                     </td>
-                                                    <td th:text="${order.creatingDate}"></td>
+                                                    <td th:text="${#dates.format(order.creatingDate, 'dd-MMM-yyyy')}"></td>
+                                                    <td th:text="${#dates.format(order.shipDate, 'dd-MMM-yyyy')}"></td>
+                                                    <td th:text="${order.shipAddress}">
+                                                    </td>
+                                                    <td th:switch="${order.status}">
+                                                        <span th:case="0" class="badge badge-pill badge-default">Chưa
+                                                            xác
+                                                            nhận</span>
+                                                        <span th:case="1" class="badge badge-pill badge-primary">Đã xác
+                                                            nhận</span>
+                                                        <span th:case="6" class="badge badge-pill badge-success">Đã thu
+                                                            tiền</span>
+                                                        <span th:case="4" class="badge badge-pill badge-info">Trên đường
+                                                            vận
+                                                            chuyển</span>
+                                                        <span th:case="5" class="badge badge-pill badge-warning">Đã giao
+                                                            hàng</span>
+                                                        <span th:case="2" class="badge badge-pill badge-danger">Đã
+                                                            hủy</span>
+                                                        <span th:case="3"
+                                                            class="badge badge-pill badge-gradient-primary">Đã
+                                                            phân công</span>
+                                                    </td>
+                                                    <td th:text="${order.getTotal()} + ' VND'"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${not user.roles.?[name == 'ROLE_SHIPPER'].isEmpty()}">
+                            <div class="card">
+                                <div class="card-header border bottom">
+                                    <h4 class="card-title">Đơn hàng của Shipper</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark">Số đơn hàng đã giao:</label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext">50</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark">Số tiền đã thu về:</label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext">50000000VND</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark">Số đơn hàng đang giao:</label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext">5</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark">Số tiền chưa nộp:</label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext">20000000VND</p>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark">Số đơn hàng nộp tiền chậm:</label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext">3</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark">Số tiền nộp chậm:</label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext">5000000VND</p>
+                                                </div>
+                                            </div>                                           
+                                        </div>
+                                    </div>
+                                    <div class="table-overflow">
+                                        <table id="dt-opt" class="table table-hover table-xl">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>ID</th>
+                                                    <th>Ngày tạo</th>
+                                                    <th>Ngày giao</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Tổng tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="order: ${user.ordersOfShipper}" class="text-center">
+                                                    <td th:text="${order.id}">
+                                                    </td>
+                                                    <td th:text="${#dates.format(order.creatingDate, 'dd-MMM-yyyy')}"></td>
+                                                    <td th:text="${#dates.format(order.shipDate, 'dd-MMM-yyyy')}"></td>
+                                                    <td th:text="${order.shipAddress}"></td>
                                                     <td th:switch="${order.status}">
                                                         <span th:case="0" class="badge badge-pill badge-default">Chưa
                                                             xác

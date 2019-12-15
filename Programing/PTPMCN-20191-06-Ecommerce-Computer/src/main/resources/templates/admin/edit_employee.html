@@ -1267,10 +1267,10 @@
                       th:action="@{/admin/employee/update-roles/{id}(id=*{id})}">
                       <div class="form-group">
                         <label class="control-label" th:if="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
-                          các quyền muốn thêm cho Admin</label>
+                          các quyền muốn thêm cho Admin (có thể chọn nhiều quyền)</label>
                         <label class="control-label"
                           th:unless="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
-                          các quyền muốn gán cho nhân viên</label>
+                          các quyền muốn gán cho nhân viên (có thể chọn nhiều quyền)</label>
                         <select multiple class="form-control" id="roles" name="roles"
                           th:required="${user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">
                           <option value="ROLE_SHIPPER">Shipper</option>
