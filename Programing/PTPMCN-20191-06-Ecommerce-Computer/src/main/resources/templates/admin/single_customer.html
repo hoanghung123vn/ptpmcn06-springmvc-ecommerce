@@ -1147,6 +1147,15 @@
                                                 <p class="form-control-plaintext" th:case="ROLE_SHIPPER">Shipper</p>
                                             </div>
                                         </div>
+                                        <div class="form-group row" th:each="role: *{roles}"
+                                            th:if="${role.name == 'ROLE_SHIPPER'}">
+                                            <label class="col-sm-3 col-form-label control-label text-dark">Số tiền
+                                                cọc</label>
+                                            <div class="col-sm-9">
+                                                <p class="form-control-plaintext" th:text="*{deposit} + ' VND'">
+                                                </p>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label control-label text-dark">Ngày
                                                 tạo:</label>
@@ -1165,8 +1174,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div th:each="role: ${user.roles}" th:switch="${role.name}">
-                            <div class="card" th:case="ROLE_MEMBER">
+                        <div th:each="role: ${user.roles}">
+                            <div class="card" th:if="${role.name == 'ROLE_MEMBER'}">
                                 <div class="card-header border bottom">
                                     <h4 class="card-title">Đơn hàng gần đây</h4>
                                 </div>

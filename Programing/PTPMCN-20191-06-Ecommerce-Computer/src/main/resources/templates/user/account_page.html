@@ -9,7 +9,7 @@
         <![endif]-->
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Register and Login page</title>
- <!-- Mobile specific metas  -->
+  <!-- Mobile specific metas  -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Favicon  -->
@@ -53,7 +53,7 @@
   <!--[if lt IE 8]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-	
+
   <div id="page">
     <!-- Header -->
     <header>
@@ -65,7 +65,7 @@
                 <!-- Default Welcome Message -->
                 <div class="welcome-msg ">Welcome to MyStore! </div>
                 <span class="phone hidden-sm">Call Us: +123.456.789</span>
-              </div>         
+              </div>
             </div>
           </div>
         </div>
@@ -73,8 +73,7 @@
           <div class="row">
             <div class="col-sm-3 col-md-3 col-xs-12">
               <!-- Header Logo -->
-              <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce"
-                    src="images/logo.png"></a> </div>
+              <div class="logo"><a title="e-commerce" href="/"><img alt="e-commerce" src="images/logo.png"></a> </div>
               <!-- End Header Logo -->
             </div>
           </div>
@@ -84,7 +83,7 @@
     <!-- end header -->
 
     <!-- Navbar -->
-    
+
     <!-- end nav -->
     <!-- Breadcrumbs -->
 
@@ -125,35 +124,42 @@
               </form>
             </div>
             <div class="box-authentication">
-            	<form th:action="@{/register}" method="post" th:object="${customer}">
-	              <h4>Register</h4>
-	              <p th:if="${param.register_success}" class="alert alert-success">Register success, please login</p>
-	              <p th:if="${param.register_error}" class="alert alert-danger">Invalid email or password</p>
-	              <p>Create your very own account</p>
-	              <label for="email_register">Email address<span class="required">*</span></label>
-	              <input id="email_register" type="email" class="form-control" required th:field="*{email}">
-	              <label for="password_register">Password<span class="required">*</span></label>
-	              <input id="password_register" type="password" class="form-control" minlength="6" maxlength="14" required th:field="*{password}">
-	              <label for="confirm">Re-password<span class="required">*</span></label>
-	              <input id="confirm" type="password" class="form-control" minlength="6" maxlength="14" required onkeyup="checkPass(); return false;">
-	              <div id="confirmMessage" class="confirmMessage"></div>
-	              <label for="name">Tên<span class="required">*</span></label>
-	              <input id="name" type="text" class="form-control" required th:field="*{name}" minlength="4" maxlength="16">
-	              <label for="phone">Số điện thoại<span class="required">*</span></label>
-	              <input id="phone" type="tel" class="form-control" required th:field="*{phone}" pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
-	              <label for="address">Địa chỉ<span class="required">*</span></label>
-	              <input id="address" type="text" class="form-control" required th:field="*{address}" minlength="10" maxlength="60">
-	              <label for="tax_code">Mã số thuế(không bắt buộc)<span class=""></span></label>
-	              <input id="tax_code" type="text" class="form-control" th:field="*{taxCode}" minlength="10" maxlength="10">
-	              <button id="btn_register" class="button" type="submit"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
-	              <div class="register-benefits">
-	                <h5>Sign up today and you will be able to :</h5>
-	                <ul>
-	                  <li>Speed your way through checkout</li>
-	                  <li>Track your orders easily</li>
-	                  <li>Keep a record of all your purchases</li>
-	                </ul>
-	              </div>
+              <form th:action="@{/register}" method="post" th:object="${customer}">
+                <h4>Register</h4>
+                <p th:if="${param.register_success}" class="alert alert-success">Register success, please login</p>
+                <p th:if="${param.register_error}" class="alert alert-danger">Invalid email or password</p>
+                <p>Create your very own account</p>
+                <label for="email_register">Email address<span class="required">*</span></label>
+                <input id="email_register" type="email" class="form-control" required th:field="*{email}">
+                <label for="password_register">Password<span class="required">*</span></label>
+                <input id="password_register" type="password" class="form-control" minlength="6" maxlength="14" required
+                  th:field="*{password}">
+                <label for="confirm">Re-password<span class="required">*</span></label>
+                <input id="confirm" type="password" class="form-control" minlength="6" maxlength="14" required
+                  onkeyup="checkPass(); return false;">
+                <div id="confirmMessage" class="confirmMessage"></div>
+                <label for="name">Tên<span class="required">*</span></label>
+                <input id="name" type="text" class="form-control" required th:field="*{name}" minlength="4"
+                  maxlength="25">
+                <label for="phone">Số điện thoại<span class="required">*</span></label>
+                <input id="phone" type="tel" class="form-control" required th:field="*{phone}"
+                  pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+                <label for="address">Địa chỉ<span class="required">*</span></label>
+                <input id="address" type="text" class="form-control" required th:field="*{address}" minlength="10"
+                  maxlength="60">
+                <label for="tax_code">Mã số thuế(không bắt buộc)<span class=""></span></label>
+                <input id="tax_code" type="text" class="form-control" th:field="*{taxCode}" minlength="10"
+                  maxlength="10">
+                <button id="btn_register" class="button" type="submit"><i class="fa fa-user"></i>&nbsp;
+                  <span>Register</span></button>
+                <div class="register-benefits">
+                  <h5>Sign up today and you will be able to :</h5>
+                  <ul>
+                    <li>Speed your way through checkout</li>
+                    <li>Track your orders easily</li>
+                    <li>Keep a record of all your purchases</li>
+                  </ul>
+                </div>
               </form>
             </div>
           </div>

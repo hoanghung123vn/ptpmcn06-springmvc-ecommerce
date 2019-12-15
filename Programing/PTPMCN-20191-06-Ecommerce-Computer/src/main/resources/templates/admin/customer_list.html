@@ -1137,7 +1137,15 @@
                                                 <td class="text-center font-size-18 d-flex">
                                                     <a th:href="'/admin/customer/'+*{customer.getId()}+'/orders'"
                                                         class="btn btn-primary btn-sm">Xem</a>
-                                                    <a href="#" class="btn btn-warning btn-sm">Cập nhật</a>
+                                                    <a th:href="@{/admin/employee/edit/{id}(id=${customer.id})}"
+                                                        class="btn btn-warning btn-sm"
+                                                        th:if="${customer.roles.size() > 1 }">Cập nhật</a>
+                                                    <div th:each="role: ${customer.roles}"
+                                                        th:unless="${customer.roles.size() > 1 }">
+                                                        <a th:href="@{/admin/employee/edit/{id}(id=${customer.id})}"
+                                                            class="btn btn-warning btn-sm"
+                                                            th:unless="${role.name == 'ROLE_MEMBER'}">Cập nhật</a>
+                                                    </div>
                                                     <div th:if="${customer.status == 1}">
                                                         <button data-toggle="modal"
                                                             th:data-target="'#modal-block'+*{customer.getId()}"
