@@ -1,5 +1,6 @@
 package com.example.demo.service.user;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -107,6 +108,21 @@ public class UserServiceImpl implements UserService {
         oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
         oldUser.setTaxCode(user.getTaxCode());
         userRepository.save(oldUser);
+    }
+
+    @Override
+    public boolean setRoles(Integer id, ArrayList<String> roles) {
+        User oldUser = userRepository.findById(id).get();
+        HashSet<Role> newRoles = new HashSet<Role>();
+        for(String role: roles) {
+            Role roleUser = roleRepository.findByName(role);
+            if(roleUser == null)
+                return false;
+            newRoles.add(roleUser);
+        }
+        oldUser.setRoles(newRoles);
+        userRepository.save(oldUser);
+        return true;
     }
     
 }

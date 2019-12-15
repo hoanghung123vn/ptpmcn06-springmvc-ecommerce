@@ -1,5 +1,6 @@
 package com.example.demo.service.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,4 +32,6 @@ public interface UserService {
     List<User> search(String email);
     
     void update(User user);
+    
+    boolean setRoles(Integer id, ArrayList<String> roles);
 };
