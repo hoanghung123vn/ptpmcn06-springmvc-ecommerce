@@ -1161,6 +1161,14 @@
                 <span th:text="${success}"></span>
               </div>
             </div>
+            <div class="alert alert-danger-gradient" th:if="${error}">
+              <div class="d-flex align-items-center justify-content-start">
+                <span class="alert-icon">
+                  <i class="mdi mdi-close-circle-outline"></i>
+                </span>
+                <span th:text="${error}"></span>
+              </div>
+            </div>
             <div class="card">
               <div class="card-header border bottom">
                 <h4 class="card-title">Thông tin cá nhân: </h4>
@@ -1239,10 +1247,43 @@
                         nhật</button>
                       <div th:unless="${user.roles.size() > 1}" th:each="role: ${user.roles}">
                         <button type="submit" class="btn btn-gradient-error" disabled
-                          th:if="${role.name == 'ROLE_MEMBER'}">Không thể cập nhật</button>
+                          th:if="${role.name == 'ROLE_MEMBER'}">Không thể cập nhật thông tin cho người dùng</button>
                         <button type="submit" class="btn btn-gradient-success"
                           th:unless="${role.name == 'ROLE_MEMBER'}">Cập nhật</button>
                       </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header border bottom">
+                <h4 class="card-title">Phân quyền người dùng: </h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <form role="form" id="form-validation" method="POST"
+                      th:action="@{/admin/employee/update-roles/{id}(id=*{id})}">
+                      <div class="form-group">
+                        <label class="control-label" th:if="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
+                          các quyền muốn thêm cho Admin (có thể chọn nhiều quyền)</label>
+                        <label class="control-label"
+                          th:unless="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
+                          các quyền muốn gán cho nhân viên (có thể chọn nhiều quyền)</label>
+                        <select multiple class="form-control" id="roles" name="roles"
+                          th:required="${user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">
+                          <option value="ROLE_SHIPPER">Shipper</option>
+                          <option value="ROLE_STOCKER">Thủ kho</option>
+                          <option value="ROLE_MANAGER">Quản lý</option>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-gradient-danger"
+                        th:if="${user.roles.?[name == 'ROLE_MEMBER'].isEmpty()}">Thực
+                        hiện</button>
+                      <button type="submit" class="btn btn-gradient-error" disabled
+                        th:unless="${user.roles.?[name == 'ROLE_MEMBER'].isEmpty()}">Không
+                        thể phân quyền</button>
                     </form>
                   </div>
                 </div>

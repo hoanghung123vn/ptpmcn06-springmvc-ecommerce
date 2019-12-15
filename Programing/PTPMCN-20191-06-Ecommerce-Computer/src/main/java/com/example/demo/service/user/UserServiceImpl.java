@@ -1,8 +1,10 @@
 package com.example.demo.service.user;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -81,14 +83,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void toggleStatus(Integer id) {
+    public boolean toggleStatus(Integer id) {
         User user = userRepository.findById(id).get();
+        // Can not block admin
+        for(Role role: user.getRoles()) {
+            if(role.getName().equals("ROLE_ADMIN"))
+                return false;
+        }
         if (user.getStatus() == 1) {
             user.setStatus(2);
         } else if (user.getStatus() == 2) {
             user.setStatus(1);
         }
         userRepository.save(user);
+        return true;
     }
 
     @Override
@@ -107,6 +115,34 @@ public class UserServiceImpl implements UserService {
         oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
         oldUser.setTaxCode(user.getTaxCode());
         userRepository.save(oldUser);
+    }
+
+    @Override
+    public boolean setRoles(Integer id, ArrayList<String> roles) {
+        User oldUser = userRepository.findById(id).get();
+        HashSet<Role> newRoles = new HashSet<Role>();
+        Set<Role> oldRoles = oldUser.getRoles();
+        
+        for(String role: roles) {
+            Role roleUser = roleRepository.findByName(role);
+            if(roleUser == null)
+                return false;
+            newRoles.add(roleUser);
+        }
+        
+        for(Role oldRole: oldRoles) {
+            if(oldRole.getName().equals("ROLE_ADMIN"))
+                newRoles.add(oldRole);
+            if(oldRole.getName() == "ROLE_MEMBER")
+                return false;        
+        }
+        
+        for(Role role: newRoles) {
+            System.out.println(role.getName());
+        }
+        oldUser.setRoles(newRoles);
+        userRepository.save(oldUser);
+        return true;
     }
     
 }

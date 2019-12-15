@@ -1,5 +1,6 @@
 package com.example.demo.controller.admin;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,6 @@ public class AdminUserController {
     public String singleUser(@PathVariable("id") Integer id, Model model) {
         Optional<User> user = userService.findById(id);
         model.addAttribute("user", user.get());
-        model.addAttribute("items", user.get().getOrdersOfCustomer());
         return "admin/single_customer";
     }
 
@@ -70,8 +70,11 @@ public class AdminUserController {
 
     @GetMapping("/customer/{id}/toggle-status")
     public String toggle(@PathVariable("id") Integer id, RedirectAttributes redirect) {
-        userService.toggleStatus(id);
-        redirect.addFlashAttribute("success", "Thành công, xem kết quả bên dưới");
+        if(userService.toggleStatus(id)) {
+            redirect.addFlashAttribute("success", "Thành công, xem kết quả bên dưới");
+        } else {
+            redirect.addFlashAttribute("error", "Không được phép khóa Admin");
+        }   
         return "redirect:/admin/customers";
     }
 
@@ -87,6 +90,19 @@ public class AdminUserController {
     public String update(@PathVariable("id") Integer id, RedirectAttributes redirect, User user) {
         userService.update(user);
         redirect.addFlashAttribute("success", "Cập nhật thành công, xem kết quả bên dưới");
+        return "redirect:/admin/employee/edit/" + id;
+    }
+    
+    @PostMapping("/employee/update-roles/{id}")
+    public String updateRoles(@PathVariable("id") Integer id, RedirectAttributes redirect, @RequestParam(name = "roles", required = false) ArrayList<String> roles) {
+        if(roles == null) {
+            roles = new ArrayList<String>();
+        }
+        if(userService.setRoles(id, roles)) {
+            redirect.addFlashAttribute("success", "Thực hiện thành công, xem kết quả bên dưới");
+        } else {
+            redirect.addFlashAttribute("error", "Thực hiện thất bại, hãy thử lại");
+        }    
         return "redirect:/admin/employee/edit/" + id;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service.user;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +27,11 @@ public interface UserService {
     
     User createEmployee(User user);
     
-    void toggleStatus(Integer id);
+    boolean toggleStatus(Integer id);
     
     List<User> search(String email);
     
     void update(User user);
+    
+    boolean setRoles(Integer id, ArrayList<String> roles);
 };
