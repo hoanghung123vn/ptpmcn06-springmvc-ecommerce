@@ -71,8 +71,11 @@ public class AdminUserController {
 
     @GetMapping("/customer/{id}/toggle-status")
     public String toggle(@PathVariable("id") Integer id, RedirectAttributes redirect) {
-        userService.toggleStatus(id);
-        redirect.addFlashAttribute("success", "Thành công, xem kết quả bên dưới");
+        if(userService.toggleStatus(id)) {
+            redirect.addFlashAttribute("success", "Thành công, xem kết quả bên dưới");
+        } else {
+            redirect.addFlashAttribute("error", "Không được phép khóa Admin");
+        }   
         return "redirect:/admin/customers";
     }
 

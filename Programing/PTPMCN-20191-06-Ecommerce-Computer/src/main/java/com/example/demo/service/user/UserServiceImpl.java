@@ -83,14 +83,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void toggleStatus(Integer id) {
+    public boolean toggleStatus(Integer id) {
         User user = userRepository.findById(id).get();
+        // Can not block admin
+        for(Role role: user.getRoles()) {
+            if(role.getName().equals("ROLE_ADMIN"))
+                return false;
+        }
         if (user.getStatus() == 1) {
             user.setStatus(2);
         } else if (user.getStatus() == 2) {
             user.setStatus(1);
         }
         userRepository.save(user);
+        return true;
     }
 
     @Override

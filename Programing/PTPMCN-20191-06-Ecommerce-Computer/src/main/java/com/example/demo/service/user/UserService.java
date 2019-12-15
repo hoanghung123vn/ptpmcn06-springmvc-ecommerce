@@ -27,7 +27,7 @@ public interface UserService {
     
     User createEmployee(User user);
     
-    void toggleStatus(Integer id);
+    boolean toggleStatus(Integer id);
     
     List<User> search(String email);
     
