@@ -1247,7 +1247,7 @@
                         nhật</button>
                       <div th:unless="${user.roles.size() > 1}" th:each="role: ${user.roles}">
                         <button type="submit" class="btn btn-gradient-error" disabled
-                          th:if="${role.name == 'ROLE_MEMBER'}">Không thể cập nhật</button>
+                          th:if="${role.name == 'ROLE_MEMBER'}">Không thể cập nhật thông tin cho người dùng</button>
                         <button type="submit" class="btn btn-gradient-success"
                           th:unless="${role.name == 'ROLE_MEMBER'}">Cập nhật</button>
                       </div>
@@ -1266,23 +1266,24 @@
                     <form role="form" id="form-validation" method="POST"
                       th:action="@{/admin/employee/update-roles/{id}(id=*{id})}">
                       <div class="form-group">
-                        <label class="control-label">Chọn các quyền muốn gán cho nhân viên</label>
-                        <select multiple class="form-control" id="roles" name="roles">
+                        <label class="control-label" th:if="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
+                          các quyền muốn thêm cho Admin</label>
+                        <label class="control-label"
+                          th:unless="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
+                          các quyền muốn gán cho nhân viên</label>
+                        <select multiple class="form-control" id="roles" name="roles"
+                          th:required="${user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">
                           <option value="ROLE_SHIPPER">Shipper</option>
                           <option value="ROLE_STOCKER">Thủ kho</option>
                           <option value="ROLE_MANAGER">Quản lý</option>
-                          <option value="ROLE_ADMIN">Admin</option>
                         </select>
                       </div>
-                      <button type="submit" class="btn btn-gradient-success" th:if="${user.roles.size() > 1}">Thực
+                      <button type="submit" class="btn btn-gradient-danger"
+                        th:if="${user.roles.?[name == 'ROLE_MEMBER'].isEmpty()}">Thực
                         hiện</button>
-                      <div th:unless="${user.roles.size() > 1}" th:each="role: ${user.roles}">
-                        <button type="submit" class="btn btn-gradient-error" disabled
-                          th:if="${role.name == 'ROLE_MEMBER'}">Không
-                          thể thực hiện</button>
-                        <button type="submit" class="btn btn-gradient-success"
-                          th:unless="${role.name == 'ROLE_MEMBER'}">Thực hiện</button>
-                      </div>
+                      <button type="submit" class="btn btn-gradient-error" disabled
+                        th:unless="${user.roles.?[name == 'ROLE_MEMBER'].isEmpty()}">Không
+                        thể phân quyền</button>
                     </form>
                   </div>
                 </div>

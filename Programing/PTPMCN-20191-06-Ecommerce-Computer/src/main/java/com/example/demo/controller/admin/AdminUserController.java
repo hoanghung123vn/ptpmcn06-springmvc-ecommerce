@@ -92,7 +92,10 @@ public class AdminUserController {
     }
     
     @PostMapping("/employee/update-roles/{id}")
-    public String updateRoles(@PathVariable("id") Integer id, RedirectAttributes redirect, @RequestParam("roles") ArrayList<String> roles) {
+    public String updateRoles(@PathVariable("id") Integer id, RedirectAttributes redirect, @RequestParam(name = "roles", required = false) ArrayList<String> roles) {
+        if(roles == null) {
+            roles = new ArrayList<String>();
+        }
         if(userService.setRoles(id, roles)) {
             redirect.addFlashAttribute("success", "Thực hiện thành công, xem kết quả bên dưới");
         } else {

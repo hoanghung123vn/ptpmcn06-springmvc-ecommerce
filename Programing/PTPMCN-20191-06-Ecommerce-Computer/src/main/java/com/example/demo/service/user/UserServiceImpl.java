@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -114,11 +115,24 @@ public class UserServiceImpl implements UserService {
     public boolean setRoles(Integer id, ArrayList<String> roles) {
         User oldUser = userRepository.findById(id).get();
         HashSet<Role> newRoles = new HashSet<Role>();
+        Set<Role> oldRoles = oldUser.getRoles();
+        
         for(String role: roles) {
             Role roleUser = roleRepository.findByName(role);
             if(roleUser == null)
                 return false;
             newRoles.add(roleUser);
+        }
+        
+        for(Role oldRole: oldRoles) {
+            if(oldRole.getName().equals("ROLE_ADMIN"))
+                newRoles.add(oldRole);
+            if(oldRole.getName() == "ROLE_MEMBER")
+                return false;        
+        }
+        
+        for(Role role: newRoles) {
+            System.out.println(role.getName());
         }
         oldUser.setRoles(newRoles);
         userRepository.save(oldUser);
