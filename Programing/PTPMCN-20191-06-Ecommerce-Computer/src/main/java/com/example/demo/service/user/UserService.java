@@ -29,4 +29,6 @@ public interface UserService {
     void toggleStatus(Integer id);
     
     List<User> search(String email);
+    
+    void update(User user);
 };

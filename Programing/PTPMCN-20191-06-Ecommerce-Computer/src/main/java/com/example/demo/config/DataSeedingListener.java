@@ -63,8 +63,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             admin.setName("hung hoang");
             admin.setPhone("0123456789");
             admin.setAddress("DHBK Ha Noi");
-            admin.setTaxCode("TC-22-11-19");
-            admin.setDeposit(100000);
+            admin.setTaxCode("TC-22-1119");
             admin.setStatus(1);
             admin.setPassword(passwordEncoder.encode("123456"));
             HashSet<Role> roles = new HashSet<>();
@@ -81,11 +80,60 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             user.setName("minh nguyen le");
             user.setPhone("0382334747");
             user.setAddress("DHBK Ha Noi");
-            user.setTaxCode("TCDD-1998");
             user.setStatus(1);
-            user.setPassword(passwordEncoder.encode("123abc456"));
+            user.setPassword(passwordEncoder.encode("123456"));
             HashSet<Role> roles = new HashSet<>();
             roles.add(roleRepository.findByName("ROLE_MEMBER"));
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
+        
+        // Shipper account
+        if (userRepository.findByEmail("shipper@gmail.com") == null) {
+            User user = new User();
+            user.setEmail("shipper@gmail.com");
+            user.setName("Nguyen Quang Thanh");
+            user.setPhone("0982334748");
+            user.setAddress("DHBK Ha Noi");
+            user.setTaxCode("TCDD-1995");
+            user.setStatus(1);
+            user.setPassword(passwordEncoder.encode("123456"));
+            user.setTaxCode("TD12345678");
+            user.setDeposit(5000000);
+            HashSet<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findByName("ROLE_SHIPPER"));
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
+        
+        // Stocker account
+        if (userRepository.findByEmail("stocker@gmail.com") == null) {
+            User user = new User();
+            user.setEmail("stocker@gmail.com");
+            user.setName("Cao Van Duy");
+            user.setPhone("0123823347");
+            user.setAddress("DHBK Ha Noi");
+            user.setTaxCode("TCDD-19939");
+            user.setStatus(1);
+            user.setPassword(passwordEncoder.encode("123456"));
+            HashSet<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findByName("ROLE_STOCKER"));
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
+        
+        // Manager account
+        if (userRepository.findByEmail("manager@gmail.com") == null) {
+            User user = new User();
+            user.setEmail("manager@gmail.com");
+            user.setName("Hoang Van Hung");
+            user.setPhone("0971371901");
+            user.setAddress("DHBK Ha Noi");
+            user.setTaxCode("TCDD-19970");
+            user.setStatus(1);
+            user.setPassword(passwordEncoder.encode("123456"));
+            HashSet<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findByName("ROLE_MANAGER"));
             user.setRoles(roles);
             userRepository.save(user);
         }

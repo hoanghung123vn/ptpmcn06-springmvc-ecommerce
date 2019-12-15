@@ -95,5 +95,18 @@ public class UserServiceImpl implements UserService {
     public List<User> search(String email) {
         return userRepository.findByEmailContaining(email);
     }
+
+    @Override
+    public void update(User user) {
+        User oldUser = userRepository.findById(user.getId()).get();
+        oldUser.setAddress(user.getAddress());
+        oldUser.setDeposit(user.getDeposit());
+        oldUser.setEmail(user.getEmail());
+        oldUser.setName(user.getName());
+        oldUser.setPhone(user.getPhone());
+        oldUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        oldUser.setTaxCode(user.getTaxCode());
+        userRepository.save(oldUser);
+    }
     
 }
