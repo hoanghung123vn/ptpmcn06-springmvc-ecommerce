@@ -1119,8 +1119,6 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label control-label text-dark">Trạng
                                                 thái:</label>
@@ -1129,6 +1127,8 @@
                                                 <p class="form-control-plaintext" th:if="*{status==2}">Đã khóa</p>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label control-label text-dark">Địa
                                                 chỉ:</label>
@@ -1138,7 +1138,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label control-label text-dark">Vai
-                                                trò</label>
+                                                trò:</label>
                                             <div class="col-sm-9" th:each="role: *{roles}" th:switch="${role.name}">
                                                 <p class="form-control-plaintext" th:case="ROLE_ADMIN">Admin</p>
                                                 <p class="form-control-plaintext" th:case="ROLE_MEMBER">Khách hàng</p>
@@ -1236,47 +1236,68 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label control-label text-dark">Số đơn hàng đã giao:</label>
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số đơn hàng đã giao:</strong></label>
                                                 <div class="col-sm-7">
-                                                    <p class="form-control-plaintext">50</p>
+                                                    <p class="form-control-plaintext" th:text="${user.countCompletedOrderOfShipper()}"></p>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label control-label text-dark">Số tiền đã thu về:</label>
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số tiền đã thu về:</strong></label>
                                                 <div class="col-sm-7">
-                                                    <p class="form-control-plaintext">50000000VND</p>
+                                                    <p class="form-control-plaintext" th:text="${#numbers.formatDecimal(user.priceCompletedOrderOfShipper(), 0, 'COMMA', 2, 'POINT')} + ' VND'"></p>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label control-label text-dark">Số đơn hàng đang giao:</label>
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số đơn hàng đang giao:</strong></label>
                                                 <div class="col-sm-7">
-                                                    <p class="form-control-plaintext">5</p>
+                                                    <p class="form-control-plaintext" th:text="${user.countDeliveringOrderOfShipper()}"></p>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label control-label text-dark">Số tiền chưa nộp:</label>
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số tiền chưa nộp:</strong></label>
                                                 <div class="col-sm-7">
-                                                    <p class="form-control-plaintext">20000000VND</p>
+                                                    <p class="form-control-plaintext" th:text="${#numbers.formatDecimal(user.priceDeliveringOrderOfShipper(), 0, 'COMMA', 2, 'POINT')} + ' VND'"></p>
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label control-label text-dark">Số đơn hàng nộp tiền chậm:</label>
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số đơn hàng nộp tiền chậm:</strong></label>
                                                 <div class="col-sm-7">
-                                                    <p class="form-control-plaintext">3</p>
+                                                    <p class="form-control-plaintext" th:text="${user.countDelayPaymentOrderOfShipper()}"></p>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label control-label text-dark">Số tiền nộp chậm:</label>
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số tiền nộp chậm:</strong></label>
                                                 <div class="col-sm-7">
-                                                    <p class="form-control-plaintext">5000000VND</p>
+                                                    <p class="form-control-plaintext" th:text="${#numbers.formatDecimal(user.priceDelayPaymentOrderOfShipper(), 0, 'COMMA', 2, 'POINT')} + ' VND'"></p>
                                                 </div>
-                                            </div>                                           
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label control-label text-dark"><strong>Số đơn hàng chưa đi giao (chậm trễ):</strong></label>
+                                                <div class="col-sm-7">
+                                                    <p class="form-control-plaintext" th:text="${user.countDelayOrderOfShipper()}"></p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="table-overflow">
+                                    <div class="card-header border bottom"></div>
+                                    <div class="m-t-10 d-flex">
+                                        <h4 class="card-title">Lọc theo trạng thái của đơn hàng: &nbsp;</h4>
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                <span>Trạng thái đơn hàng</span>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <button id="assigned" class="dropdown-item">Đã phân công</button>
+                                                <button id="delivering" class="dropdown-item">Đang trên đường vận chuyển</button>
+                                                <button id="completed" class="dropdown-item">Đã hoàn thành</button>
+                                            </div>
+                                        </div>
+                                        <button id="clear" class="btn btn-primary">Xóa bộ lọc</button>
+                                    </div>
+                                    <div class="table-overflow mt-2">
                                         <table id="dt-opt" class="table table-hover table-xl">
                                             <thead>
                                                 <tr class="text-center">
@@ -1314,7 +1335,7 @@
                                                             class="badge badge-pill badge-gradient-primary">Đã
                                                             phân công</span>
                                                     </td>
-                                                    <td th:text="${order.getTotal()} + ' VND'"></td>
+                                                    <td th:text="${#numbers.formatDecimal(order.getTotal(), 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1354,7 +1375,7 @@
     <script src="/assets/vendor/datatables/media/js/jquery.dataTables.js"></script>
     <script src="/assets/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/js/tables/data-table.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
     <script src="/assets/js/main.js"></script>
 </body>
 
