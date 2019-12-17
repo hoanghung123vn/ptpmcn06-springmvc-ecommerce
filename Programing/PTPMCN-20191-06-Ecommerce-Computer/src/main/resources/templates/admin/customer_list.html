@@ -1097,6 +1097,23 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
+                                <div class="m-t-10 d-flex">
+                                    <h4 class="card-title">Lọc theo vai trò người dùng: &nbsp;</h4>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <span>Vai trò của người dùng</span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <button id="role_member" class="dropdown-item">Khách hàng</button>
+                                            <button id="role_employee" class="dropdown-item">Nhân viên</button>
+                                            <button id="role_shipper" class="dropdown-item">Shipper</button>
+                                            <button id="role_stocker" class="dropdown-item">Thủ kho</button>
+                                            <button id="role_manager" class="dropdown-item">Quản lý</button>
+                                            <button id="role_admin" class="dropdown-item">Admin</button>
+                                        </div>
+                                    </div>
+                                    <button id="clear" class="btn btn-primary">Xóa bộ lọc</button>
+                                </div>
                                 <div class="table-overflow">
                                     <table id="dt-opt" class="table table-hover table-xl">
                                         <thead>
@@ -1140,6 +1157,7 @@
                                                         <h6 th:case="ROLE_MANAGER">Quản lý</h6>
                                                         <h6 th:case="ROLE_STOCKER">Thủ kho</h6>
                                                         <h6 th:case="ROLE_SHIPPER">Shipper</h6>
+                                                        <h6 th:case="ROLE_EMPLOYEE">Nhân viên</h6>
                                                     </div>
                                                 </td>
                                                 <td class="text-center font-size-18 d-flex">
@@ -1240,8 +1258,8 @@
     <script src="/assets/vendor/datatables/media/js/jquery.dataTables.js"></script>
     <script src="/assets/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/js/tables/data-table.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script src="/assets/js/user_list.js"></script>
 
 </body>
 

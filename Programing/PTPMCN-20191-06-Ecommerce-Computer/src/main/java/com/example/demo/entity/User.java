@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import com.example.demo.config.Const;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -233,6 +235,75 @@ public class User implements Serializable {
             total += e.getSubTotal();
         }
         return total;
+    }
+    
+    public int countCompletedOrderOfShipper() {
+        int count = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.COMPLETED)
+                count++;
+        }
+        return count;
+    }
+    
+    public int countDeliveringOrderOfShipper() {
+        int count = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.DELIVERING)
+                count++;
+        }
+        return count;
+    }
+    
+    public long priceCompletedOrderOfShipper() {
+        long price = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.COMPLETED)
+                price += order.getTotal();
+        }
+        return price;
+    }
+    
+    public long priceDeliveringOrderOfShipper() {
+        long price = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.DELIVERING)
+                price += order.getTotal();
+        }
+        return price;
+    }
+    
+    public int countDelayPaymentOrderOfShipper() {
+        int count = 0;
+        for(Orders order: ordersOfShipper) {
+            Date delayDate = new Date(order.getShipDate().getTime() + 3 * 86400 * 1000);
+            if(order.getStatus() == Const.DELIVERING && delayDate.before(new Date())) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public long priceDelayPaymentOrderOfShipper() {
+        long price = 0;
+        for(Orders order: ordersOfShipper) {
+            Date delayDate = new Date(order.getShipDate().getTime() + 3 * 86400 * 1000);
+            if(order.getStatus() == Const.DELIVERING && delayDate.before(new Date())) {
+                price += order.getTotal();
+            }
+        }
+        return price;
+    }
+    
+    public int countDelayOrderOfShipper() {
+        int count = 0; 
+        for(Orders order: ordersOfShipper) {
+            Date delayDate = new Date(order.getShipDate().getTime() - 1 * 86400 * 1000);
+            if(order.getStatus() == Const.ASSIGNED && delayDate.before(new Date())) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override
