@@ -27,4 +27,8 @@ public class Const {
     
     // NUMBER DAY OF DELAY CONVENTION
     public static final int DELAY = 3;
+    
+    // USER STATUS
+    public static final int ACTIVE = 1;
+    public static final int BLOCKED = 2;
 }
