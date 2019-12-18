@@ -45,16 +45,16 @@ public class OrderDetail implements Serializable {
         private static final long serialVersionUID = 1L;
             
         @ManyToOne(fetch = FetchType.LAZY)
-        private Order order;
+        private Orders order;
         
         @ManyToOne(fetch = FetchType.LAZY)
         private Product product;
 
-        public Order getOrder() {
+        public Orders getOrder() {
             return order;
         }
 
-        public void setOrder(Order order) {
+        public void setOrder(Orders order) {
             this.order = order;
         }
 
@@ -110,11 +110,11 @@ public class OrderDetail implements Serializable {
     }
     
     @Transient
-    public Order getOrder() {
+    public Orders getOrder() {
         return pk.getOrder();
     }
     
-    public void setOrder(Order order) {
+    public void setOrder(Orders order) {
         pk.setOrder(order);
     }
     
