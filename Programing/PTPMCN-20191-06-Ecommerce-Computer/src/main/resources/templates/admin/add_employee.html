@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Cập nhật thông tin người dùng</title>
+  <title>Tạo nhân viên mới</title>
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.html">
@@ -49,12 +49,11 @@
         <div class="main-content">
           <div class="container-fluid">
             <div class="page-header">
-              <h2 class="header-title">Cập nhật thông tin nhân viên</h2>
+              <h2 class="header-title">Tạo mới tài khoản nhân viên</h2>
               <div class="header-sub-title">
                 <nav class="breadcrumb breadcrumb-dash">
-                  <a href="#" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Trang chủ</a>
-                  <a class="breadcrumb-item active" href="/admin/customers">Danh sách người dùng</a>
-                  <a class="breadcrumb-item active" th:href="'/admin/employee/edit/'+${user.id}">Cập nhật thông tin</a>
+                  <a href="/admin/customers" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Trang chủ</a>
+                  <a class="breadcrumb-item active" href="/admin/add-employee">Tạo mới tài khoản</a>
                 </nav>
               </div>
             </div>
@@ -76,21 +75,13 @@
             </div>
             <div class="card">
               <div class="card-header border bottom d-flex">
-                <h4 class="card-title">Thông tin cá nhân: </h4>
-                <div th:each="role: ${user.roles}" th:switch="${role.name}">
-                  <h4 th:case="ROLE_ADMIN">&nbsp; Admin </h4>
-                  <h4 th:case="ROLE_MEMBER">&nbsp; Khách hàng </h4>
-                  <h4 th:case="ROLE_MANAGER">&nbsp; Quản lý </h4>
-                  <h4 th:case="ROLE_STOCKER">&nbsp; Thủ kho </h4>
-                  <h4 th:case="ROLE_SHIPPER">&nbsp; Shipper </h4>
-                  <h4 th:case="ROLE_EMPLOYEE">&nbsp; Nhân viên </h4>
-                </div>
+                <h4 class="card-title">Nhập vào thông tin cá nhân: </h4>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-8">
-                    <form role="form" id="form-validation" th:object="${user}" method="POST"
-                      th:action="@{/admin/employee/update/{id}(id=*{id})}">
+                    <form role="form" id="form-validation" th:object="${employee}" method="POST"
+                      th:action="@{/admin/add-employee}">
                       <div class="form-group row">
                         <label class="col-sm-2 col-form-label control-label">Email</label>
                         <div class="col-sm-10">
@@ -134,86 +125,20 @@
                       <div class="form-group row">
                         <label class="col-sm-2 col-form-label control-label">Mã số thuế</label>
                         <div class="col-sm-10">
-                          <input type="text" th:if="*{taxCode != null}" class="form-control" name="tax_code"
-                            th:field="*{taxCode}" minlength="10" maxlength="10">
-                          <input type="text" th:unless="*{taxCode != null}" class="form-control" name="tax_code"
-                            th:field="*{taxCode}" minlength="10" maxlength="10">
+                          <input type="text" class="form-control" name="taxCode" th:field="*{taxCode}" minlength="10"
+                            maxlength="10">
                         </div>
                       </div>
-                      <div th:each="role: ${user.roles}">
-                        <div class="form-group row" th:if="${role.name == 'ROLE_SHIPPER'}">
-                          <label class="col-sm-2 col-form-label control-label">Số tiền cọc</label>
-                          <div class="col-sm-10">
-                            <input type="number" min="10000" step="10000" class="form-control" name="tax_code"
-                              th:field="*{deposit}" required>
-                          </div>
-                        </div>
-                      </div>
-                      <a href="#" data-toggle="modal" data-target="#modal-update" class="btn btn-primary"
-                        th:if="${user.roles.size() > 1}">Cập
-                        nhật</a>
-                      <div th:unless="${user.roles.size() > 1}" th:each="role: ${user.roles}">
-                        <button type="submit" class="btn btn-primary" disabled
-                          th:if="${role.name == 'ROLE_MEMBER'}">Không thể cập nhật thông tin cho người dùng</button>
-                        <a href="#" data-toggle="modal" data-target="#modal-update" class="btn btn-primary"
-                          th:unless="${role.name == 'ROLE_MEMBER'}">Cập
-                          nhật</a>
-                      </div>
-                      <div class="modal fade" id="modal-update">
+                      <a href="#" data-toggle="modal" data-target="#modal-create" class="btn btn-primary">Tạo</a>
+                      <div class="modal fade" id="modal-create">
                         <div class="modal-dialog modal-sm" role="document">
                           <div class="modal-content">
                             <div class="modal-body text-left">
-                              <h4 class="m-b-15">Cập nhật thông tin tài khoản?</h4>
-                              <p>Bạn có chắc chắn muốn cập nhật?</p>
+                              <h4 class="m-b-15">Tạo mới tài khoản?</h4>
+                              <p>Bạn có chắc chắn muốn tạo tài khoản?</p>
                               <div class="m-t-20 text-right">
                                 <button class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                <button type="submit" class="btn btn-primary">Thực hiện</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header border bottom">
-                <h4 class="card-title">Phân quyền người dùng: </h4>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-8">
-                    <form role="form" method="POST" th:action="@{/admin/employee/update-roles/{id}(id=*{id})}">
-                      <div class="form-group">
-                        <label class="control-label" th:if="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
-                          các quyền muốn thêm cho Admin (có thể chọn nhiều quyền)</label>
-                        <label class="control-label"
-                          th:unless="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
-                          các quyền muốn gán cho nhân viên (có thể chọn nhiều quyền)</label>
-                        <select multiple class="form-control" id="roles" name="roles">
-                          <option value="ROLE_EMPLOYEE" selected>Nhân viên</option>
-                          <option value="ROLE_SHIPPER">Shipper</option>
-                          <option value="ROLE_STOCKER">Thủ kho</option>
-                          <option value="ROLE_MANAGER">Quản lý</option>
-                        </select>
-                      </div>
-                      <a href="#" data-toggle="modal" data-target="#modal-permission" class="btn btn-danger"
-                        th:if="${user.roles.?[name == 'ROLE_MEMBER'].isEmpty()}">Thực
-                        hiện</a>
-                      <button type="submit" class="btn btn-danger" disabled
-                        th:unless="${user.roles.?[name == 'ROLE_MEMBER'].isEmpty()}">Không
-                        thể phân quyền</button>
-                      <div class="modal fade" id="modal-permission">
-                        <div class="modal-dialog modal-sm" role="document">
-                          <div class="modal-content">
-                            <div class="modal-body text-left">
-                              <h4 class="m-b-15">Phân quyền cho tài khoản?</h4>
-                              <p>Bạn có chắc chắn muốn phân các quyền này?</p>
-                              <div class="m-t-20 text-right">
-                                <button class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                <button type="submit" class="btn btn-primary">Thực hiện</button>
+                                <button type="submit" class="btn btn-success">Thực hiện</button>
                               </div>
                             </div>
                           </div>
