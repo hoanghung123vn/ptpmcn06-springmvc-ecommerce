@@ -16,8 +16,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public Product findByCode(Integer code) {
-		// TODO Auto-generated method stub
-		return null;
+		return productRepository.findByCode(code);
 	}
 
 	@Override
@@ -35,6 +34,8 @@ public class ProductServiceImpl implements ProductService {
 	public void addProduct(Product product) {
 		
 	}
+
+	
 	
 	
 

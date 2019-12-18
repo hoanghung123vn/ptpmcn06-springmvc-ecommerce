@@ -19,6 +19,8 @@ public interface UserService {
     
     Optional<User> findById(Integer id);
     
+    User findByEmail(String email);
+    
     long countAll();
     
     void deleteById(Integer id);

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
     const quantitys = document.getElementsByClassName("quantity");
     const total_tax = document.getElementById("total1");
     const total_x = document.getElementById("total2");
@@ -29,4 +30,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
     console.log(total);
+
 });

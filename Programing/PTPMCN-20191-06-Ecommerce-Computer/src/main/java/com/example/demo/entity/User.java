@@ -222,6 +222,13 @@ public class User implements Serializable {
     }
     
     public void addItemCart(Cart item) {
+    	for (Cart cart : items) {
+			if (cart.getProduct().getCode() == item.getProduct().getCode()) {
+				int oldQuantity = cart.getQuantity();
+				cart.setQuantity(oldQuantity+1);
+				return;
+			}
+		}
         items.add(item);
     }
     
@@ -229,12 +236,18 @@ public class User implements Serializable {
         items.remove(item);
     }
     
-    public int getCartTotalPrice() {
-        int total = 0;
-        for (Cart e : items) {
-            total += e.getSubTotal();
-        }
-        return total;
+    public void updateItems(List<Cart> newItems) {
+    	for (int i=0; i<items.size(); i++) {
+    		items.get(i).setQuantity(newItems.get(i).getQuantity());
+    	}
+    }
+    
+    public int getTotal() {
+    	int total=0;
+    	for (Cart cart : items) {
+			total += cart.getSubTotal();
+		}
+    	return total;
     }
 
     @Override
