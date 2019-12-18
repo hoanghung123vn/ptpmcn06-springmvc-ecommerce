@@ -1,6 +1,6 @@
-+function($, window){
++function ($, window) {
 
-	$( "#form-validation" ).validate({
+	$("#form-validation").validate({
 		ignore: ':hidden:not(:checkbox)',
 		errorElement: 'label',
 		errorClass: 'error',
@@ -15,14 +15,14 @@
 			inputMaxLength: {
 				required: true,
 				minlength: 8
-			}, 
+			},
 			inputUrl: {
 				required: true,
 				url: true
 			},
 			inputRangeLength: {
 				required: true,
-				rangelength: [2, 6]
+				rangelength: [6, 14]
 			},
 			inputMinValue: {
 				required: true,
@@ -60,14 +60,14 @@
 
 	var formValidation = {};
 
-	formValidation.init = function() {
+	formValidation.init = function () {
 
-	};	
+	};
 	window.formValidation = formValidation;
 
 }(jQuery, window);
 
 // initialize app
-+function($) {
-	formValidation.init();		
++function ($) {
+	formValidation.init();
 }(jQuery);
