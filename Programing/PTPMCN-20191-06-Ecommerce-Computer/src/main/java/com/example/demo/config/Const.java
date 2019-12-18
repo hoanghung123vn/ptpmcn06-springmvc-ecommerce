@@ -15,6 +15,7 @@ public class Const {
     public static final String ROLE_MANAGER = "ROLE_MANAGER";
     public static final String ROLE_STOCKER = "ROLE_STOCKER";
     public static final String ROLE_SHIPPER = "ROLE_SHIPPER";
+    public static final String ROLE_EMPLOYEE = "ROLE_EMPLOYEE";
     
     // ORDER STATUS
     public static final int NEW = 0;
@@ -27,4 +28,8 @@ public class Const {
     
     // NUMBER DAY OF DELAY CONVENTION
     public static final int DELAY = 3;
+    
+    // USER STATUS
+    public static final int ACTIVE = 1;
+    public static final int BLOCKED = 2;
 }

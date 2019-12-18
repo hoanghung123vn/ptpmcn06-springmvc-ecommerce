@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.config.Const;
 import com.example.demo.dao.RoleRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.entity.Role;
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
             customer.setPassword(passwordEncoder.encode(customer.getPassword()));
             customer.setStatus(1);
             HashSet<Role> roles = new HashSet<>();
-            roles.add(roleRepository.findByName("ROLE_MEMBER"));
+            roles.add(roleRepository.findByName(Const.ROLE_MEMBER));
             customer.setRoles(roles);
             userRepository.save(customer);
             return true;
@@ -77,9 +78,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User createEmployee(User user) {
-        // TODO Auto-generated method stub
-        return null;
+    public boolean createEmployee(User user) {
+        if (userRepository.findByEmail(user.getEmail()) == null) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setStatus(1);
+            HashSet<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findByName(Const.ROLE_EMPLOYEE));
+            user.setRoles(roles);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     @Override

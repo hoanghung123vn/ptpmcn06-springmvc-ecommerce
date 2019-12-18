@@ -25,7 +25,7 @@ public interface UserService {
     
     boolean register(User customer);
     
-    User createEmployee(User user);
+    boolean createEmployee(User user);
     
     boolean toggleStatus(Integer id);
     
