@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from themenate.com/applicator/dist/form-validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:00 GMT -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Thống kê báo cáo</title>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.html">
+  <link rel="shortcut icon" href="/assets/images/logo/favicon.png">
+
+  <!-- core dependcies css -->
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/assets/vendor/PACE/themes/blue/pace-theme-minimal.css" />
+  <link rel="stylesheet" href="/assets/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+
+  <!-- page css -->
+
+  <!-- core css -->
+  <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/assets/css/themify-icons.css" rel="stylesheet">
+  <link href="/assets/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="/assets/css/animate.min.css" rel="stylesheet">
+  <link href="/assets/css/app.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app header-success-gradient">
+    <div class="layout">
+      <!-- Header START -->
+      <div th:insert="admin/fragments :: header"></div>
+      <!-- Header END -->
+
+      <!-- Side Nav START -->
+      <div th:insert="admin/fragments :: side-nav"></div>
+      <!-- Side Nav END -->
+
+      <!-- Page Container START -->
+      <div class="page-container">
+        <!-- Quick View START -->
+        <div th:insert="admin/fragments :: quick-view"></div>
+        <!-- Side Panel END -->
+
+        <!-- Content Wrapper START -->
+        <div class="main-content">
+          <div class="container-fluid">
+            <div class="page-header">
+              <h2 class="header-title">Xem thống kê báo cáo</h2>
+              <div class="header-sub-title">
+                <nav class="breadcrumb breadcrumb-dash">
+                  <a href="/admin/statistical" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Trang chủ</a>
+                </nav>
+              </div>
+            </div>
+            <div class="alert alert-success-gradient" th:if="${success}">
+              <div class="d-flex align-items-center justify-content-start">
+                <span class="alert-icon">
+                  <i class="mdi mdi-check-circle-outline"></i>
+                </span>
+                <span th:text="${success}"></span>
+              </div>
+            </div>
+            <div class="alert alert-danger-gradient" th:if="${error}">
+              <div class="d-flex align-items-center justify-content-start">
+                <span class="alert-icon">
+                  <i class="mdi mdi-close-circle-outline"></i>
+                </span>
+                <span th:text="${error}"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="media justify-content-between">
+                      <div>
+                        <p class=""><strong>Số loại máy tính</strong></p>
+                        <h2 class="font-size-28 font-weight-light">20</h2>
+                      </div>
+                      <div class="align-self-end">
+                        <i class="ti-credit-card font-size-70 text-success opacity-01"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="media justify-content-between">
+                      <div>
+                        <p class=""><strong>Số máy tính</strong></p>
+                        <h2 class="font-size-28 font-weight-light">200</h2>
+                      </div>
+                      <div class="align-self-end">
+                        <i class="ti-pie-chart font-size-70 text-info opacity-01"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="media justify-content-between">
+                      <div>
+                        <p class=""><strong>Số loại nhân viên</strong></p>
+                        <h2 class="font-size-28 font-weight-light">5</h2>
+                      </div>
+                      <div class="align-self-end">
+                        <i class="ti-bar-chart font-size-70 text-danger opacity-01"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="media justify-content-between">
+                      <div>
+                        <p class=""><strong>Số khách hàng</strong></p>
+                        <h2 class="font-size-28 font-weight-light">178</h2>
+                      </div>
+                      <div class="align-self-end">
+                        <i class="ti-user font-size-70 text-primary opacity-01"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Doanh thu trong năm nay</h5>
+                    <div class="float-right">
+                      <ul class="list-inline d-none d-sm-block">
+                        <li class="m-r-20">
+                          <span class="status success"></span>
+                          <span class="text-semibold m-l-5">Số đơn hàng</span>
+                        </li>
+                        <li>
+                          <span class="status primary"></span>
+                          <span class="text-semibold m-l-5">Doanh thu</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="m-t-10">
+                      <canvas class="chart" id="customer-overview-chart" style="height: 320px"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Tình hình kinh doanh của bạn</h4>
+                    <div class="card-toolbar">
+                      <ul>
+                        <li>
+                          <a class="text-gray" href="javascript:void(0)">
+                            <i class="mdi mdi-dots-vertical font-size-20"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="table-overflow">
+                    <table class="table table-lg">
+                      <thead>
+                        <tr>
+                          <td class="text-dark text-semibold"></td>
+                          <td class="text-dark text-semibold">Hôm nay</td>
+                          <td class="text-dark text-semibold">Tuần này</td>
+                          <td class="text-dark text-semibold">Tháng này</td>
+                          <td class="text-dark text-semibold">Năm nay</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>
+                            Số đơn hàng
+                          </th>
+                          <td>#33667</td>
+                          <td>08 May 2018</td>
+                          <td> $168.00</td>
+                          <td> $168.00</td>
+                        </tr>
+                        <tr>
+                          <th>
+                            Doanh thu
+                          </th>
+                          <td>#33683</td>
+                          <td>05 May 2018</td>
+                          <td>$433.00</td>
+                          <td>$433.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Mục tiêu tháng này của bạn</h4>
+                    <div class="card-toolbar">
+                      <ul>
+                        <li>
+                          <a class="text-gray" href="javascript:void(0)">
+                            <i class="mdi mdi-dots-vertical font-size-20"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <div class="m-b-30">
+                      <canvas class="chart" id="goal-chart" style="height: 200px"></canvas>
+                    </div>
+                    <div class="row m-b-10">
+                      <div class="col-10 offset-1">
+                        <div class="row">
+                          <div class="col">
+                            <div class="text-center">
+                              <h2 class="font-weight-light">166</h2>
+                              <span class="status gradient info"></span>
+                              <span class="m-l-10">Đơn hàng</span>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="text-center">
+                              <h2 class="font-weight-light">200 triệu</h2>
+                              <span class="status gradient"></span>
+                              <span class="m-l-10">Doanh thu</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Top 5 sản phẩm bán chạy nhất</h4>
+                    <div class="card-toolbar">
+                      <ul>
+                        <li>
+                          <a class="text-gray" href="javascript:void(0)">
+                            <i class="mdi mdi-dots-vertical font-size-20"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="table-overflow">
+                    <table class="table table-lg">
+                      <thead>
+                        <tr>
+                          <td class="text-dark text-semibold">ID Sản phẩm</td>
+                          <td class="text-dark text-semibold">Tên sản phẩm</td>
+                          <td class="text-dark text-semibold">Thể loại</td>
+                          <td class="text-dark text-semibold">Nhà sản xuất</td>
+                          <td class="text-dark text-semibold">Số lượng còn lại</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>#33667</td>
+                          <td>08 May 2018</td>
+                          <td> $168.00</td>
+                          <td> $168.00</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>#33667</td>
+                          <td>08 May 2018</td>
+                          <td> $168.00</td>
+                          <td> $168.00</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>#33667</td>
+                          <td>08 May 2018</td>
+                          <td> $168.00</td>
+                          <td> $168.00</td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>#33667</td>
+                          <td>08 May 2018</td>
+                          <td> $168.00</td>
+                          <td> $168.00</td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>#33667</td>
+                          <td>08 May 2018</td>
+                          <td> $168.00</td>
+                          <td> $168.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Content Wrapper END -->
+
+        <!-- Footer START -->
+        <footer th:insert="admin/fragments :: footer"></footer>
+        <!-- Footer END -->
+
+      </div>
+      <!-- Page Container END -->
+
+    </div>
+  </div>
+
+  <script src="/assets/js/vendor.js"></script>
+
+  <script src="/assets/js/app.min.js"></script>
+
+  <!-- page js -->
+  <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="/assets/vendor/jquery.sparkline/jquery.sparkline.min.js"></script>
+  <script src="/assets/js/dashboard/default.js"></script>
+
+</body>
+
+
+<!-- Mirrored from themenate.com/applicator/dist/form-validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:01 GMT -->
+
+</html>

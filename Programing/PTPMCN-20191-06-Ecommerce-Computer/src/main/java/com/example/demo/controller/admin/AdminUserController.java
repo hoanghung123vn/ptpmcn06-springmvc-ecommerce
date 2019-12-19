@@ -60,7 +60,7 @@ public class AdminUserController {
         if(userService.createEmployee(employee)) {
             redirect.addFlashAttribute("success", "Thêm nhân viên mới thành công, hãy phân quyền cho nhân viên nếu muốn.");
         } else {
-            redirect.addFlashAttribute("success", "Thêm nhân viên mới thất bại, hãy kiểm tra lại email.");
+            redirect.addFlashAttribute("error", "Thêm nhân viên mới thất bại, hãy kiểm tra lại email.");
         }  
         return "redirect:/admin/add-employee";
     }
