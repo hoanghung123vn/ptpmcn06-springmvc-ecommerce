@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Tạo nhân viên mới</title>
+  <title>Thiết lập mục tiêu</title>
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.html">
@@ -49,11 +49,11 @@
         <div class="main-content">
           <div class="container-fluid">
             <div class="page-header">
-              <h2 class="header-title">Tạo mới tài khoản nhân viên</h2>
+              <h2 class="header-title">Thiết lập mục tiêu</h2>
               <div class="header-sub-title">
                 <nav class="breadcrumb breadcrumb-dash">
                   <a href="/admin/statistical" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Trang chủ</a>
-                  <a class="breadcrumb-item active" href="/admin/add-employee">Tạo mới tài khoản</a>
+                  <a class="breadcrumb-item active" href="/admin/goal-setting">Thiết lập mục tiêu</a>
                 </nav>
               </div>
             </div>
@@ -75,67 +75,33 @@
             </div>
             <div class="card">
               <div class="card-header border bottom d-flex">
-                <h4 class="card-title">Nhập vào thông tin cá nhân: </h4>
+                <h4 class="card-title">Nhập vào mục tiêu trong tháng của bạn: </h4>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-8">
-                    <form role="form" id="form-validation" th:object="${employee}" method="POST"
-                      th:action="@{/admin/add-employee}">
+                    <form>
                       <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="inputEmail" th:field="*{email}">
+                        <label class="col-sm-6 col-form-label control-label">Số đơn hàng đạt được trong tháng</label>
+                        <div class="col-sm-6">
+                          <input type="number" class="form-control" name="numberOrder" id="numberOrder" min="1"
+                            max="1000" required>
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Mật khẩu</label>
-                        <div class="col-sm-10">
-                          <input id="password" type="password" class="form-control" name="inputPassword" minlength="6"
-                            maxlength="14" th:field="*{password}">
+                        <label class="col-sm-6 col-form-label control-label">Doanh thu đạt được trong tháng</label>
+                        <div class="col-sm-6">
+                          <input type="number" step="100000" class="form-control" name="revenue" id="revenue"
+                            min="100000" max="1000000000" required>
                         </div>
                       </div>
-                      <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Nhập lại mật khẩu</label>
-                        <div class="col-sm-10">
-                          <input type="password" class="form-control" name="inputPasswordConfirm">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Tên</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="inputRequired" th:field="*{name}" minlength="4"
-                            maxlength="25">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Số điện thoại</label>
-                        <div class="col-sm-10">
-                          <input type="tel" class="form-control" name="phone" required
-                            pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" th:field="*{phone}">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Địa chỉ</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="address" required th:field="*{address}"
-                            minlength="10" maxlength="60">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label class="col-sm-2 col-form-label control-label">Mã số thuế</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" name="taxCode" th:field="*{taxCode}" minlength="10"
-                            maxlength="10">
-                        </div>
-                      </div>
-                      <a href="#" data-toggle="modal" data-target="#modal-create" class="btn btn-primary">Tạo</a>
-                      <div class="modal fade" id="modal-create">
+                      <a href="#" data-toggle="modal" data-target="#modal-setting" class="btn btn-primary">Thiết lập</a>
+                      <div class="modal fade" id="modal-setting">
                         <div class="modal-dialog modal-sm" role="document">
                           <div class="modal-content">
                             <div class="modal-body text-left">
-                              <h4 class="m-b-15">Tạo mới tài khoản?</h4>
-                              <p>Bạn có chắc chắn muốn tạo tài khoản?</p>
+                              <h4 class="m-b-15">Thiết lập mục tiêu tháng?</h4>
+                              <p>Bạn có chắc chắn muốn thiết lập lại mục tiêu?</p>
                               <div class="m-t-20 text-right">
                                 <button class="btn btn-default" data-dismiss="modal">Hủy</button>
                                 <button type="submit" class="btn btn-success">Thực hiện</button>
@@ -168,8 +134,6 @@
   <script src="/assets/js/app.min.js"></script>
 
   <!-- page js -->
-  <script src="/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-  <script src="/assets/js/forms/form-validation.js"></script>
 
 </body>
 

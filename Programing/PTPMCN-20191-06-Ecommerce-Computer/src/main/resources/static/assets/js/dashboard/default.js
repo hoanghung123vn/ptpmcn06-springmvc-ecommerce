@@ -1,32 +1,26 @@
-+function($, window){
-	
++function ($, window) {
+
 	var defaultDashboaard = {};
 
-	defaultDashboaard.init = function() {
+	defaultDashboaard.init = function () {
 
 		//Overview Chart
-		var overviewCtx = document.getElementById('customer-overview-chart').getContext('2d');		
+		var overviewCtx = document.getElementById('customer-overview-chart').getContext('2d');
 		var overviewChart = new Chart(overviewCtx, {
 			type: 'line',
 			data: {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+				labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
 				datasets: [{
-					label: 'Series A',
+					label: 'Số đơn hàng',
 					backgroundColor: app.colors.transparent,
 					borderColor: app.colors.success,
 					data: [52, 66, 61, 76, 68, 74, 66, 73, 68, 72, 70, 78]
 				},
 				{
-					label: 'Series B',
-					backgroundColor: app.colors.transparent,
-					borderColor: app.colors.info,
-					data: [48, 58, 54, 60, 63, 63, 60, 60, 58, 63, 60, 68]
-				},
-				{
-					label: 'Series C',
+					label: 'Doanh thu',
 					backgroundColor: app.colors.transparent,
 					borderColor: app.colors.primary,
-					data: [45, 50, 50, 50, 53, 53, 50, 52, 51, 54, 55, 50]
+					data: [48, 58, 54, 60, 63, 63, 60, 60, 58, 63, 60, 68]
 				}],
 			},
 			options: {
@@ -41,8 +35,8 @@
 					}
 				},
 				scales: {
-					xAxes: [{gridLines: { color: app.colors.transparent }}],
-					yAxes: [{gridLines: { color: app.colors.borderColor }}]
+					xAxes: [{ gridLines: { color: app.colors.transparent } }],
+					yAxes: [{ gridLines: { color: app.colors.borderColor } }]
 				}
 			}
 		});
@@ -57,7 +51,7 @@
 					var txt = centerConfig.text;
 					var color = centerConfig.color || '#000';
 					var sidePadding = centerConfig.sidePadding || 20;
-					var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
+					var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
 					ctx.font = "30px " + fontStyle;
 					var stringWidth = ctx.measureText(txt).width;
 					var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
@@ -69,9 +63,9 @@
 					ctx.textBaseline = 'middle';
 					var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
 					var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
-					ctx.font = fontSizeToUse+"px " + fontStyle;
+					ctx.font = fontSizeToUse + "px " + fontStyle;
 					ctx.fillStyle = color;
-					
+
 					ctx.fillText(txt, centerX, centerY);
 				}
 			}
@@ -89,20 +83,20 @@
 			data: {
 				labels: ["Sales", "In-Store Sales"],
 				datasets: [{
-					data: [70, 30],
+					data: [150, 0],
 					backgroundColor: [goalChartGradient, app.colors.gray]
 				}]
 			},
 			options: {
 				elements: {
 					center: {
-						text: '70%',
+						text: '90%',
 						color: app.colors.dark,
 						sidePadding: 70
 					}
 				},
 				maintainAspectRatio: false,
-				hover: {mode: null},
+				hover: { mode: null },
 				legend: {
 					display: false
 				},
@@ -113,21 +107,21 @@
 		//Sales Sparkline
 		var saleSparkLineData = [4, 10, 8, 10, 9, 10, 11, 7, 5, 8, 9, 6, 11];
 
-		$("#sparkline-line-chart").sparkline( saleSparkLineData,  
-		{
-			type: 'line',
-			width: '170',
-			spotColor: false,
-			minSpotColor: false,
-			maxSpotColor:false,
-			lineWidth: 1.5,
-			height: '40',
-			fillColor: app.colors.successOpacity,
-			lineColor: app.colors.success
-		});
+		$("#sparkline-line-chart").sparkline(saleSparkLineData,
+			{
+				type: 'line',
+				width: '170',
+				spotColor: false,
+				minSpotColor: false,
+				maxSpotColor: false,
+				lineWidth: 1.5,
+				height: '40',
+				fillColor: app.colors.successOpacity,
+				lineColor: app.colors.success
+			});
 
 		//Earning Chart
-		var earningCtx = document.getElementById('earning-chart').getContext('2d');		
+		var earningCtx = document.getElementById('earning-chart').getContext('2d');
 		var bar_chart = new Chart(earningCtx, {
 			type: 'line',
 			data: {
@@ -151,19 +145,18 @@
 					}
 				},
 				scales: {
-					xAxes: [{display: false}],
-					yAxes: [{display: false}]
+					xAxes: [{ display: false }],
+					yAxes: [{ display: false }]
 				}
 			}
 		});
-	};	
+	};
 
 	window.defaultDashboaard = defaultDashboaard;
 
 }(jQuery, window);
 
 // initialize app
-+function($) {
-	defaultDashboaard.init();		
++function ($) {
+	defaultDashboaard.init();
 }(jQuery);
-	
