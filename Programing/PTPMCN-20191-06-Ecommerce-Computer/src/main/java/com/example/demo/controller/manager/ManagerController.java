@@ -26,7 +26,7 @@ import com.example.demo.service.type.TypeService;
 
 @Controller
 @RequestMapping("manager/products")
-public class ProductController {
+public class ManagerController {
 
 	@Autowired
 	ProductService productService;

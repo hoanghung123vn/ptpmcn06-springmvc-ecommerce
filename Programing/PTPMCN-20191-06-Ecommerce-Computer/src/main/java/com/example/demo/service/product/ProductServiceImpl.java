@@ -43,7 +43,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void deleteByCode(int code) {
+	public void deleteByCode(Integer code) {
 		productRepository.deleteById(code);
 	}
+
+	@Override
+	public void addProduct(Product product) {
+
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import com.example.demo.config.Const;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -73,12 +75,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "customer")
     @OrderBy("id_order DESC")
     @JsonBackReference // prevent load products when load category (REST)
-    private Set<Order> ordersOfCustomer = new HashSet<Order>();
+    private Set<Orders> ordersOfCustomer = new HashSet<Orders>();
     
     @OneToMany(mappedBy = "shipper")
     @OrderBy("id_order DESC")
     @JsonBackReference // prevent load products when load category (REST)
-    private Set<Order> ordersOfShipper = new HashSet<Order>();
+    private Set<Orders> ordersOfShipper = new HashSet<Orders>();
     
     @OneToMany(mappedBy = "pk.customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference // prevent load products when load category (REST)
@@ -96,19 +98,19 @@ public class User implements Serializable {
         this.items = items;
     }
 
-    public Set<Order> getOrdersOfCustomer() {
+    public Set<Orders> getOrdersOfCustomer() {
         return ordersOfCustomer;
     }
 
-    public void setOrdersOfCustomer(Set<Order> ordersOfCustomer) {
+    public void setOrdersOfCustomer(Set<Orders> ordersOfCustomer) {
         this.ordersOfCustomer = ordersOfCustomer;
     }
 
-    public Set<Order> getOrdersOfShipper() {
+    public Set<Orders> getOrdersOfShipper() {
         return ordersOfShipper;
     }
 
-    public void setOrdersOfShipper(Set<Order> ordersOfShipper) {
+    public void setOrdersOfShipper(Set<Orders> ordersOfShipper) {
         this.ordersOfShipper = ordersOfShipper;
     }
 
@@ -199,22 +201,22 @@ public class User implements Serializable {
         role.getUsers().remove(this);
     }
     
-    public void addOrderOfCustomer(Order order) {
+    public void addOrderOfCustomer(Orders order) {
         ordersOfCustomer.add(order);
         order.setCustomer(this);
     }
     
-    public void removeOrderofCustomer(Order order) {
+    public void removeOrderofCustomer(Orders order) {
         ordersOfCustomer.remove(order);
         order.setCustomer(null);
     }
     
-    public void addOrderOfShipper(Order order) {
+    public void addOrderOfShipper(Orders order) {
         ordersOfShipper.add(order);
         order.setShipper(this);
     }
   
-    public void removeOrderOfShipper(Order order) {
+    public void removeOrderOfShipper(Orders order) {
         ordersOfShipper.remove(order);
         order.setShipper(null);
     }
@@ -233,6 +235,75 @@ public class User implements Serializable {
             total += e.getSubTotal();
         }
         return total;
+    }
+    
+    public int countCompletedOrderOfShipper() {
+        int count = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.COMPLETED)
+                count++;
+        }
+        return count;
+    }
+    
+    public int countDeliveringOrderOfShipper() {
+        int count = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.DELIVERING)
+                count++;
+        }
+        return count;
+    }
+    
+    public long priceCompletedOrderOfShipper() {
+        long price = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.COMPLETED)
+                price += order.getTotal();
+        }
+        return price;
+    }
+    
+    public long priceDeliveringOrderOfShipper() {
+        long price = 0;
+        for (Orders order: ordersOfShipper) {
+            if (order.getStatus() == Const.DELIVERING)
+                price += order.getTotal();
+        }
+        return price;
+    }
+    
+    public int countDelayPaymentOrderOfShipper() {
+        int count = 0;
+        for(Orders order: ordersOfShipper) {
+            Date delayDate = new Date(order.getShipDate().getTime() + 3 * 86400 * 1000);
+            if(order.getStatus() == Const.DELIVERING && delayDate.before(new Date())) {
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public long priceDelayPaymentOrderOfShipper() {
+        long price = 0;
+        for(Orders order: ordersOfShipper) {
+            Date delayDate = new Date(order.getShipDate().getTime() + 3 * 86400 * 1000);
+            if(order.getStatus() == Const.DELIVERING && delayDate.before(new Date())) {
+                price += order.getTotal();
+            }
+        }
+        return price;
+    }
+    
+    public int countDelayOrderOfShipper() {
+        int count = 0; 
+        for(Orders order: ordersOfShipper) {
+            Date delayDate = new Date(order.getShipDate().getTime() - 1 * 86400 * 1000);
+            if(order.getStatus() == Const.ASSIGNED && delayDate.before(new Date())) {
+                count++;
+            }
+        }
+        return count;
     }
 
     @Override

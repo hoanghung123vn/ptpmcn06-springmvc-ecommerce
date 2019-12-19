@@ -12,6 +12,6 @@ public interface ProductService {
 
 	void save(Product product);
 
-	void deleteByCode(int code);
-
+	void deleteByCode(Integer id);
+	void addProduct(Product product);
 }
