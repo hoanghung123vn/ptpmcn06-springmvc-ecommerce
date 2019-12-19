@@ -10,4 +10,8 @@ public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 	List<Orders> findAll();
 
 	List<Orders> findByStatus(int status);
+	
+	List<Orders> findByShipperId(int id);
+	
+	List<Orders> findByShipperIdAndStatus(int id, int status);
 }

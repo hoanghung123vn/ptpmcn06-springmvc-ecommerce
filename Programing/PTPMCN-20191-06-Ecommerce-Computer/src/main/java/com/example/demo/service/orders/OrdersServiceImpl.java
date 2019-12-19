@@ -36,4 +36,16 @@ public class OrdersServiceImpl implements OrdersService {
 		
 	}
 
+	@Override
+	public List<Orders> findByShipperId(int id) {
+		// TODO Auto-generated method stub
+		return ordersRepository.findByShipperId(id);
+	}
+
+	@Override
+	public List<Orders> findByShipperIdAndStatus(int id, int status) {
+		// TODO Auto-generated method stub
+		return ordersRepository.findByShipperIdAndStatus(id, status);
+	}
+
 }

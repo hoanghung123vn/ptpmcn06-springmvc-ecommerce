@@ -10,4 +10,6 @@ public interface OrdersService {
 	Optional<Orders> findById(int id);
 	Orders save(Orders orders);
 	List<Orders> findByStatus(int status);
+	List<Orders>  findByShipperId(int id);
+	List<Orders> findByShipperIdAndStatus(int id, int status);
 }
