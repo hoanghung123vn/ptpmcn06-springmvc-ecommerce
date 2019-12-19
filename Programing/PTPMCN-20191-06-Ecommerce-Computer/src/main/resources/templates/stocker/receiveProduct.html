@@ -7,7 +7,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Applicator - Admin Dashboard Template</title>
+	<title>Xác nhận trả hàng</title>
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.html">
@@ -944,20 +944,22 @@
 															th:text="${item.product.productName}">
 														</td>
 														<td th:text="${item.quantity}"></td>
-														<td th:text="${item.price}"></td>
+														<td th:id="'price' + ${iter.index}" th:text="${item.price}"></td>
 														<td >
-														<input th:field="*{items[__${iter.index}__].quantity}" type="number" min="0" th:max="${item.quantity}" class="form-control"/>															
+														<input th:id="${iter.index}" th:field="*{items[__${iter.index}__].quantity}" type="number" min="0" th:max="${item.quantity}" class="form-control quantity"/>															
 														</td>
 													</tr>
 												</tbody>
 											</table>
 									</div>
-									<div class="card-header border top text-right">
-										<h4 class="card-title">Tổng số tiền: <span
+
+									<!-- <span class="col-md-12"><button class="btn btn-success" th:onclick="myFunction(${items})">Tính lại số tiền đơn hàng</button></span> -->
+									<span class="card-header border top text-right col-md-12">
+										<h4 class="card-title" >Tổng số tiền: <span id="total"
 												th:text="${order.getTotal()}"></span>
 											VND</h4>
 
-									</div>
+									</span>
 									<button type="submit" class="btn btn-success">Xác Nhận
 									
 									</button>
@@ -997,7 +999,8 @@
 	<script src="/vendor/selectize/dist/js/standalone/selectize.min.js"></script>
 	<script src="/vendor/summernote/dist/summernote-bs4.min.js"></script>
 	<script src="/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-    <script src="/js/forms/form-elements.js"></script>
+	<script src="/js/forms/form-elements.js"></script>
+	<script src="/js/stocker/stocker.js"></script>
 </body>
 
 

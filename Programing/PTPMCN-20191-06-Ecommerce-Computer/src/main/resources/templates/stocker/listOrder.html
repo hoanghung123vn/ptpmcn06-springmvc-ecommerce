@@ -2,1137 +2,1419 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
-<!-- Mirrored from themenate.com/applicator/dist/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:05:50 GMT -->
+<!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Applicator - Admin Dashboard Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quản lý đơn hàng</title>
 
-	<!-- Favicon -->
-	<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.html">
-	<link rel="shortcut icon" href="/images/logo/favicon.png">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.html">
+    <link rel="shortcut icon" href="/images/logo/favicon.png">
 
-	<!-- core dependcies css -->
-	<link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
-	<link rel="stylesheet" href="/vendor/PACE/themes/blue/pace-theme-minimal.css" />
-	<link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <!-- core dependcies css -->
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/vendor/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
 
-	<!-- page css -->
-	<link href="/vendor/selectize/dist/css/selectize.default.css" rel="stylesheet">
-	<link href="/vendor/summernote/dist/summernote-bs4.css" rel="stylesheet">
-	<link href="/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet">
+    <!-- page css -->
+    <link rel="stylesheet" href="/vendor/datatables/media/css/dataTables.bootstrap4.min.css" />
 
-	<!-- core css -->
-	<link href="/css/font-awesome.min.css" rel="stylesheet">
-	<link href="/css/themify-icons.css" rel="stylesheet">
-	<link href="/css/materialdesignicons.min.css" rel="stylesheet">
-	<link href="/css/animate.min.css" rel="stylesheet">
-	<link href="/css/app.css" rel="stylesheet">
-	<link href="/css/stocker.css" rel="stylesheet">
+    <!-- core css -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/themify-icons.css" rel="stylesheet">
+    <link href="/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/stocker.css" rel="stylesheet">
 </head>
 
 <body>
-	<div class="app header-success-gradient">
-		<div class="layout">
-			<!-- Header START -->
-			<div class="header navbar">
-				<div class="header-container">
-					<div class="nav-logo">
-						<a href="index.html">
-							<div class="logo logo-dark" style="background-image: url('/images/logo/logo.png')"></div>
-							<div class="logo logo-white" style="background-image: url('/images/logo/logo-white.png')">
-							</div>
-						</a>
-					</div>
-					<ul class="nav-left">
-						<li><a class="sidenav-fold-toggler" href="javascript:void(0);"> <i class="mdi mdi-menu"></i>
-							</a> <a class="sidenav-expand-toggler" href="javascript:void(0);">
-								<i class="mdi mdi-menu"></i>
-							</a></li>
-						<li class="search-box"><a class="search-toggle" href="javascript:void(0);"> <i
-									class="search-icon mdi mdi-magnify"></i> <i
-									class="search-icon-close mdi mdi-close-circle-outline"></i>
-							</a></li>
-						<li class="search-input"><input class="form-control" type="text"
-								placeholder="Type to search...">
-							<div class="search-predict">
-								<div class="search-wrapper scrollable">
-									<div class="p-v-10">
-										<span class="display-block m-v-5 p-h-20 text-gray"> <i
-												class="ti-file p-r-5"></i> <span>Files</span>
-										</span>
-										<ul class="list-media">
-											<li class="list-item"><a href="javascript:void(0);"
-													class="media-hover p-h-20">
-													<div class="media-img">
-														<div class="icon-avatar bg-success">
-															<i class="mdi mdi-file-outline"></i>
-														</div>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Document.xls</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="media-hover p-h-20">
-													<div class="media-img">
-														<div class="icon-avatar bg-info">
-															<i class="mdi mdi-file-outline"></i>
-														</div>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Mockup.doc</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="media-hover p-h-20">
-													<div class="media-img">
-														<div class="icon-avatar bg-danger">
-															<i class="mdi mdi-file-outline"></i>
-														</div>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Document.pdf</span>
-													</div>
-												</a></li>
-										</ul>
-									</div>
-									<div class="m-h-20 border top"></div>
-									<div class="p-v-10">
-										<span class="display-block m-v-5 p-h-20 text-gray"> <i
-												class="ti-user p-r-5"></i> <span>Members</span>
-										</span>
-										<ul class="list-media">
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-3.jpg" alt="">
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Debra Stewart</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-5.jpg" alt="">
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Jane Hunt</span>
-													</div>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="search-footer">
-									<span>You are Searching for '<b class="text-dark"><span
-												class="serach-text-bind"></span></b>'
-									</span>
-								</div>
-							</div>
-						</li>
-					</ul>
-					<ul class="nav-right">
-						<li class="dropdown dropdown-animated scale-left"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> <i class="mdi mdi-apps"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-grid col-3 dropdown-lg">
-								<li><a href="#">
-										<div class="text-center">
-											<i class="mdi mdi-email-outline font-size-30 icon-gradient-success"></i>
-											<p class="m-b-0">Email</p>
-										</div>
-									</a></li>
-								<li><a href="#">
-										<div class="text-center">
-											<i class="mdi mdi-folder-outline font-size-30 icon-gradient-success"></i>
-											<p class="m-b-0">Files</p>
-										</div>
-									</a></li>
-								<li><a href="#">
-										<div class="text-center">
-											<i class="mdi mdi mdi-gauge font-size-30 icon-gradient-success"></i>
-											<p class="m-b-0">Dashboard</p>
-										</div>
-									</a></li>
-								<li><a href="#">
-										<div class="text-center">
-											<i
-												class="mdi mdi-play-circle-outline font-size-30 icon-gradient-success"></i>
-											<p class="m-b-0">Video</p>
-										</div>
-									</a></li>
-								<li><a href="#">
-										<div class="text-center">
-											<i class="mdi mdi-image-filter font-size-30 icon-gradient-success"></i>
-											<p class="m-b-0">Images</p>
-										</div>
-									</a></li>
-								<li><a href="#">
-										<div class="text-center">
-											<i
-												class="mdi mdi-image-filter-drama font-size-30 icon-gradient-success"></i>
-											<p class="m-b-0">Cloud</p>
-										</div>
-									</a></li>
-							</ul>
-						</li>
-						<li class="notifications dropdown dropdown-animated scale-left">
-							<span class="counter">2</span> <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<i class="mdi mdi-bell-ring-outline"></i>
-							</a>
-							<ul class="dropdown-menu dropdown-lg p-v-0">
-								<li class="p-v-15 p-h-20 border bottom text-dark">
-									<h5 class="m-b-0">
-										<i class="mdi mdi-bell-ring-outline p-r-10"></i> <span>Notifications</span>
-									</h5>
-								</li>
-								<li>
-									<ul class="list-media overflow-y-auto relative scrollable"
-										style="max-height: 300px">
-										<li class="list-item border bottom"><a href="javascript:void(0);"
-												class="media-hover p-15">
-												<div class="media-img">
-													<div class="icon-avatar bg-primary">
-														<i class="ti-settings"></i>
-													</div>
-												</div>
-												<div class="info">
-													<span class="title"> System shutdown </span> <span
-														class="sub-title">8 min ago</span>
-												</div>
-											</a></li>
-										<li class="list-item border bottom"><a href="javascript:void(0);"
-												class="media-hover p-15">
-												<div class="media-img">
-													<div class="icon-avatar bg-success">
-														<i class="ti-user"></i>
-													</div>
-												</div>
-												<div class="info">
-													<span class="title"> New User Registered </span> <span
-														class="sub-title">12 min ago</span>
-												</div>
-											</a></li>
-										<li class="list-item border bottom"><a href="javascript:void(0);"
-												class="media-hover p-15">
-												<div class="media-img">
-													<div class="icon-avatar bg-warning">
-														<i class="ti-file"></i>
-													</div>
-												</div>
-												<div class="info">
-													<span class="title"> New Attacthemnet </span> <span
-														class="sub-title">12 min ago</span>
-												</div>
-											</a></li>
-										<li class="list-item border bottom"><a href="javascript:void(0);"
-												class="media-hover p-15">
-												<div class="media-img">
-													<div class="icon-avatar bg-info">
-														<i class="ti-shopping-cart"></i>
-													</div>
-												</div>
-												<div class="info">
-													<span class="title"> New Order Received </span> <span
-														class="sub-title">12 min ago</span>
-												</div>
-											</a></li>
-									</ul>
-								</li>
-								<li class="p-v-15 p-h-20 text-center"><span> <a href="#" class="text-gray">Check all
-											notifications <i class="ei-right-chevron p-l-5 font-size-10"></i></a>
-									</span></li>
-							</ul>
-						</li>
-						<li class="user-profile dropdown dropdown-animated scale-left">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img
-									class="profile-img img-fluid" src="/images/avatars/thumb-13.jpg" alt="">
-							</a>
-							<ul class="dropdown-menu dropdown-md p-v-0">
-								<li>
-									<ul class="list-media">
-										<li class="list-item p-15">
-											<div class="media-img">
-												<img src="/images/avatars/thumb-13.jpg" alt="">
-											</div>
-											<div class="info">
-												<span class="title text-semibold">Marshall Nichols</span> <span
-													class="sub-title">UI/UX Desinger</span>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#"> <i class="ti-settings p-r-10"></i> <span>Setting</span>
-									</a></li>
-								<li><a href="#"> <i class="ti-user p-r-10"></i> <span>Profile</span>
-									</a></li>
-								<li><a href="#"> <i class="ti-email p-r-10"></i> <span>Inbox</span>
-										<span class="badge badge-pill badge-success pull-right">2</span>
-									</a></li>
-								<li><a href="#"> <i class="ti-power-off p-r-10"></i> <span>Logout</span>
-									</a></li>
-							</ul>
-						</li>
-						<li class="m-r-10"><a class="quick-view-toggler" href="javascript:void(0);"> <i
-									class="mdi mdi-format-indent-decrease"></i>
-							</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- Header END -->
+    <div class="app header-success-gradient">
+        <div class="layout">
+            <!-- Header START -->
+            <div class="header navbar">
+                <div class="header-container">
+                    <div class="nav-logo">
+                        <a href="index.html">
+                            <div class="logo logo-dark" style="background-image: url('/images/logo/logo.png')">
+                            </div>
+                            <div class="logo logo-white"
+                                style="background-image: url('/images/logo/logo-white.png')"></div>
+                        </a>
+                    </div>
+                    <ul class="nav-left">
+                        <li>
+                            <a class="sidenav-fold-toggler" href="javascript:void(0);">
+                                <i class="mdi mdi-menu"></i>
+                            </a>
+                            <a class="sidenav-expand-toggler" href="javascript:void(0);">
+                                <i class="mdi mdi-menu"></i>
+                            </a>
+                        </li>
+                        <li class="search-box">
+                            <a class="search-toggle" href="javascript:void(0);">
+                                <i class="search-icon mdi mdi-magnify"></i>
+                                <i class="search-icon-close mdi mdi-close-circle-outline"></i>
+                            </a>
+                        </li>
+                        <li class="search-input">
+                            <input class="form-control" type="text" placeholder="Type to search...">
+                            <div class="search-predict">
+                                <div class="search-wrapper scrollable">
+                                    <div class="p-v-10">
+                                        <span class="display-block m-v-5 p-h-20 text-gray">
+                                            <i class="ti-file p-r-5"></i>
+                                            <span>Files</span>
+                                        </span>
+                                        <ul class="list-media">
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);" class="media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <div class="icon-avatar bg-success">
+                                                            <i class="mdi mdi-file-outline"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Document.xls</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);" class="media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <div class="icon-avatar bg-info">
+                                                            <i class="mdi mdi-file-outline"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Mockup.doc</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);" class="media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <div class="icon-avatar bg-danger">
+                                                            <i class="mdi mdi-file-outline"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Document.pdf</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="m-h-20 border top"></div>
+                                    <div class="p-v-10">
+                                        <span class="display-block m-v-5 p-h-20 text-gray">
+                                            <i class="ti-user p-r-5"></i>
+                                            <span>Members</span>
+                                        </span>
+                                        <ul class="list-media">
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-3.jpg" alt="">
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Debra Stewart</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-5.jpg" alt="">
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Jane Hunt</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="search-footer">
+                                    <span>You are Searching for '<b class="text-dark"><span
+                                                class="serach-text-bind"></span></b>'</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav-right">
+                        <li class="dropdown dropdown-animated scale-left">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-apps"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-grid col-3 dropdown-lg">
+                                <li>
+                                    <a href="#">
+                                        <div class="text-center">
+                                            <i class="mdi mdi-email-outline font-size-30 icon-gradient-success"></i>
+                                            <p class="m-b-0">Email</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="text-center">
+                                            <i class="mdi mdi-folder-outline font-size-30 icon-gradient-success"></i>
+                                            <p class="m-b-0">Files</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="text-center">
+                                            <i class="mdi mdi mdi-gauge font-size-30 icon-gradient-success"></i>
+                                            <p class="m-b-0">Dashboard</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="text-center">
+                                            <i
+                                                class="mdi mdi-play-circle-outline font-size-30 icon-gradient-success"></i>
+                                            <p class="m-b-0">Video</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="text-center">
+                                            <i class="mdi mdi-image-filter font-size-30 icon-gradient-success"></i>
+                                            <p class="m-b-0">Images</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="text-center">
+                                            <i
+                                                class="mdi mdi-image-filter-drama font-size-30 icon-gradient-success"></i>
+                                            <p class="m-b-0">Cloud</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="notifications dropdown dropdown-animated scale-left">
+                            <span class="counter">2</span>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-ring-outline"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-lg p-v-0">
+                                <li class="p-v-15 p-h-20 border bottom text-dark">
+                                    <h5 class="m-b-0">
+                                        <i class="mdi mdi-bell-ring-outline p-r-10"></i>
+                                        <span>Notifications</span>
+                                    </h5>
+                                </li>
+                                <li>
+                                    <ul class="list-media overflow-y-auto relative scrollable"
+                                        style="max-height: 300px">
+                                        <li class="list-item border bottom">
+                                            <a href="javascript:void(0);" class="media-hover p-15">
+                                                <div class="media-img">
+                                                    <div class="icon-avatar bg-primary">
+                                                        <i class="ti-settings"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="info">
+                                                    <span class="title">
+                                                        System shutdown
+                                                    </span>
+                                                    <span class="sub-title">8 min ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="list-item border bottom">
+                                            <a href="javascript:void(0);" class="media-hover p-15">
+                                                <div class="media-img">
+                                                    <div class="icon-avatar bg-success">
+                                                        <i class="ti-user"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="info">
+                                                    <span class="title">
+                                                        New User Registered
+                                                    </span>
+                                                    <span class="sub-title">12 min ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="list-item border bottom">
+                                            <a href="javascript:void(0);" class="media-hover p-15">
+                                                <div class="media-img">
+                                                    <div class="icon-avatar bg-warning">
+                                                        <i class="ti-file"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="info">
+                                                    <span class="title">
+                                                        New Attacthemnet
+                                                    </span>
+                                                    <span class="sub-title">12 min ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="list-item border bottom">
+                                            <a href="javascript:void(0);" class="media-hover p-15">
+                                                <div class="media-img">
+                                                    <div class="icon-avatar bg-info">
+                                                        <i class="ti-shopping-cart"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="info">
+                                                    <span class="title">
+                                                        New Order Received
+                                                    </span>
+                                                    <span class="sub-title">12 min ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="p-v-15 p-h-20 text-center">
+                                    <span>
+                                        <a href="#" class="text-gray">Check all notifications <i
+                                                class="ei-right-chevron p-l-5 font-size-10"></i></a>
+                                    </span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="user-profile dropdown dropdown-animated scale-left">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img class="profile-img img-fluid" src="/images/avatars/thumb-13.jpg" alt="">
+                            </a>
+                            <ul class="dropdown-menu dropdown-md p-v-0">
+                                <li>
+                                    <ul class="list-media">
+                                        <li class="list-item p-15">
+                                            <div class="media-img">
+                                                <img src="/images/avatars/thumb-13.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title text-semibold">Marshall Nichols</span>
+                                                <span class="sub-title">UI/UX Desinger</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-settings p-r-10"></i>
+                                        <span>Setting</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-user p-r-10"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-email p-r-10"></i>
+                                        <span>Inbox</span>
+                                        <span class="badge badge-pill badge-success pull-right">2</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-power-off p-r-10"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="m-r-10">
+                            <a class="quick-view-toggler" href="javascript:void(0);">
+                                <i class="mdi mdi-format-indent-decrease"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Header END -->
 
-			<!-- Side Nav START -->
-			<div class="side-nav expand-lg">
-				<div class="side-nav-inner">
-					<ul class="side-nav-menu scrollable">
-						<li class="side-nav-header"><span>Navigation</span></li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-gauge"></i>
-								</span> <span class="title">Dashboard</span> <span class="arrow">
-									<i class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="index.html">Default</a></li>
-								<li><a href="index-analytical.html">Analytical</a></li>
-								<li><a href="index-bank.html">Bank</a></li>
-								<li><a href="index-saas.html">Saas</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-image-filter-drama"></i>
-								</span> <span class="title">Apps</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="email.html">Email</a></li>
-								<li><a href="calendar.html">Calendar</a></li>
-								<li><a href="chat-app.html">Chat App</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="task.html">Task</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-vector-arrange-above"></i>
-								</span> <span class="title">UI Elements</span> <span class="arrow">
-									<i class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="alert.html">Alert</a></li>
-								<li><a href="badge.html">Badge</a></li>
-								<li><a href="buttons.html">Buttons</a></li>
-								<li><a href="cards.html">Cards</a></li>
-								<li><a href="colors.html">Colors</a></li>
-								<li><a href="grid.html">Grid</a></li>
-								<li><a href="icons.html">Icons</a></li>
-								<li><a href="lists.html">Lists</a></li>
-								<li><a href="typography.html">Typography</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-compass-outline"></i>
-								</span> <span class="title">Components</span> <span class="arrow">
-									<i class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="accordion.html">Accordion</a></li>
-								<li><a href="carousel.html">Carousel</a></li>
-								<li><a href="dropdown.html">Dropdown</a></li>
-								<li><a href="modals.html">Modals</a></li>
-								<li><a href="notifications.html">Notifications</a></li>
-								<li><a href="popover.html">Popover</a></li>
-								<li><a href="slider-progress.html">Slider & Progress</a></li>
-								<li><a href="tabs.html">Tabs</a></li>
-								<li><a href="tooltips.html">Tooltips</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-grid-large"></i>
-								</span> <span class="title">Widgets</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="widgets-data.html">Data Widgets</a></li>
-								<li><a href="widgets-media.html">Media Widgets</a></li>
-								<li><a href="widgets-chart.html">Chart Widgets</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown open"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-file-outline"></i>
-								</span> <span class="title">Forms</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="active"><a href="form-elements.html">Form
-										Elements</a></li>
-								<li><a href="form-layouts.html">Form Layouts</a></li>
-								<li><a href="form-validation.html">Form Validation</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-tune-vertical"></i>
-								</span> <span class="title">Tables</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="basic-table.html">Basic Table</a></li>
-								<li><a href="data-table.html">Data Table</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-chart-donut"></i>
-								</span> <span class="title">Charts</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="chartist.html">Chartist</a></li>
-								<li><a href="chartjs.html">ChartJs</a></li>
-								<li><a href="sparkline.html">Sparkline</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-map-marker-outline"></i>
-								</span> <span class="title">Map</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="google-map.html">Google Map</a></li>
-								<li><a href="vector-map.html">Vector Map</a></li>
-							</ul>
-						</li>
-						<li class="side-nav-header"><span>Others</span></li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-image-filter-tilt-shift"></i>
-								</span> <span class="title">Extra</span> <span class="arrow"> <i
-										class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="profile.html">Profile</a></li>
-								<li><a href="invoice.html">Invoice</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="gallery.html">Gallery</a></li>
-								<li><a href="login.html">Login</a></li>
-								<li><a href="login-2.html">Login 2</a></li>
-								<li><a href="sign-up.html">Sign Up</a></li>
-								<li><a href="404.html">404</a></li>
-								<li><a href="500.html">500</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"> <span
-									class="icon-holder">
-									<i class="mdi mdi-menu"></i>
-								</span> <span class="title">Multiple Levels</span> <span class="arrow">
-									<i class="mdi mdi-chevron-right"></i>
-								</span>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="nav-item dropdown"><a href="javascript:void(0);">
-										<span>Level 1.2</span>
-									</a></li>
-								<li class="nav-item dropdown"><a href="javascript:void(0);">
-										<span>Level 1.1</span> <span class="arrow"> <i
-												class="mdi mdi-chevron-right"></i>
-										</span>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="javascript:void(0);">Level 2</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<!-- Side Nav END -->
+            <!-- Side Nav START -->
+            <div class="side-nav expand-lg">
+                <div class="side-nav-inner">
+                    <ul class="side-nav-menu scrollable">
+                        <li class="side-nav-header">
+                            <span>Navigation</span>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-gauge"></i>
+                                </span>
+                                <span class="title">Dashboard</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="index.html">Default</a>
+                                </li>
+                                <li>
+                                    <a href="index-analytical.html">Analytical</a>
+                                </li>
+                                <li>
+                                    <a href="index-bank.html">Bank</a>
+                                </li>
+                                <li>
+                                    <a href="index-saas.html">Saas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-image-filter-drama"></i>
+                                </span>
+                                <span class="title">Apps</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="email.html">Email</a>
+                                </li>
+                                <li>
+                                    <a href="calendar.html">Calendar</a>
+                                </li>
+                                <li>
+                                    <a href="chat-app.html">Chat App</a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">Contact</a>
+                                </li>
+                                <li>
+                                    <a href="task.html">Task</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-vector-arrange-above"></i>
+                                </span>
+                                <span class="title">UI Elements</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="alert.html">Alert</a>
+                                </li>
+                                <li>
+                                    <a href="badge.html">Badge</a>
+                                </li>
+                                <li>
+                                    <a href="buttons.html">Buttons</a>
+                                </li>
+                                <li>
+                                    <a href="cards.html">Cards</a>
+                                </li>
+                                <li>
+                                    <a href="colors.html">Colors</a>
+                                </li>
+                                <li>
+                                    <a href="grid.html">Grid</a>
+                                </li>
+                                <li>
+                                    <a href="icons.html">Icons</a>
+                                </li>
+                                <li>
+                                    <a href="lists.html">Lists</a>
+                                </li>
+                                <li>
+                                    <a href="typography.html">Typography</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-compass-outline"></i>
+                                </span>
+                                <span class="title">Components</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="accordion.html">Accordion</a>
+                                </li>
+                                <li>
+                                    <a href="carousel.html">Carousel</a>
+                                </li>
+                                <li>
+                                    <a href="dropdown.html">Dropdown</a>
+                                </li>
+                                <li>
+                                    <a href="modals.html">Modals</a>
+                                </li>
+                                <li>
+                                    <a href="notifications.html">Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="popover.html">Popover</a>
+                                </li>
+                                <li>
+                                    <a href="slider-progress.html">Slider & Progress</a>
+                                </li>
+                                <li>
+                                    <a href="tabs.html">Tabs</a>
+                                </li>
+                                <li>
+                                    <a href="tooltips.html">Tooltips</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-grid-large"></i>
+                                </span>
+                                <span class="title">Widgets</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="widgets-data.html">Data Widgets</a>
+                                </li>
+                                <li>
+                                    <a href="widgets-media.html">Media Widgets</a>
+                                </li>
+                                <li>
+                                    <a href="widgets-chart.html">Chart Widgets</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-file-outline"></i>
+                                </span>
+                                <span class="title">Forms</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="form-elements.html">Form Elements</a>
+                                </li>
+                                <li>
+                                    <a href="form-layouts.html">Form Layouts</a>
+                                </li>
+                                <li>
+                                    <a href="form-validation.html">Form Validation</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown open">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-tune-vertical"></i>
+                                </span>
+                                <span class="title">Tables</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="basic-table.html">Basic Table</a>
+                                </li>
+                                <li class="active">
+                                    <a href="data-table.html">Data Table</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-chart-donut"></i>
+                                </span>
+                                <span class="title">Charts</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="chartist.html">Chartist</a>
+                                </li>
+                                <li>
+                                    <a href="chartjs.html">ChartJs</a>
+                                </li>
+                                <li>
+                                    <a href="sparkline.html">Sparkline</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-map-marker-outline"></i>
+                                </span>
+                                <span class="title">Map</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="google-map.html">Google Map</a>
+                                </li>
+                                <li>
+                                    <a href="vector-map.html">Vector Map</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="side-nav-header">
+                            <span>Others</span>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-image-filter-tilt-shift"></i>
+                                </span>
+                                <span class="title">Extra</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="profile.html">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="invoice.html">Invoice</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="gallery.html">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="login.html">Login</a>
+                                </li>
+                                <li>
+                                    <a href="login-2.html">Login 2</a>
+                                </li>
+                                <li>
+                                    <a href="sign-up.html">Sign Up</a>
+                                </li>
+                                <li>
+                                    <a href="404.html">404</a>
+                                </li>
+                                <li>
+                                    <a href="500.html">500</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-menu"></i>
+                                </span>
+                                <span class="title">Multiple Levels</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item dropdown">
+                                    <a href="javascript:void(0);">
+                                        <span>Level 1.2</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="javascript:void(0);">
+                                        <span>Level 1.1</span>
+                                        <span class="arrow">
+                                            <i class="mdi mdi-chevron-right"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0);">Level 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Side Nav END -->
 
-			<!-- Page Container START -->
-			<div class="page-container">
-				<!-- Quick View START -->
-				<div class="quick-view">
-					<ul class="quick-view-tabs nav nav-tabs nav-justified" role="tablist">
-						<li class="nav-item"><a class="nav-link active" href="#config" role="tab" data-toggle="tab">
-								<span>Config</span>
-							</a></li>
-						<li class="nav-item"><a class="nav-link " href="#quick-view-chat" role="tab" data-toggle="tab">
-								<span>Chat</span>
-							</a></li>
-						<li class="nav-item "><a class="nav-link" href="#activity" role="tab" data-toggle="tab">
-								<span>Activity</span>
-							</a></li>
-					</ul>
-					<div class="tab-content scrollable">
-						<!-- config START -->
-						<div id="config" role="tabpanel" class="tab-pane fade in active">
-							<div class="theme-configurator p-20">
-								<div class="m-v-20 border bottom">
-									<p class="text-dark text-semibold m-b-0">Solid Header</p>
-									<p class="m-b-15">Config header background (solid)</p>
-									<div class="theme-selector p-b-20">
-										<label> <input type="radio" value="default" name="header-theme"> <span
-												class="theme-color bg-white border"></span>
-										</label> <label> <input type="radio" value="primary" name="header-theme"> <span
-												class="theme-color bg-primary"></span>
-										</label> <label> <input type="radio" value="info" name="header-theme"> <span
-												class="theme-color bg-info"></span>
-										</label> <label> <input type="radio" value="success" name="header-theme"> <span
-												class="theme-color bg-success"></span>
-										</label> <label> <input type="radio" value="warning" name="header-theme"> <span
-												class="theme-color bg-warning"></span>
-										</label> <label> <input type="radio" value="danger" name="header-theme"> <span
-												class="theme-color bg-danger"></span>
-										</label> <label> <input type="radio" value="dark" name="header-theme"> <span
-												class="theme-color bg-dark"></span>
-										</label>
-									</div>
-								</div>
-								<div class="m-v-15 border bottom">
-									<p class="text-dark text-semibold m-b-0">Gradient Header</p>
-									<p class="m-b-15">Config header background (gradient)</p>
-									<div class="theme-selector p-b-15">
-										<label> <input type="radio" value="primary-gradient" name="header-theme"> <span
-												class="theme-color bg-gradient-primary"></span>
-										</label> <label> <input type="radio" value="info-gradient" name="header-theme">
-											<span class="theme-color bg-gradient-info"></span>
-										</label> <label> <input type="radio" value="success-gradient"
-												name="header-theme"> <span
-												class="theme-color bg-gradient-success"></span>
-										</label> <label> <input type="radio" value="warning-gradient"
-												name="header-theme"> <span
-												class="theme-color bg-gradient-warning"></span>
-										</label> <label> <input type="radio" value="danger-gradient"
-												name="header-theme"> <span
-												class="theme-color bg-gradient-danger"></span>
-										</label>
-									</div>
-								</div>
-								<div class="m-v-15 border bottom">
-									<p class="text-dark text-semibold m-b-0">Side Nav Color</p>
-									<p class="m-b-15">Config side nav background</p>
-									<div class="theme-selector p-b-15">
-										<label> <input type="radio" value="default" name="side-nav-color"> <span
-												class="theme-color bg-white border"></span>
-										</label> <label> <input type="radio" value="dark" name="side-nav-color"> <span
-												class="theme-color bg-dark"></span>
-										</label>
-									</div>
-								</div>
-								<div class="m-v-15">
-									<p class="text-dark text-semibold m-b-0">RTL</p>
-									<p class="m-b-15">Toggle right to left</p>
-									<div class="theme-selector p-b-15">
-										<div class="switch d-inline">
-											<input type="checkbox" name="rtl-toogle" id="rtl-toogle">
-											<label for="rtl-toogle"></label>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- config END -->
-						<!-- chat START -->
-						<div id="quick-view-chat" role="tabpanel" class="tab-pane fade">
-							<div class="quick-view-chat chat">
-								<div class="chat-user-list">
-									<div class="m-b-30 m-t-20">
-										<h6 class="p-h-20 text-uppercase text-semibold">Online</h6>
-										<ul class="list-media">
-											<li class="list-item unread-msg"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-1.jpg" alt=""> <span
-															class="status success"></span>
-													</div>
-													<div class="info">
-														<span class="title">Marshall Nichols</span> <span
-															class="sub-title">Here's the story of a man...</span>
-														<div class="float-item">
-															<span class="chat-counter">2</span>
-														</div>
-													</div>
-												</a></li>
-											<li class="list-item unread-msg"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-2.jpg" alt=""> <span
-															class="status success"></span>
-													</div>
-													<div class="info">
-														<span class="title">Susie Willis</span> <span
-															class="sub-title">Do you see any Teletubbies...</span>
-														<div class="float-item">
-															<span class="chat-counter">1</span>
-														</div>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-3.jpg" alt=""> <span
-															class="status success"></span>
-													</div>
-													<div class="info">
-														<span class="title">Debra Stewart</span> <span
-															class="sub-title">Oh my God. I didn't even...</span>
-													</div>
-												</a></li>
-										</ul>
-									</div>
-									<div class="m-b-30">
-										<h6 class="p-h-20 text-uppercase text-semibold">Away</h6>
-										<ul class="list-media">
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-4.jpg" alt=""> <span
-															class="status away"></span>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Francisco Vasquez</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-5.jpg" alt=""> <span
-															class="status away"></span>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Jane Hunt</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-6.jpg" alt=""> <span
-															class="status away"></span>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Ava Alexander</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-7.jpg" alt=""> <span
-															class="status away"></span>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Shane Ross</span>
-													</div>
-												</a></li>
-										</ul>
-									</div>
-									<div class="m-b-30">
-										<h6 class="p-h-20 text-uppercase text-semibold">Busy</h6>
-										<ul class="list-media">
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-8.jpg" alt=""> <span
-															class="status busy"></span>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Erin Gonzales</span>
-													</div>
-												</a></li>
-											<li class="list-item"><a href="javascript:void(0);"
-													class="conversation-toggler media-hover p-h-20">
-													<div class="media-img">
-														<img src="/images/avatars/thumb-9.jpg" alt=""> <span
-															class="status busy"></span>
-													</div>
-													<div class="info">
-														<span class="title p-t-10">Alan Mills</span>
-													</div>
-												</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="quick-view-conversation conversation">
-									<div class="conversation-wrapper">
-										<div class="conversation-header">
-											<span class="recipient">Susie Willis</span>
-											<ul class="tools">
-												<li><a class="text-gray" href="javascript:void(0)">
-														<i class="mdi mdi-dots-vertical"></i>
-													</a></li>
-												<li><a class="text-gray conversation-toggler" href="javascript:void(0)">
-														<i class="mdi mdi-chevron-right"></i>
-													</a></li>
-											</ul>
-										</div>
-										<div class="quick-view-conversation-body conversation-body scrollable">
-											<div class="msg datetime">
-												<span>7:57PM</span>
-											</div>
-											<div class="msg msg-recipient">
-												<div class="user-img">
-													<img src="/images/avatars/thumb-2.jpg" alt="">
-												</div>
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Hey, what are you doing?</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-sent">
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Texting the most beautiful girl in the world.</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-recipient">
-												<div class="user-img">
-													<img src="/images/avatars/thumb-2.jpg" alt="">
-												</div>
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Oh? How Cute</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-sent">
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Yup but she's not replying so texting you</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-recipient">
-												<div class="user-img">
-													<img src="/images/avatars/thumb-2.jpg" alt="">
-												</div>
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Okay</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg datetime">
-												<span>8:05PM</span>
-											</div>
-											<div class="msg msg-recipient">
-												<div class="user-img">
-													<img src="/images/avatars/thumb-2.jpg" alt="">
-												</div>
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Bye</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-sent">
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>I'm just kidding..!!</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-sent">
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>Hello</span>
-													</div>
-												</div>
-											</div>
-											<div class="msg msg-sent">
-												<div class="bubble">
-													<div class="bubble-wrapper">
-														<span>It's me..can you hear me..!!</span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="conversation-footer">
-											<button class="upload-btn">
-												<i class="ti-face-smile"></i>
-											</button>
-											<input class="chat-input" type="text" placeholder="Type a message...">
-											<button class="sent-btn">
-												<i class="fa fa-send-o"></i>
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- chat END -->
-						<!-- activity START -->
-						<div id="activity" role="tabpanel" class="tab-pane fade">
-							<div class="quick-view-activity">
-								<ul class="list-media m-t-20">
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<img src="/images/avatars/thumb-1.jpg" alt="">
-											</div>
-											<div class="info">
-												<span class="title">Marshall Nichols</span> <span class="sub-title">has
-													replied your mails.</span> <span
-													class="sub-title font-size-11 p-t-5">8 min ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<img src="/images/avatars/thumb-2.jpg" alt="">
-											</div>
-											<div class="info">
-												<span class="title">Susie Willis</span> <span
-													class="sub-title">commented on your post's</span> <span
-													class="sub-title font-size-11 p-t-5">12 min ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<div class="icon-avatar bg-primary">
-													<i class="ti-settings"></i>
-												</div>
-											</div>
-											<div class="info">
-												<span class="title">System Notifications</span> <span
-													class="sub-title">Your account updated</span> <span
-													class="sub-title font-size-11 p-t-5">2 days ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<img src="/images/avatars/thumb-8.jpg" alt="">
-											</div>
-											<div class="info">
-												<span class="title">Erin Gonzales</span> <span
-													class="sub-title">commented on your post's</span> <span
-													class="sub-title font-size-11 p-t-5">3 days ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<div class="icon-avatar bg-info">
-													<i class="mdi mdi-file-outline"></i>
-												</div>
-											</div>
-											<div class="info">
-												<span class="title">New Attachment</span> <span class="sub-title">3
-													files has updated</span> <span
-													class="sub-title font-size-11 p-t-5">5 days ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<div class="icon-avatar bg-success">
-													<span>S</span>
-												</div>
-											</div>
-											<div class="info">
-												<span class="title">Suzanne Lynch</span> <span class="sub-title">has
-													sent you a message.</span> <span
-													class="sub-title font-size-11 p-t-5">9 days ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<img src="/images/avatars/thumb-12.jpg" alt="">
-											</div>
-											<div class="info">
-												<span class="title">Riley Newman</span> <span
-													class="sub-title">commented on your post's</span> <span
-													class="sub-title font-size-11 p-t-5">10 days ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<div class="icon-avatar bg-warning">
-													<span>FW</span>
-												</div>
-											</div>
-											<div class="info">
-												<span class="title">Franklin Weaver</span> <span class="sub-title">has
-													sent you a message.</span> <span
-													class="sub-title font-size-11 p-t-5">10 days ago</span>
-											</div>
-										</a></li>
-									<li class="list-item border bottom"><a href="javascript:void(0);"
-											class="media-hover p-20">
-											<div class="media-img">
-												<img src="/images/avatars/thumb-11.jpg" alt="">
-											</div>
-											<div class="info">
-												<span class="title">Darryl Day</span> <span class="sub-title">commented
-													on your post's</span> <span class="sub-title font-size-11 p-t-5">12
-													days ago</span>
-											</div>
-										</a></li>
-								</ul>
-							</div>
-						</div>
-						<!-- activity END -->
-					</div>
-				</div>
-				<!-- Side Panel END -->
+            <!-- Page Container START -->
+            <div class="page-container">
+                <!-- Quick View START -->
+                <div class="quick-view">
+                    <ul class="quick-view-tabs nav nav-tabs nav-justified" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#config" role="tab" data-toggle="tab">
+                                <span>Config</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#quick-view-chat" role="tab" data-toggle="tab">
+                                <span>Chat</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#activity" role="tab" data-toggle="tab">
+                                <span>Activity</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content scrollable">
+                        <!-- config START -->
+                        <div id="config" role="tabpanel" class="tab-pane fade in active">
+                            <div class="theme-configurator p-20">
+                                <div class="m-v-20 border bottom">
+                                    <p class="text-dark text-semibold m-b-0">Solid Header</p>
+                                    <p class="m-b-15">Config header background (solid)</p>
+                                    <div class="theme-selector p-b-20">
+                                        <label>
+                                            <input type="radio" value="default" name="header-theme">
+                                            <span class="theme-color bg-white border"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="primary" name="header-theme">
+                                            <span class="theme-color bg-primary"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="info" name="header-theme">
+                                            <span class="theme-color bg-info"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="success" name="header-theme">
+                                            <span class="theme-color bg-success"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="warning" name="header-theme">
+                                            <span class="theme-color bg-warning"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="danger" name="header-theme">
+                                            <span class="theme-color bg-danger"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="dark" name="header-theme">
+                                            <span class="theme-color bg-dark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="m-v-15 border bottom">
+                                    <p class="text-dark text-semibold m-b-0">Gradient Header</p>
+                                    <p class="m-b-15">Config header background (gradient)</p>
+                                    <div class="theme-selector p-b-15">
+                                        <label>
+                                            <input type="radio" value="primary-gradient" name="header-theme">
+                                            <span class="theme-color bg-gradient-primary"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="info-gradient" name="header-theme">
+                                            <span class="theme-color bg-gradient-info"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="success-gradient" name="header-theme">
+                                            <span class="theme-color bg-gradient-success"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="warning-gradient" name="header-theme">
+                                            <span class="theme-color bg-gradient-warning"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="danger-gradient" name="header-theme">
+                                            <span class="theme-color bg-gradient-danger"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="m-v-15 border bottom">
+                                    <p class="text-dark text-semibold m-b-0">Side Nav Color</p>
+                                    <p class="m-b-15">Config side nav background</p>
+                                    <div class="theme-selector p-b-15">
+                                        <label>
+                                            <input type="radio" value="default" name="side-nav-color">
+                                            <span class="theme-color bg-white border"></span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" value="dark" name="side-nav-color">
+                                            <span class="theme-color bg-dark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="m-v-15">
+                                    <p class="text-dark text-semibold m-b-0">RTL</p>
+                                    <p class="m-b-15">Toggle right to left</p>
+                                    <div class="theme-selector p-b-15">
+                                        <div class="switch checkbox-inline">
+                                            <input type="checkbox" name="rtl-toogle" id="rtl-toogle">
+                                            <label for="rtl-toogle"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- config END -->
+                        <!-- chat START -->
+                        <div id="quick-view-chat" role="tabpanel" class="tab-pane fade">
+                            <div class="quick-view-chat chat">
+                                <div class="chat-user-list">
+                                    <div class="m-b-30 m-t-20">
+                                        <h6 class="p-h-20 text-uppercase text-semibold">Online</h6>
+                                        <ul class="list-media">
+                                            <li class="list-item unread-msg">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-1.jpg" alt="">
+                                                        <span class="status success"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title">Marshall Nichols</span>
+                                                        <span class="sub-title">Here's the story of a man...</span>
+                                                        <div class="float-item">
+                                                            <span class="chat-counter">2</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item unread-msg">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-2.jpg" alt="">
+                                                        <span class="status success"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title">Susie Willis</span>
+                                                        <span class="sub-title">Do you see any Teletubbies...</span>
+                                                        <div class="float-item">
+                                                            <span class="chat-counter">1</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-3.jpg" alt="">
+                                                        <span class="status success"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title">Debra Stewart</span>
+                                                        <span class="sub-title">Oh my God. I didn't even...</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="m-b-30">
+                                        <h6 class="p-h-20 text-uppercase text-semibold">Away</h6>
+                                        <ul class="list-media">
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-4.jpg" alt="">
+                                                        <span class="status away"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Francisco Vasquez</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-5.jpg" alt="">
+                                                        <span class="status away"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Jane Hunt</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-6.jpg" alt="">
+                                                        <span class="status away"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Ava Alexander</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-7.jpg" alt="">
+                                                        <span class="status away"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Shane Ross</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="m-b-30">
+                                        <h6 class="p-h-20 text-uppercase text-semibold">Busy</h6>
+                                        <ul class="list-media">
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-8.jpg" alt="">
+                                                        <span class="status busy"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Erin Gonzales</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="list-item">
+                                                <a href="javascript:void(0);"
+                                                    class="conversation-toggler media-hover p-h-20">
+                                                    <div class="media-img">
+                                                        <img src="/images/avatars/thumb-9.jpg" alt="">
+                                                        <span class="status busy"></span>
+                                                    </div>
+                                                    <div class="info">
+                                                        <span class="title p-t-10">Alan Mills</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="quick-view-conversation conversation">
+                                    <div class="conversation-wrapper">
+                                        <div class="conversation-header">
+                                            <span class="recipient">Susie Willis</span>
+                                            <ul class="tools">
+                                                <li>
+                                                    <a class="text-gray" href="javascript:void(0)">
+                                                        <i class="mdi mdi-dots-vertical"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="text-gray conversation-toggler" href="javascript:void(0)">
+                                                        <i class="mdi mdi-chevron-right"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="quick-view-conversation-body conversation-body scrollable">
+                                            <div class="msg datetime">
+                                                <span>7:57PM</span>
+                                            </div>
+                                            <div class="msg msg-recipient">
+                                                <div class="user-img">
+                                                    <img src="/images/avatars/thumb-2.jpg" alt="">
+                                                </div>
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Hey, what are you doing?</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-sent">
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Texting the most beautiful girl in the world.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-recipient">
+                                                <div class="user-img">
+                                                    <img src="/images/avatars/thumb-2.jpg" alt="">
+                                                </div>
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Oh? How Cute</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-sent">
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Yup but she's not replying so texting you</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-recipient">
+                                                <div class="user-img">
+                                                    <img src="/images/avatars/thumb-2.jpg" alt="">
+                                                </div>
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Okay</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg datetime">
+                                                <span>8:05PM</span>
+                                            </div>
+                                            <div class="msg msg-recipient">
+                                                <div class="user-img">
+                                                    <img src="/images/avatars/thumb-2.jpg" alt="">
+                                                </div>
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Bye</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-sent">
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>I'm just kidding..!!</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-sent">
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>Hello</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="msg msg-sent">
+                                                <div class="bubble">
+                                                    <div class="bubble-wrapper">
+                                                        <span>It's me..can you hear me..!!</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conversation-footer">
+                                            <button class="upload-btn">
+                                                <i class="ti-face-smile"></i>
+                                            </button>
+                                            <input class="chat-input" type="text" placeholder="Type a message...">
+                                            <button class="sent-btn">
+                                                <i class="fa fa-send-o"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- chat END -->
+                        <!-- activity START -->
+                        <div id="activity" role="tabpanel" class="tab-pane fade">
+                            <div class="quick-view-activity">
+                                <ul class="list-media m-t-20">
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <img src="/images/avatars/thumb-1.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Marshall Nichols</span>
+                                                <span class="sub-title">has replied your mails.</span>
+                                                <span class="sub-title font-size-11 p-t-5">8 min ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <img src="/images/avatars/thumb-2.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Susie Willis</span>
+                                                <span class="sub-title">commented on your post's</span>
+                                                <span class="sub-title font-size-11 p-t-5">12 min ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <div class="icon-avatar bg-primary">
+                                                    <i class="ti-settings"></i>
+                                                </div>
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">System Notifications</span>
+                                                <span class="sub-title">Your account updated</span>
+                                                <span class="sub-title font-size-11 p-t-5">2 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <img src="/images/avatars/thumb-8.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Erin Gonzales</span>
+                                                <span class="sub-title">commented on your post's</span>
+                                                <span class="sub-title font-size-11 p-t-5">3 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <div class="icon-avatar bg-info">
+                                                    <i class="mdi mdi-file-outline"></i>
+                                                </div>
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">New Attachment</span>
+                                                <span class="sub-title">3 files has updated</span>
+                                                <span class="sub-title font-size-11 p-t-5">5 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <div class="icon-avatar bg-success">
+                                                    <span>S</span>
+                                                </div>
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Suzanne Lynch</span>
+                                                <span class="sub-title">has sent you a message.</span>
+                                                <span class="sub-title font-size-11 p-t-5">9 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <img src="/images/avatars/thumb-12.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Riley Newman</span>
+                                                <span class="sub-title">commented on your post's</span>
+                                                <span class="sub-title font-size-11 p-t-5">10 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <div class="icon-avatar bg-warning">
+                                                    <span>FW</span>
+                                                </div>
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Franklin Weaver</span>
+                                                <span class="sub-title">has sent you a message.</span>
+                                                <span class="sub-title font-size-11 p-t-5">10 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="list-item border bottom">
+                                        <a href="javascript:void(0);" class="media-hover p-20">
+                                            <div class="media-img">
+                                                <img src="/images/avatars/thumb-11.jpg" alt="">
+                                            </div>
+                                            <div class="info">
+                                                <span class="title">Darryl Day</span>
+                                                <span class="sub-title">commented on your post's</span>
+                                                <span class="sub-title font-size-11 p-t-5">12 days ago</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- activity END -->
+                    </div>
+                </div>
+                <!-- Side Panel END -->
 
-				<!-- Content Wrapper START -->
-				<div class="main-content">
-					<div class="container-fluid">
-						<div class="page-header">
-							<h2 class="header-title">Thêm sản phẩm</h2>
-							<div class="header-sub-title">
-								<nav class="breadcrumb breadcrumb-dash">
-									<a href="#" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Home</a> <a
-										class="breadcrumb-item" href="#">Sản phẩm</a> <span
-										class="breadcrumb-item active">Thêm
-										sản phẩm</span>
-								</nav>
-							</div>
-						</div>
-
-						<div class="card-body">
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">ID</th>
-										<th scope="col">Thời điểm giao hàng</th>
-
-
-										<th scope="col" class="dropdown dropdown-animated">
-											<div style="border-style:none" class="dropdown-toggle pointer"
-												data-toggle="dropdown" aria-expanded="false">
-												<span>Trạng thái đơn hàng</span>
-											</div>
-											<div class="dropdown-menu" x-placement="top-start"
-												style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=0)}">Chưa xác
-													nhận</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=1)}">Đã xác
-													nhận</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=2)}">Đã
-													hủy</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=3)}">Đã phân
-													công</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=4)}">Trên
-													đường vận chuyển</a>
-												<a class="dropdown-item" th:href="@{/stocker/orders(status=5)}">Đã hoàn
-													thành</a>
-											</div>
-										</th>
-
-										<th scope="col">Tên Shipper</th>
-										<th scope="col">Hành động</th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<th:block th:each="order : ${Orders}">
-										<tr>
-											<td th:text="${order.id}"></td>
-											<td th:text="${order.shipDate}"></td>
-											<th:block th:switch="${order.status}">
-												<td th:case="0">Chưa xác nhận</td>
-												<td th:case="1">Đã xác nhận</td>
-												<td th:case="2">Đã hủy</td>
-												<td th:case="3">Đã phân công</td>
-												<td th:case="4">Trên đường vận chuyển</td>
-												<td th:case="5">Đã hoàn thành</td>
-											</th:block>
-											<td>
-												<div th:text="${order.shipper.name}" data-toggle="modal"
-													th:data-target="'#modal-detail-shipper'+${order.shipper.id}"
-													title="xem chi tiết"></div>
-												<div class="modal fade"
-													th:id="'modal-detail-shipper'+${order.shipper.id}">
-													<div class="modal-dialog modal-lg" role="document">
-														<div class="modal-content">
-															<div class="modal-body">
-																<div class="card">
-																	<div class="card-header border bottom">
-																		<h4 class="card-title">Thông tin Shipper</h4>
-																	</div>
-																	<div class="card-body">
-																		<div class="row">
-																			<div class="col-md-12">
-																				<div class="form-group row">
-																					<label
-																						class="col-sm-3 col-form-label control-label text-dark">Tên
-																						Shipper: </label>
-																					<div class="col-sm-9">
-																						<p class="form-control-plaintext"
-																							th:text="${order.shipper.name}">
-																						</p>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label
-																						class="col-sm-3 col-form-label control-label text-dark">Số
-																						điện thoại: </label>
-																					<div class="col-sm-9">
-																						<p class="form-control-plaintext"
-																							th:text="${order.shipper.phone}">
-																						</p>
-																					</div>
-																				</div>
-																				<div class="form-group row">
-																					<label
-																						class="col-sm-3 col-form-label control-label text-dark">Email
-																						liên lạc: </label>
-																					<div class="col-sm-9">
-																						<p class="form-control-plaintext"
-																							th:text="${order.shipper.email}">
-																						</p>
-																					</div>
-																				</div>
-																			</div>
-
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
+                <!-- Content Wrapper START -->
+                <div class="main-content">
+                    <div class="container-fluid">
+                        <div class="page-header">
+                            <h2 class="header-title">Quản lý Đơn hàng</h2>
+                            <div class="header-sub-title">
+                                <nav class="breadcrumb breadcrumb-dash">
+                                    <a href="#" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Home</a>
+                                    
+                                    <span class="breadcrumb-item active">Quản lý Đơn hàng</span>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body" style="background-color:rgb(255, 255, 255);">
+                                <span class="table-overflow">
+                                    <table id="dt-opt" class="table table-hover table-xl table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color:rgb(255, 255, 255);">ID</th>
+                                                <th style="background-color:rgb(255, 255, 255)">Thời điểm giao hàng</th>
+                                                <th style="background-color: rgb(255, 255, 255);">
+													<div scope="col" class="dropdown dropdown-animated">
+														<span style="border-style:none" class="dropdown-toggle pointer"
+															data-toggle="dropdown" aria-expanded="false">
+															<span>Trạng thái</span>
+														</span>
+														<span class="dropdown-menu" x-placement="top-start"
+															style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=0)}">Chưa xác
+																nhận</a>
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=1)}">Đã xác
+																nhận</a>
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=2)}">Đã
+																hủy</a>
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=3)}">Đã phân
+																công</a>
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=4)}">Trên
+																đường vận chuyển</a>
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=5)}">Đã giao hàng</a>
+															<a class="dropdown-item" th:href="@{/stocker/orders(status=6)}">Đã thu tiền</a>
+														</span>
 													</div>
-												</div>
-											</td>
+                                                    
+                                                </th>
+                                                <th style="background-color:rgb(255, 255, 255);">Tên Shipper</th>
+                                                <th style="background-color: rgb(255, 255, 255);">Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                
+                                            <th:block th:each="order : ${Orders}">
+                                                <tr>
+                                                    <td th:text="${order.id}"></td>
+                                                    <td th:text="${order.shipDate}"></td>
+                                                    <th:block th:switch="${order.status}">
+                                                        <td th:case="0">Chưa xác nhận</td>
+                                                        <td th:case="1">Đã xác nhận</td>
+                                                        <td th:case="2">Đã hủy</td>
+                                                        <td th:case="3">Đã phân công</td>
+                                                        <td th:case="4">Trên đường vận chuyển</td>
+                                                        <td th:case="5">Đã giao hàng</td>
+                                                        <td th:case="6">Đã thu tiền</td>
+                                                    </th:block>
+                                                    <td>
+                                                        <div th:if="${order.shipper==null}">
+                                                            chưa phân công shipper
+                                                        </div>
+                                                        <div th:unless="${order.shipper==null}">
+                                                            <div th:text="${order.shipper.name}" data-toggle="modal"
+                                                                th:data-target="'#modal-detail-shipper'+${order.shipper.id}"
+                                                                title="xem chi tiết"></div>
+                                                            <div class="modal fade"
+                                                                th:id="'modal-detail-shipper'+${order.shipper.id}">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="card">
+                                                                                <div class="card-header border bottom">
+                                                                                    <h4 class="card-title">Thông tin
+                                                                                        Shipper
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div class="card-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group row">
+                                                                                                <label
+                                                                                                    class="col-sm-3 col-form-label control-label text-dark">Tên
+                                                                                                    Shipper: </label>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <p class="form-control-plaintext"
+                                                                                                        th:text="${order.shipper.name}">
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group row">
+                                                                                                <label
+                                                                                                    class="col-sm-3 col-form-label control-label text-dark">Số
+                                                                                                    điện thoại: </label>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <p class="form-control-plaintext"
+                                                                                                        th:text="${order.shipper.phone}">
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group row">
+                                                                                                <label
+                                                                                                    class="col-sm-3 col-form-label control-label text-dark">Email
+                                                                                                    liên lạc: </label>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <p class="form-control-plaintext"
+                                                                                                        th:text="${order.shipper.email}">
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
 
-											<td>
-												<button data-toggle="modal"
-													th:data-target="'#modal-detail-orders'+${order.id}"
-													class="btn btn-info">Chi tiết</button>
-												<div class="modal fade" th:id="'modal-detail-orders'+${order.id}">
-													<div class="modal-dialog modal-lg" role="document">
-														<div class="modal-content">
-															<div class="modal-body">
-																<div class="card">
-																	<div class="card-header border bottom">
-																		<h4 class="card-title">Chi tiết Đơn hàng</h4>
-																	</div>
-																	<div class="card-body">
-																		<table class="table">
-																			<thead class="thead-light">
-																				<tr>
-																					<th scope="col">STT</th>
-																					<th scope="col">Mã Sản phẩm</th>
-																					<th scope="col">Tên Sản phẩm</th>
-																					<th scope="col">Số lượng</th>
-																					<th scope="col">Đơn Giá</th>
-																				</tr>
-																			</thead>
-																			<tbody>
-																				<tr th:each="item,iter: ${order.items}">
-																					<th th:text="${iter.index + 1}"
-																						scope="row"></th>
-																					<td th:text="${item.product.code}">
-																					</td>
-																					<td
-																						th:text="${item.product.productName}">
-																					</td>
-																					<td th:text="${item.quantity}"></td>
-																					<td th:text="${item.price}"></td>
-																					
-																				</tr>
-																			</tbody>
-																		</table>
-																	</div>
-																	<div class="card-header border top text-right">
-																		<h4 class="card-title">Tổng số tiền: <span
-																				th:text="${order.getTotal()}"></span>
-																			VND</h4>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
-																	</div>
-																	<div align="right">
-																		<a th:if="${order.status==3}"
-																			class="btn btn-success col-sm-3"
-																			th:href="@{/stocker/order/xacNhanGiaoHang(id=${order.id})}">Xác
-																			nhận giao hàng</a>
-																	</div>
-																	<div>
-																		<span>
-																			<a th:if="${order.status==4}"
-																				class="btn btn-success col-sm-3"
-																				th:href="@{/stocker/order/hoanThanh(id=${order.id})}"
-																				>Xác nhận hoàn thành</a>
-																		</span>
-																		<span>
-																			<a th:if="${order.status==4}"
-																				class="btn bg-danger col-sm-3"
-																				th:href="@{/stocker/order/receiveProduct(id=${order.id})}">Nhận trả
-																				hàng</a>
-																		</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</th:block>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<!-- Content Wrapper END -->
+                                                    <td>
+                                                        <button data-toggle="modal"
+                                                            th:data-target="'#modal-detail-orders'+${order.id}"
+                                                            class="btn btn-info">Chi tiết</button>
+                                                        <div class="modal fade"
+                                                            th:id="'modal-detail-orders'+${order.id}">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="card">
+                                                                            <div class="card-header border bottom">
+                                                                                <h4 class="card-title">Chi tiết Đơn hàng
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <table class="table">
+                                                                                    <thead class="thead-light">
+                                                                                        <tr>
+                                                                                            <th scope="col">STT</th>
+                                                                                            <th scope="col">Mã Sản phẩm
+                                                                                            </th>
+                                                                                            <th scope="col">Tên Sản phẩm
+                                                                                            </th>
+                                                                                            <th scope="col">Số lượng
+                                                                                            </th>
+                                                                                            <th scope="col">Đơn Giá</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr
+                                                                                            th:each="item,iter: ${order.items}">
+                                                                                            <th th:text="${iter.index + 1}"
+                                                                                                scope="row"></th>
+                                                                                            <td
+                                                                                                th:text="${item.product.code}">
+                                                                                            </td>
+                                                                                            <td
+                                                                                                th:text="${item.product.productName}">
+                                                                                            </td>
+                                                                                            <td
+                                                                                                th:text="${item.quantity}">
+                                                                                            </td>
+                                                                                            <td th:text="${item.price}">
+                                                                                            </td>
 
-				<!-- Footer START -->
-				<footer class="content-footer">
-					<div class="footer">
-						<div class="copyright">
-							<span>Copyright © 2018 <b class="text-dark">Theme_Nate</b>.
-								All rights reserved.
-							</span> <span class="go-right"> <a href="#" class="text-gray m-r-15">Term &amp;
-									Conditions</a> <a href="#" class="text-gray">Privacy &amp; Policy</a>
-							</span>
-						</div>
-					</div>
-				</footer>
-				<!-- Footer END -->
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div
+                                                                                class="card-header border top text-right">
+                                                                                <h4 class="card-title">Tổng số tiền:
+                                                                                    <span
+                                                                                        th:text="${order.getTotal()}"></span>
+                                                                                    VND</h4>
 
-			</div>
-			<!-- Page Container END -->
+                                                                            </div>
+                                                                            <div align="right">
+                                                                                <a th:if="${order.status==3}"
+                                                                                    class="btn btn-success col-sm-3"
+                                                                                    th:href="@{/stocker/order/xacNhanGiaoHang(id=${order.id})}">Xác
+                                                                                    nhận giao hàng</a>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>
+                                                                                    <a th:if="${order.status==4}"
+                                                                                        class="btn btn-success col-sm-3"
+                                                                                        th:href="@{/stocker/order/hoanThanh(id=${order.id})}">Xác
+                                                                                        nhận hoàn thành</a>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <a th:if="${order.status==4}"
+                                                                                        class="btn bg-danger col-sm-3"
+                                                                                        th:href="@{/stocker/order/receiveProduct(id=${order.id})}">Nhận
+                                                                                        trả
+                                                                                        hàng</a>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Wrapper END -->
 
-		</div>
-	</div>
+                <!-- Footer START -->
+                <footer class="content-footer">
+                    <div class="footer">
+                        <div class="copyright">
+                            <span>Copyright © 2018 <b class="text-dark">Theme_Nate</b>. All rights reserved.</span>
+                            <span class="go-right">
+                                <a href="#" class="text-gray m-r-15">Term &amp; Conditions</a>
+                                <a href="#" class="text-gray">Privacy &amp; Policy</a>
+                            </span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer END -->
 
-	<script src="/js/vendor.js"></script>
+            </div>
+            <!-- Page Container END -->
 
-	<script src="/js/app.min.js"></script>
+        </div>
+    </div>
 
-	<!-- page js -->
-	<script src="/vendor/moment/min/moment.min.js"></script>
-	<script src="/vendor/selectize/dist/js/standalone/selectize.min.js"></script>
-	<script src="/vendor/summernote/dist/summernote-bs4.min.js"></script>
-	<script src="/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-	<script src="/js/forms/form-elements.js"></script>
+    <script src="/js/vendor.js"></script>
+
+    <script src="/js/app.min.js"></script>
+
+    <!-- page js -->
+    <script src="/vendor/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/tables/data-table.js"></script>
 
 </body>
 
 
-<!-- Mirrored from themenate.com/applicator/dist/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:00 GMT -->
+<!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
 
 </html>
