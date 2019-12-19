@@ -10,4 +10,20 @@ public interface OrdersService {
 	Optional<Orders> findById(int id);
 	Orders save(Orders orders);
 	List<Orders> findByStatus(int status);
+	
+	long countOrderInDay();
+	
+	long countOrderInWeek();
+	
+	long countOrderInMonth();
+	
+	long countOrderInYear();
+	
+	long sumPriceOrdersInDay();
+	
+	long sumPriceOrdersInWeek();
+	
+	long sumPriceOrdersInMonth();
+	
+	long sumPriceOrdersInYear();
 }

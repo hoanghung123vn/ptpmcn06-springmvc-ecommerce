@@ -79,7 +79,7 @@
                     <div class="media justify-content-between">
                       <div>
                         <p class=""><strong>Số loại máy tính</strong></p>
-                        <h2 class="font-size-28 font-weight-light">20</h2>
+                        <h2 class="font-size-28 font-weight-light" th:text="${countType}">20</h2>
                       </div>
                       <div class="align-self-end">
                         <i class="ti-credit-card font-size-70 text-success opacity-01"></i>
@@ -94,7 +94,7 @@
                     <div class="media justify-content-between">
                       <div>
                         <p class=""><strong>Số máy tính</strong></p>
-                        <h2 class="font-size-28 font-weight-light">200</h2>
+                        <h2 class="font-size-28 font-weight-light" th:text="${countProduct}">200</h2>
                       </div>
                       <div class="align-self-end">
                         <i class="ti-pie-chart font-size-70 text-info opacity-01"></i>
@@ -108,8 +108,8 @@
                   <div class="card-body">
                     <div class="media justify-content-between">
                       <div>
-                        <p class=""><strong>Số loại nhân viên</strong></p>
-                        <h2 class="font-size-28 font-weight-light">5</h2>
+                        <p class=""><strong>Số nhân viên</strong></p>
+                        <h2 class="font-size-28 font-weight-light" th:text="${countEmployee}">5</h2>
                       </div>
                       <div class="align-self-end">
                         <i class="ti-bar-chart font-size-70 text-danger opacity-01"></i>
@@ -124,7 +124,7 @@
                     <div class="media justify-content-between">
                       <div>
                         <p class=""><strong>Số khách hàng</strong></p>
-                        <h2 class="font-size-28 font-weight-light">178</h2>
+                        <h2 class="font-size-28 font-weight-light" th:text="${countMember}">178</h2>
                       </div>
                       <div class="align-self-end">
                         <i class="ti-user font-size-70 text-primary opacity-01"></i>
@@ -176,7 +176,7 @@
                     </div>
                   </div>
                   <div class="table-overflow">
-                    <table class="table table-lg">
+                    <table class="table table-lg text-center">
                       <thead>
                         <tr>
                           <td class="text-dark text-semibold"></td>
@@ -188,22 +188,18 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <th>
-                            Số đơn hàng
-                          </th>
-                          <td>#33667</td>
-                          <td>08 May 2018</td>
-                          <td> $168.00</td>
-                          <td> $168.00</td>
+                          <th>Số đơn hàng</th>
+                          <td th:text="${countOrderInDay}"></td>
+                          <td th:text="${countOrderInWeek}"></td>
+                          <td th:text="${countOrderInMonth}"></td>
+                          <td th:text="${countOrderInYear}"></td>
                         </tr>
                         <tr>
-                          <th>
-                            Doanh thu
-                          </th>
-                          <td>#33683</td>
-                          <td>05 May 2018</td>
-                          <td>$433.00</td>
-                          <td>$433.00</td>
+                          <th>Doanh thu</th>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInDay, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInWeek, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInMonth, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInYear, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
                         </tr>
                       </tbody>
                     </table>
