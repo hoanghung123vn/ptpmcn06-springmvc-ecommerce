@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.config.Const;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
@@ -38,10 +36,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
-        }
-        
-        if(user.getStatus() == Const.BLOCKED) {
-            throw new LockedException("User was blocked");
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

@@ -2,21 +2,13 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * @author le minh nguyen
@@ -26,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  * @class_name Product.java
  * @description TODO
  */
+
 @Entity
 @Table(name = "product")
 public class Product implements Serializable{
@@ -78,33 +71,20 @@ public class Product implements Serializable{
 	
 	@Column(name = "standard_price", nullable = false)
 	private int standardPrice;
+	
+	@Column(name = "id_manufacturer", nullable = false)
+	private int idManufacturer;
+	
+	@Column(name = "id_type", nullable = false)
+	private int idType;
+	
+	@Column(name = "pin_size", nullable = false)
+	private int pinSize;
+	
+	@Column(name = "id_origin", nullable = false)
+	private String idOrigin;
 
-    @Column(name = "pin_size", nullable = false)
-    private int pinSize;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_manufacturer", referencedColumnName = "id")
-	private Manufacturer manufacturer;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_type", referencedColumnName = "id")
-	@JsonBackReference
-	private Type type;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_origin", referencedColumnName = "id")
-	@JsonBackReference
-	private Origin origin;
-	
-	@OneToMany(mappedBy = "pk.product")
-	@JsonBackReference
-    private Set<OrderDetail> orderItems = new HashSet<>();
-	
-	@OneToMany(mappedBy = "pk.product")
-    @JsonBackReference
-    private Set<Cart> cartItems = new HashSet<>();
-
-    public int getCode() {
+	public int getCode() {
 		return code;
 	}
 
@@ -224,31 +204,23 @@ public class Product implements Serializable{
 		this.standardPrice = standardPrice;
 	}
 
-	public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
+	public int getIdManufacturer() {
+		return idManufacturer;
+	}
 
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
+	public void setIdManufacturer(int idManufacturer) {
+		this.idManufacturer = idManufacturer;
+	}
 
-    public Origin getOrigin() {
-        return origin;
-    }
+	public int getIdType() {
+		return idType;
+	}
 
-    public void setOrigin(Origin origin) {
-        this.origin = origin;
-    }
+	public void setIdType(int idType) {
+		this.idType = idType;
+	}
 
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public int getPinSize() {
+	public int getPinSize() {
 		return pinSize;
 	}
 
@@ -256,57 +228,4 @@ public class Product implements Serializable{
 		this.pinSize = pinSize;
 	}	
 	
-	public void addOrderItem(OrderDetail item) {
-        orderItems.add(item);
-    }
-    
-    public void removeOrderItem(OrderDetail item) {
-        orderItems.remove(item);
-    }
-    
-    public void addCartItem(Cart item) {
-        cartItems.add(item);
-    }
-    
-    public Set<OrderDetail> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(Set<OrderDetail> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    public Set<Cart> getCartItems() {
-        return cartItems;
-    }
-
-    public void setCartItems(Set<Cart> cartItems) {
-        this.cartItems = cartItems;
-    }
-
-    public void removeCartItem(Cart item) {
-        cartItems.remove(item);
-    }
-    
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + code;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Product other = (Product) obj;
-        if (code != other.code)
-            return false;
-        return true;
-    }
 }

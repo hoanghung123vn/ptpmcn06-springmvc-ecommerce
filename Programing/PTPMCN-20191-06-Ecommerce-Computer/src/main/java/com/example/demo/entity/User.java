@@ -1,11 +1,8 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
-
-import com.example.demo.config.Const;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * @author Hung Hoang
@@ -72,49 +64,12 @@ public class User implements Serializable {
     )
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "customer")
-    @OrderBy("id_order DESC")
-    @JsonBackReference // prevent load products when load category (REST)
-    private Set<Orders> ordersOfCustomer = new HashSet<Orders>();
-    
-    @OneToMany(mappedBy = "shipper")
-    @OrderBy("id_order DESC")
-    @JsonBackReference // prevent load products when load category (REST)
-    private Set<Orders> ordersOfShipper = new HashSet<Orders>();
-    
-    @OneToMany(mappedBy = "pk.customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference // prevent load products when load category (REST)
-    private Set<Cart> items = new HashSet<Cart>();
-    
+
     public String getName() {
 		return name;
 	}
 
-	public Set<Cart> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Cart> items) {
-        this.items = items;
-    }
-
-    public Set<Orders> getOrdersOfCustomer() {
-        return ordersOfCustomer;
-    }
-
-    public void setOrdersOfCustomer(Set<Orders> ordersOfCustomer) {
-        this.ordersOfCustomer = ordersOfCustomer;
-    }
-
-    public Set<Orders> getOrdersOfShipper() {
-        return ordersOfShipper;
-    }
-
-    public void setOrdersOfShipper(Set<Orders> ordersOfShipper) {
-        this.ordersOfShipper = ordersOfShipper;
-    }
-
-    public void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -190,141 +145,5 @@ public class User implements Serializable {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-    
-    public void addRole(Role role) {
-        roles.add(role);
-        role.getUsers().add(this);
-    }
-    
-    public void removeRole(Role role) {
-        roles.remove(role);
-        role.getUsers().remove(this);
-    }
-    
-    public void addOrderOfCustomer(Orders order) {
-        ordersOfCustomer.add(order);
-        order.setCustomer(this);
-    }
-    
-    public void removeOrderofCustomer(Orders order) {
-        ordersOfCustomer.remove(order);
-        order.setCustomer(null);
-    }
-    
-    public void addOrderOfShipper(Orders order) {
-        ordersOfShipper.add(order);
-        order.setShipper(this);
-    }
-  
-    public void removeOrderOfShipper(Orders order) {
-        ordersOfShipper.remove(order);
-        order.setShipper(null);
-    }
-    
-    public void addItemCart(Cart item) {
-        items.add(item);
-    }
-    
-    public void removeItemCart(Cart item) {
-        items.remove(item);
-    }
-    
-    public int getCartTotalPrice() {
-        int total = 0;
-        for (Cart e : items) {
-            total += e.getSubTotal();
-        }
-        return total;
-    }
-    
-    public int countCompletedOrderOfShipper() {
-        int count = 0;
-        for (Orders order: ordersOfShipper) {
-            if (order.getStatus() == Const.COMPLETED)
-                count++;
-        }
-        return count;
-    }
-    
-    public int countDeliveringOrderOfShipper() {
-        int count = 0;
-        for (Orders order: ordersOfShipper) {
-            if (order.getStatus() == Const.DELIVERING)
-                count++;
-        }
-        return count;
-    }
-    
-    public long priceCompletedOrderOfShipper() {
-        long price = 0;
-        for (Orders order: ordersOfShipper) {
-            if (order.getStatus() == Const.COMPLETED)
-                price += order.getTotal();
-        }
-        return price;
-    }
-    
-    public long priceDeliveringOrderOfShipper() {
-        long price = 0;
-        for (Orders order: ordersOfShipper) {
-            if (order.getStatus() == Const.DELIVERING)
-                price += order.getTotal();
-        }
-        return price;
-    }
-    
-    public int countDelayPaymentOrderOfShipper() {
-        int count = 0;
-        for(Orders order: ordersOfShipper) {
-            Date delayDate = new Date(order.getShipDate().getTime() + 3 * 86400 * 1000);
-            if(order.getStatus() == Const.DELIVERING && delayDate.before(new Date())) {
-                count++;
-            }
-        }
-        return count;
-    }
-    
-    public long priceDelayPaymentOrderOfShipper() {
-        long price = 0;
-        for(Orders order: ordersOfShipper) {
-            Date delayDate = new Date(order.getShipDate().getTime() + 3 * 86400 * 1000);
-            if(order.getStatus() == Const.DELIVERING && delayDate.before(new Date())) {
-                price += order.getTotal();
-            }
-        }
-        return price;
-    }
-    
-    public int countDelayOrderOfShipper() {
-        int count = 0; 
-        for(Orders order: ordersOfShipper) {
-            Date delayDate = new Date(order.getShipDate().getTime() - 1 * 86400 * 1000);
-            if(order.getStatus() == Const.ASSIGNED && delayDate.before(new Date())) {
-                count++;
-            }
-        }
-        return count;
-    }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        if (id != other.id)
-            return false;
-        return true;
-    }
 }
