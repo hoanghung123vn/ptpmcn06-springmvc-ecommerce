@@ -193,7 +193,8 @@
                           th:unless="${not user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Chọn
                           các quyền muốn gán cho nhân viên (có thể chọn nhiều quyền)</label>
                         <select multiple class="form-control" id="roles" name="roles">
-                          <option value="ROLE_EMPLOYEE" selected>Nhân viên</option>
+                          <option value="ROLE_EMPLOYEE" selected
+                            th:if="${user.roles.?[name == 'ROLE_ADMIN'].isEmpty()}">Nhân viên</option>
                           <option value="ROLE_SHIPPER">Shipper</option>
                           <option value="ROLE_STOCKER">Thủ kho</option>
                           <option value="ROLE_MANAGER">Quản lý</option>

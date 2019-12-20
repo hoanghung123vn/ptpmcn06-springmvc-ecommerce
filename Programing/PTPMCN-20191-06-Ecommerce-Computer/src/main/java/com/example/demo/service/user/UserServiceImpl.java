@@ -166,5 +166,22 @@ public class UserServiceImpl implements UserService {
     
     
 
+    @Override
+    public long countMember() {
+        int count = 0;
+        List<User> list = userRepository.findAll();
+        Role roleMember = roleRepository.findByName(Const.ROLE_MEMBER);
+        for (User user : list) {
+            if (user.getRoles().contains(roleMember)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public long countEmployee() {
+        return userRepository.count() - countMember() - 1;
+    }
     
 }

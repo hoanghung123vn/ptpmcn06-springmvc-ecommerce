@@ -89,7 +89,7 @@ public class StockerOrderController {
 		}
 		old.setStatus(5);
 		orderService.save(old);
-		return "stocker/listOrder";
+		return "redirect:/stocker/orders?status=5";
 	}
 	
 	/**
