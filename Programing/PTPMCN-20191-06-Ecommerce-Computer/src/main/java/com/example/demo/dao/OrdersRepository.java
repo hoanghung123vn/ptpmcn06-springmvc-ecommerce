@@ -15,4 +15,8 @@ public interface OrdersRepository extends CrudRepository<Orders, Integer> {
 	long countByCreatingDateBetweenAndStatusNot(Date start, Date end, int status);
 	
 	List<Orders> findByCreatingDateBetweenAndStatusNot(Date start, Date end, int status);
+	
+	List<Orders> findByShipperId(int id);
+	
+	List<Orders> findByShipperIdAndStatus(int id, int status);
 }

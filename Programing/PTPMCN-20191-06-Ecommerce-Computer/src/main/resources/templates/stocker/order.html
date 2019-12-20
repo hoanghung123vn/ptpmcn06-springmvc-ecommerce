@@ -913,53 +913,6 @@
 						</div>
 
 						<div class="card-body">
-							<!-- <table class="table">
-								<thead>
-									<tr>
-										<th scope="col">ID</th>
-										<th scope="col">Thời điểm giao hàng</th>
-
-										
-											<th scope="col" class="dropdown dropdown-animated">
-												<div style="border-style:none" class="dropdown-toggle pointer" data-toggle="dropdown"
-													aria-expanded="false">
-													<span>Trạng thái đơn hàng</span>
-												</div>
-												<div class="dropdown-menu" x-placement="top-start"
-													style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
-													<a class="dropdown-item" th:href="@{/stocker/orders(status=0)}">Chưa xác nhận</a>
-													<a class="dropdown-item" th:href="@{/stocker/orders(status=1)}">Đã xác nhận</a>
-													<a class="dropdown-item" th:href="@{/stocker/orders(status=2)}">Đã hủy</a>
-													<a class="dropdown-item" th:href="@{/stocker/orders(status=3)}">Đã phân công</a>
-													<a class="dropdown-item" th:href="@{/stocker/orders(status=4)}">Trên đường vận chuyển</a>
-													<a class="dropdown-item" th:href="@{/stocker/orders(status=5)}">Đã hoàn thành</a>
-												</div>
-											</th>
-										
-										<th scope="col">Tên Shipper</th>
-										<th scope="col">Hành động</th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<th:block th:each="order : ${Orders}">
-										<tr>
-											<td th:text="${order.id}"></td>
-											<td th:text="${order.shipDate}"></td>
-											<th:block th:switch="${order.status}">
-												<td th:case="0">Chưa xác nhận</td>
-												<td th:case="1">Đã xác nhận</td>
-												<td th:case="2">Đã hủy</td>
-												<td th:case="3">Đã phân công</td>
-												<td th:case="4">Trên đường vận chuyển</td>
-												<td th:case="5">Đã hoàn thành</td>
-											</th:block>
-											
-											
-										</tr>
-									</th:block>
-								</tbody>
-							</table> -->
 							<div class="card">
 								<div class="card-header border bottom">
 									<h4 class="card-title">Chi tiết Đơn hàng</h4>

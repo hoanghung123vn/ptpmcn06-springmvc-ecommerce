@@ -26,4 +26,6 @@ public interface OrdersService {
 	long sumPriceOrdersInMonth();
 	
 	long sumPriceOrdersInYear();
+	List<Orders>  findByShipperId(int id);
+	List<Orders> findByShipperIdAndStatus(int id, int status);
 }
