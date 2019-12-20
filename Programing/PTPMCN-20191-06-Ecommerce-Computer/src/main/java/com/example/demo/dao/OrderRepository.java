@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.demo.entity.Order;
+import com.example.demo.entity.Orders;
 
-public interface OrderRepository extends CrudRepository<Order, Integer> {
-	List<Order> findAll();
+public interface OrderRepository extends CrudRepository<Orders, Integer> {
+	List<Orders> findAll();
 }

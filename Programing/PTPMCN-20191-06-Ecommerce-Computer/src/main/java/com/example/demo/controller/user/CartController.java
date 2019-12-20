@@ -62,9 +62,23 @@ public class CartController {
 		} catch (Exception e) {
 			return "failed";
 		}
-		
-		
 	}
+
+	@GetMapping("/cart/removeProduct")
+	public @ResponseBody String removeProduct(@RequestParam(name = "productCode", required = false) String productCode){
+		int code = Integer.parseInt(productCode); // get code sent from addProduct request
+		System.out.println("code: " + code);
+		try {
+			User user = getCurrentUser();
+			user.removeItemCart(code);
+			System.out.println("items: " + user.getItems().size());
+			userService.save(user);
+			return "success";
+		} catch (Exception e) {
+			return "failed";
+		}
+	}
+
 	
 	@GetMapping("/cart/checkout")
 	public String checkout(Model model) {

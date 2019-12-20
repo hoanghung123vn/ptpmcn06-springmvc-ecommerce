@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -233,8 +234,14 @@ public class User implements Serializable {
         items.add(item);
     }
     
-    public void removeItemCart(Cart item) {
-        items.remove(item);
+    public void removeItemCart(int productCode) {
+        for (int i=0; i<items.size(); i++) {
+        	if (items.get(i).getProduct().getCode() == productCode) {
+        		items.remove(i);
+        	}
+        }
+        System.out.println(items.size());
+        
     }
     
     public void updateItems(List<Cart> newItems) {
