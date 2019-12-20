@@ -8,7 +8,4 @@ public interface ProductService {
 	Product findByCode(Integer code);
 	List<Product> findAll();
 	void deleteByCode(Integer id);
-	void addProduct(Product product);
-	
-	long countAll();
 }
