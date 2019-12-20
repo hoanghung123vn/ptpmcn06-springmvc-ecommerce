@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
+import com.example.demo.service.product.ProductService;
 import com.example.demo.service.user.UserService;
 
 import javassist.expr.NewArray;
@@ -35,8 +36,12 @@ public class MainController {
     @Autowired
     private UserService userService;
     
-    @GetMapping("/")
-    public String user() {
+    @Autowired
+    private ProductService productService;
+    
+    @GetMapping(value = {"/", ""})
+    public String user(Model model) {
+    	model.addAttribute("products", productService.findAll());
         return "user/index";
     }
     

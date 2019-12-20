@@ -37,6 +37,9 @@ public class UserServiceImpl implements UserService {
     @Autowired 
     private PasswordEncoder passwordEncoder;
     
+//    @Autowired
+//    private CartRepository cartRepository;
+    
     @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
@@ -47,6 +50,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
+    }
+    
+    @Override
+    public User findByEmail(String email){
+    	return userRepository.findByEmail(email);
     }
 
     @Override
@@ -153,6 +161,15 @@ public class UserServiceImpl implements UserService {
         userRepository.save(oldUser);
         return true;
     }
+
+	@Override
+	@Transactional
+	public void save(User user) {
+		userRepository.save(user);
+		
+	}
+    
+    
 
     @Override
     public long countMember() {
