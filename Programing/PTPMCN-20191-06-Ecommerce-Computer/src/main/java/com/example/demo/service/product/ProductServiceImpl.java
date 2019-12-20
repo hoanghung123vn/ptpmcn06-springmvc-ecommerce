@@ -39,4 +39,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 
+    @Override
+    public long countAll() {
+        return productRepository.count();
+    }
+
 }

@@ -40,4 +40,8 @@ public interface UserService {
     void update(User user);
     
     boolean setRoles(Integer id, ArrayList<String> roles);
+    
+    long countMember();
+    
+    long countEmployee();
 };
