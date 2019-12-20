@@ -738,7 +738,6 @@
                   </thead>
                     <tbody th:each="item, rowStat: *{items}">
                       <tr>
-                        <!-- <input th:field="*{items[__${rowStat.index}__].pk.product.code}" disabled> -->
                         <td class="cart_product"><a href="#"><img th:src="'/images' + ${item.product.imageLink}" alt="Product"></a></td>
                         <td class="cart_description"><p class="product-name" th:text="${item.product.productName}"><a href="#"></a></p>
                           <small><a href="#">Color : Red</a></small><br>
@@ -747,7 +746,7 @@
                         <td class="price"><span th:text="${item.price}" th:id="'price' + ${item.product.code}"></span></td>
                         <td class="qty"><input class="form-control input-sm quantity" min="1" max="10" type="number" th:field="*{items[__${rowStat.index}__].quantity}" th:id="${item.product.code}"></td>
                         <td class="price"><span th:id="'subtotal'+${item.product.code}"></span></td>
-                        <td class="action"><a href="#"><i class="icon-close"></i></a></td>
+                        <td class="action"><a href="#"><i class="icon-close" th:id="'remove-product' + ${item.product.code}"></i></a></td>
                       </tr>
                     </tbody>
                   <tfoot>
@@ -888,6 +887,10 @@
 
 <!-- End Footer --> 
 <!-- JS --> 
+<!-- axios sync -->
+<!-- axios -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 <!-- jquery js --> 
 <script type="text/javascript" src="/js/jquery.min.js"></script> 
@@ -924,7 +927,13 @@
 <!-- main js --> 
 <script type="text/javascript" src="/js/main.js"></script> 
 
-<script type="text/javascript" src="/js/cart.js"></script> 
+<!-- sweet alert library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="sweetalert2.all.min.js"></script>
+
+<!-- cart manipulating -->
+<script type="text/javascript" src="/js/cart/cart.js"></script> 
+<script type="text/javascript" src="/js/cart/removeFromCart.js"></script> 
 
  
 </body>
