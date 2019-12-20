@@ -1,8 +1,10 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -38,7 +40,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
     
     @Column(name = "name", nullable = false)
     private String name;
@@ -84,17 +86,17 @@ public class User implements Serializable {
     
     @OneToMany(mappedBy = "pk.customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference // prevent load products when load category (REST)
-    private Set<Cart> items = new HashSet<Cart>();
+    private List<Cart> items = new ArrayList<Cart>();
     
     public String getName() {
 		return name;
 	}
 
-	public Set<Cart> getItems() {
+	public List<Cart> getItems() {
         return items;
     }
 
-    public void setItems(Set<Cart> items) {
+    public void setItems(List<Cart> items) {
         this.items = items;
     }
 
@@ -222,19 +224,38 @@ public class User implements Serializable {
     }
     
     public void addItemCart(Cart item) {
+    	for (Cart cart : items) {
+			if (cart.getProduct().getCode() == item.getProduct().getCode()) {
+				int oldQuantity = cart.getQuantity();
+				cart.setQuantity(oldQuantity+1);
+				return;
+			}
+		}
         items.add(item);
     }
     
-    public void removeItemCart(Cart item) {
-        items.remove(item);
+    public void removeItemCart(int productCode) {
+        for (int i=0; i<items.size(); i++) {
+        	if (items.get(i).getProduct().getCode() == productCode) {
+        		items.remove(i);
+        	}
+        }
+        System.out.println(items.size());
+        
     }
     
-    public int getCartTotalPrice() {
-        int total = 0;
-        for (Cart e : items) {
-            total += e.getSubTotal();
-        }
-        return total;
+    public void updateItems(List<Cart> newItems) {
+    	for (int i=0; i<items.size(); i++) {
+    		items.get(i).setQuantity(newItems.get(i).getQuantity());
+    	}
+    }
+    
+    public int getTotal() {
+    	int total=0;
+    	for (Cart cart : items) {
+			total += cart.getSubTotal();
+		}
+    	return total;
     }
     
     public int countCompletedOrderOfShipper() {

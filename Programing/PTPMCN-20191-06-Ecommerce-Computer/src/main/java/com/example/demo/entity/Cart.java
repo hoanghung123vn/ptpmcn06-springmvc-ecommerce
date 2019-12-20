@@ -39,7 +39,15 @@ public class Cart implements Serializable {
     @EmbeddedId
     private PK pk = new PK();
     
-    @Embeddable
+    public PK getPk() {
+		return this.pk;
+	}
+
+	public void setPk(PK pk) {
+		this.pk = pk;
+	}
+
+	@Embeddable
     private static class PK implements Serializable {
 
         private static final long serialVersionUID = 1L;
@@ -108,6 +116,7 @@ public class Cart implements Serializable {
     public Cart() {
         
     }
+    
     
     @Transient
     public User getCustomer() {

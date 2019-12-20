@@ -10,4 +10,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 	List<Product> findAll();
 	
 	Product findByProductName(String name);
+
+	Product findByCode(int code);
 }
