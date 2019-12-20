@@ -15,7 +15,7 @@ public class CurrentUserAdvice {
 	@Autowired
 	UserService userService;
 	
-	@ModelAttribute("user")
+	@ModelAttribute("currentUser")
 	public User currentUser() {
 		if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof String) {
 			return null;

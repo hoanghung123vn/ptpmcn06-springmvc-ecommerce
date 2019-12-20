@@ -721,7 +721,7 @@
             <h2>Shopping Cart</h2>
           </div>
             
-          <form th:action="@{/user/cart/checkout}" th:object="${user}" method="POST">
+          <form th:action="@{/user/cart/checkout}" th:object="${currentUser}" method="POST">
             <div class="order-detail-content">
               <div class="table-responsive">
                 <table class="table table-bordered cart_summary">
