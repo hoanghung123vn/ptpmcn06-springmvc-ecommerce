@@ -94,19 +94,19 @@
                   <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
                   <div class="shoppingcart-inner hidden-xs">
                     <span class="cart-title" >Shopping Cart</span> 
-                    <span class="cart-total" id="cart-total" th:text="${user.items.size()} + ' Items: ' + ${user.getTotal()} + 'VND'"></span></div>
+                    <span class="cart-total" id="cart-total" th:text="${currentUser.items.size()} + ' Items: ' + ${currentUser.getTotal()} + 'VND'"></span></div>
                   </a></div>
                 <div>
                   <div class="top-cart-content">
                     <div class="block-subtitle hidden-xs">Recently added item(s)</div>
-                    <ul id="cart-sidebar" class="mini-products-list" th:each="item: ${user.items}">
+                    <ul id="cart-sidebar" class="mini-products-list" th:each="item: ${currentUser.items}">
                       <li class="item odd"> <a href="#" th:title="${item.product.productName}" class="product-image"><img th:src="'/images' + *{item.product.imageLink}" th:alt="${item.product.productName}" width="65"></a>
                         <div class="product-details"> <a href="#" title="Remove This Item" class="remove-cart"><i class="icon-close"></i></a>
                           <p class="product-name" th:text="${item.product.productName}"><a href="#"></a> </p>
                           <strong th:id="'item-quantity'+${item.product.code}"></strong> x <span class="price" th:text="${item.price}"></span> </div>
                       </li>
                     </ul>
-                    <div class="top-subtotal">Subtotal: <span class="price" id="top-subtotal" th:text="${user.getTotal()} + ' VND'"></span></div>
+                    <div class="top-subtotal">Subtotal: <span class="price" id="top-subtotal" th:text="${currentUser.getTotal()} + ' VND'"></span></div>
                     <div class="actions">
                       <a class="btn-checkout" th:href="@{/user/cart/checkout}"><i class="fa fa-check"></i><span>Checkout</span></a>
                       <a class="view-cart" th:href="@{/user/cart}"><i class="fa fa-shopping-cart"></i> <span>View Cart</span></a>

@@ -41,7 +41,6 @@ $(document).ready(function(){
                     }
                 })
                 $(".icon-close").eq(index).parents('tr').hide(function(){
-                    console.log("update cart");
                     updateCart();
                 });
                 console.log(response);

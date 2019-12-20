@@ -86,7 +86,7 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "/cart/checkout", method = RequestMethod.POST)
-	public String checkout(@ModelAttribute("user") User user) {
+	public String checkout(@ModelAttribute("currentUser") User user) {
 		
 		User newUser = getCurrentUser();
 		List<Cart> items = user.getItems();
