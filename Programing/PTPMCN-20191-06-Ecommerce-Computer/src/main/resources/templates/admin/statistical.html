@@ -264,7 +264,7 @@
                     </div>
                   </div>
                   <div class="table-overflow">
-                    <table class="table table-lg">
+                    <table class="table table-lg text-center">
                       <thead>
                         <tr>
                           <td class="text-dark text-semibold">ID Sản phẩm</td>
@@ -275,40 +275,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>#33667</td>
-                          <td>08 May 2018</td>
-                          <td> $168.00</td>
-                          <td> $168.00</td>
-                        </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>#33667</td>
-                          <td>08 May 2018</td>
-                          <td> $168.00</td>
-                          <td> $168.00</td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>#33667</td>
-                          <td>08 May 2018</td>
-                          <td> $168.00</td>
-                          <td> $168.00</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>#33667</td>
-                          <td>08 May 2018</td>
-                          <td> $168.00</td>
-                          <td> $168.00</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>#33667</td>
-                          <td>08 May 2018</td>
-                          <td> $168.00</td>
-                          <td> $168.00</td>
+                        <tr th:each="product: ${top5product}">
+                          <td th:text="${product.code}"></td>
+                          <td th:text="${product.productName}"></td>
+                          <td th:text="${product.type.name}"></td>
+                          <td th:text="${product.manufacturer.name}"></td>
+                          <td>50</td>
                         </tr>
                       </tbody>
                     </table>

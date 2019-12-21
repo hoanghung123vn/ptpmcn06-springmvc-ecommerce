@@ -49,6 +49,7 @@ public class AdminDashboardController {
         model.addAttribute("sumPriceOrdersInWeek", ordersService.sumPriceOrdersInWeek());
         model.addAttribute("sumPriceOrdersInMonth", ordersService.sumPriceOrdersInMonth());
         model.addAttribute("sumPriceOrdersInYear", ordersService.sumPriceOrdersInYear());
+        model.addAttribute("top5product", productService.findTop5BestSeller());       
         return "admin/statistical";
     }
       
