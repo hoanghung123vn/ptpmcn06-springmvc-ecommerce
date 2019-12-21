@@ -7,8 +7,11 @@ import com.example.demo.entity.Orders;
 
 public interface OrdersService {
 	List<Orders> findAll();
+	
 	Optional<Orders> findById(int id);
+	
 	Orders save(Orders orders);
+	
 	List<Orders> findByStatus(int status);
 	
 	long countOrderInDay();
@@ -26,6 +29,13 @@ public interface OrdersService {
 	long sumPriceOrdersInMonth();
 	
 	long sumPriceOrdersInYear();
+	
+	List<Long> getNumberOrderOfMonths(int year);
+	
+	List<Long> getSumPriceOfMonths(int year);
+	
 	List<Orders>  findByShipperId(int id);
+	
 	List<Orders> findByShipperIdAndStatus(int id, int status);
+	
 }
