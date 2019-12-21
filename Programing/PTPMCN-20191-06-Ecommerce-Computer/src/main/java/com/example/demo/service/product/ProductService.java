@@ -11,4 +11,6 @@ public interface ProductService {
 	void addProduct(Product product);
 	
 	long countAll();
+	
+	List<Product> findTop5BestSeller(); 
 }

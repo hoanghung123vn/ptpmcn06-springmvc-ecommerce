@@ -721,7 +721,7 @@
             <h2>Shopping Cart</h2>
           </div>
             
-          <form th:action="@{/user/cart/checkout}" th:object="${user}" method="POST">
+          <form th:action="@{/user/cart/checkout}" th:object="${currentUser}" method="POST">
             <div class="order-detail-content">
               <div class="table-responsive">
                 <table class="table table-bordered cart_summary">
@@ -932,8 +932,9 @@
 <script src="sweetalert2.all.min.js"></script>
 
 <!-- cart manipulating -->
-<script type="text/javascript" src="/js/cart/cart.js"></script> 
-<script type="text/javascript" src="/js/cart/removeFromCart.js"></script> 
+<script type="text/javascript" src="/js/cart/notification.js"></script> 
+<script type="text/javascript" src="/js/cart/inCart.js"></script> 
+<script type="text/javascript" src="/js/cart/topCart.js"></script> 
 
  
 </body>

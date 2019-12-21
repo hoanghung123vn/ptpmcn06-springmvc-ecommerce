@@ -2,15 +2,12 @@ package com.example.demo.controller.user;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,9 +55,12 @@ public class CartController {
 			item.setQuantity(1);
 			user.addItemCart(item);
 			userService.save(user);
-			return "success";
+			return String.format("{\"total\": %d, \"numItems\": %d, "
+					+ "\"code\": %d ,\"name\": \"%s\", \"imageSrc\": \"%s\", \"quantity\": %d, \"price\": %d}", 
+					user.getTotal(), user.getItems().size(),
+					code, product.getProductName(), product.getImageLink(), item.getQuantity(), item.getPrice());
 		} catch (Exception e) {
-			return "failed";
+			return "error";
 		}
 	}
 
@@ -73,9 +73,9 @@ public class CartController {
 			user.removeItemCart(code);
 			System.out.println("items: " + user.getItems().size());
 			userService.save(user);
-			return "success";
+			return String.format("{\"total\": %d, \"numItems\": %d}", user.getTotal(), user.getItems().size());
 		} catch (Exception e) {
-			return "failed";
+			return "error";
 		}
 	}
 
@@ -86,7 +86,7 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "/cart/checkout", method = RequestMethod.POST)
-	public String checkout(@ModelAttribute("user") User user) {
+	public String checkout(@ModelAttribute("currentUser") User user) {
 		
 		User newUser = getCurrentUser();
 		List<Cart> items = user.getItems();

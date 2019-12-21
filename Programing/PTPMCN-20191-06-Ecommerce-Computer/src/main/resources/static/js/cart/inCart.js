@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     updateCart();
+    removeFromCart();
 });
 
+
+// update quantity in cart
 function updateCart(){
     const quantitys = $(".quantity");
     let total = 0;
@@ -37,4 +40,38 @@ function updateCart(){
         })
     });
     console.log(total);
+}
+
+
+// remove products in cart
+function removeFromCart(){
+    const iconCloses = $(".icon-close");
+    iconCloses.each(function(index){
+        $(this).on("click", function(){
+            (async() => {
+                const response = await axios({
+                    url: '/user/cart/removeProduct',
+                    method: 'get',
+                    params:{
+                        productCode: iconCloses[index].id.substring(14)
+                    }
+                })
+                // hide line deleted then update cart
+                iconCloses.eq(index).parents('tr').hide(function(){
+                    updateCart();
+                });
+
+                // hide product line in top cart
+                const code = iconCloses[index].id.substring(14);
+                $(`#item-quantity${code}`).parents('li').hide();
+
+                if (response.data == 'error'){
+                    notification.deleteFail();
+                }else{
+                    notification.deleteSuccess();
+                }
+            })()
+        })
+    })
+
 }

@@ -6,6 +6,17 @@
 
 		//Overview Chart
 		var overviewCtx = document.getElementById('customer-overview-chart').getContext('2d');
+		const numberOrderOfMonths = document.getElementById("numberOrderOfMonths").getAttribute("value").replace("[", "").replace("]", "").split(",");
+		const orderOfMonths = numberOrderOfMonths.map(number => parseInt(number));
+
+		const sumPriceOfMonths = document.getElementById("sumPriceOfMonths").getAttribute("value").replace("[", "").replace("]", "").split(",");
+		const priceOfMonths = sumPriceOfMonths.map(price => {
+			if (price == "0" || parseInt(price) < 1000000) {
+				return 0;
+			} else {
+				return parseInt(price) / 1000000;
+			}
+		});
 		var overviewChart = new Chart(overviewCtx, {
 			type: 'line',
 			data: {
@@ -14,13 +25,13 @@
 					label: 'Số đơn hàng',
 					backgroundColor: app.colors.transparent,
 					borderColor: app.colors.success,
-					data: [52, 66, 61, 76, 68, 74, 66, 73, 68, 72, 70, 78]
+					data: orderOfMonths
 				},
 				{
-					label: 'Doanh thu',
+					label: 'Doanh thu (triệu đồng)',
 					backgroundColor: app.colors.transparent,
 					borderColor: app.colors.primary,
-					data: [48, 58, 54, 60, 63, 63, 60, 60, 58, 63, 60, 68]
+					data: priceOfMonths
 				}],
 			},
 			options: {
@@ -71,8 +82,11 @@
 			}
 		});
 
-		//Goal Chart
-		var goalCtx = document.getElementById('goal-chart').getContext('2d');
+		//Goal Chart number order
+		const numberOrder = document.getElementById("numberOrder").value;
+		const numberOrderReal = parseInt(document.getElementById("numberOrderReal").innerHTML);
+		const percentNumberOrder = Math.round(numberOrderReal / numberOrder * 100);
+		var goalCtx = document.getElementById('goal-chart-number-order').getContext('2d');
 		goalCtx.height = 150;
 		var goalChartGradient = goalCtx.createLinearGradient(0, 0, 0, 150);
 		goalChartGradient.addColorStop(0, app.colors.gradientInfoStart);
@@ -83,14 +97,14 @@
 			data: {
 				labels: ["Sales", "In-Store Sales"],
 				datasets: [{
-					data: [150, 0],
+					data: [percentNumberOrder, 100 - percentNumberOrder],
 					backgroundColor: [goalChartGradient, app.colors.gray]
 				}]
 			},
 			options: {
 				elements: {
 					center: {
-						text: '90%',
+						text: percentNumberOrder + '%',
 						color: app.colors.dark,
 						sidePadding: 70
 					}
@@ -100,7 +114,43 @@
 				legend: {
 					display: false
 				},
-				cutoutPercentage: 90,
+				cutoutPercentage: 80,
+			}
+		});
+
+		//Goal Chart revenue 
+		const revenue = document.getElementById("revenue").value;
+		const revenueReal = parseInt(document.getElementById("revenueReal").getAttribute("name"));
+		const percentRevenue = Math.round(revenueReal / revenue * 100);
+		var goalCtx1 = document.getElementById('goal-chart-revenue').getContext('2d');
+		goalCtx1.height = 150;
+		var goalChartGradient1 = goalCtx1.createLinearGradient(0, 0, 0, 150);
+		goalChartGradient1.addColorStop(0, app.colors.gradientInfoStart);
+		goalChartGradient1.addColorStop(1, app.colors.gradientInfoStop);
+
+		var donutConfig1 = new Chart(goalCtx1, {
+			type: 'doughnut',
+			data: {
+				labels: ["Sales", "In-Store Sales"],
+				datasets: [{
+					data: [percentRevenue, 100 - percentRevenue],
+					backgroundColor: [goalChartGradient1, app.colors.gray]
+				}]
+			},
+			options: {
+				elements: {
+					center: {
+						text: percentRevenue + '%',
+						color: app.colors.dark,
+						sidePadding: 70
+					}
+				},
+				maintainAspectRatio: false,
+				hover: { mode: null },
+				legend: {
+					display: false
+				},
+				cutoutPercentage: 80,
 			}
 		});
 
