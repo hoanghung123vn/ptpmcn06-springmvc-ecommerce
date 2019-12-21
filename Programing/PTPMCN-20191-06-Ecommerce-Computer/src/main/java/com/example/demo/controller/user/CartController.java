@@ -58,9 +58,12 @@ public class CartController {
 			item.setQuantity(1);
 			user.addItemCart(item);
 			userService.save(user);
-			return "success";
+			return String.format("{\"total\": %d, \"numItems\": %d, "
+					+ "\"code\": %d ,\"name\": \"%s\", \"imageSrc\": \"%s\", \"quantity\": %d, \"price\": %d}", 
+					user.getTotal(), user.getItems().size(),
+					code, product.getProductName(), product.getImageLink(), item.getQuantity(), item.getPrice());
 		} catch (Exception e) {
-			return "failed";
+			return "error";
 		}
 	}
 
@@ -73,9 +76,9 @@ public class CartController {
 			user.removeItemCart(code);
 			System.out.println("items: " + user.getItems().size());
 			userService.save(user);
-			return "success";
+			return String.format("{\"total\": %d, \"numItems\": %d}", user.getTotal(), user.getItems().size());
 		} catch (Exception e) {
-			return "failed";
+			return "error";
 		}
 	}
 
