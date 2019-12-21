@@ -138,7 +138,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="card-title">Doanh thu trong năm nay</h5>
+                    <h5 class="card-title">Tình hình kinh doanh 12 tháng</h5>
                     <div class="float-right">
                       <ul class="list-inline d-none d-sm-block">
                         <li class="m-r-20">
@@ -153,6 +153,8 @@
                     </div>
                   </div>
                   <div class="card-body">
+                    <div id="numberOrderOfMonths" th:value="${numberOrderOfMonths}"></div>
+                    <div id="sumPriceOfMonths" th:value="${sumPriceOfMonths}"></div>
                     <div class="m-t-10">
                       <canvas class="chart" id="customer-overview-chart" style="height: 320px"></canvas>
                     </div>
@@ -164,7 +166,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Tình hình kinh doanh của bạn</h4>
+                    <h4 class="card-title">Tình hình kinh doanh hiện tại</h4>
                     <div class="card-toolbar">
                       <ul>
                         <li>
@@ -191,15 +193,15 @@
                           <th>Số đơn hàng</th>
                           <td th:text="${countOrderInDay}"></td>
                           <td th:text="${countOrderInWeek}"></td>
-                          <td th:text="${countOrderInMonth}"></td>
+                          <td th:text="${countOrderInMonth}" id="numberOrderReal"></td>
                           <td th:text="${countOrderInYear}"></td>
                         </tr>
                         <tr>
                           <th>Doanh thu</th>
-                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInDay, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
-                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInWeek, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
-                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInMonth, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
-                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInYear, 0, 'COMMA', 2, 'POINT')} + ' VND'"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInDay, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInWeek, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInMonth, 0, 'COMMA', 0, 'POINT')} + ' VND'" id="revenueReal" th:name="${sumPriceOrdersInMonth}"></td>
+                          <td th:text="${#numbers.formatDecimal(sumPriceOrdersInYear, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
                         </tr>
                       </tbody>
                     </table>
@@ -222,24 +224,31 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="card-body">
-                    <div class="m-b-30">
-                      <canvas class="chart" id="goal-chart" style="height: 200px"></canvas>
+                  <div class="card-body" style="min-height: 350px;">
+                    <input type="number" id="numberOrder" th:value="${goal.numberOrder}" hidden>
+                    <input type="number" id="revenue" th:value="${goal.revenue}" hidden>
+                    <div class="d-flex justify-content-center">
+                      <div class="m-b-30">
+                        <canvas class="chart" id="goal-chart-number-order" style="height: 90px"></canvas>
+                      </div>
+                      <div class="m-b-30">
+                        <canvas class="chart" id="goal-chart-revenue" style="height: 90px"></canvas>
+                      </div>
                     </div>
                     <div class="row m-b-10">
                       <div class="col-10 offset-1">
                         <div class="row">
-                          <div class="col">
+                          <div class="col" style="margin-left: -40px;">
                             <div class="text-center">
-                              <h2 class="font-weight-light">166</h2>
+                              <h2 class="font-weight-light" th:text="${goal.numberOrder}">166</h2>
                               <span class="status gradient info"></span>
                               <span class="m-l-10">Đơn hàng</span>
                             </div>
                           </div>
                           <div class="col">
                             <div class="text-center">
-                              <h2 class="font-weight-light">200 triệu</h2>
-                              <span class="status gradient"></span>
+                              <h2 class="font-weight-light" id="revenue_show">200 triệu</h2>
+                              <span class="status gradient info"></span>
                               <span class="m-l-10">Doanh thu</span>
                             </div>
                           </div>
@@ -305,6 +314,8 @@
   <script src="/assets/js/vendor.js"></script>
 
   <script src="/assets/js/app.min.js"></script>
+
+  <script src="/assets/js/statistical.js"></script>
 
   <!-- page js -->
   <script src="/assets/vendor/chart.js/dist/Chart.min.js"></script>

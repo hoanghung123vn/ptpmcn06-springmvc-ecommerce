@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 
 <!-- Mirrored from themenate.com/applicator/dist/form-validation.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:00 GMT -->
@@ -80,19 +80,21 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-8">
-                    <form>
+                    <form method="POST" th:action="@{/admin/goal-setting}" th:object="${goal}">
                       <div class="form-group row">
-                        <label class="col-sm-6 col-form-label control-label">Số đơn hàng đạt được trong tháng</label>
-                        <div class="col-sm-6">
-                          <input type="number" class="form-control" name="numberOrder" id="numberOrder" min="1"
-                            max="1000" required>
+                        <label class="col-sm-8 col-form-label control-label">Số đơn hàng đạt được trong tháng: </label>
+                        <div class="col-sm-4">
+                          <input type="number" class="form-control" min="1" max="1000" required
+                            th:value="*{numberOrder}" id="numberOrder" name="numberOrder">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label class="col-sm-6 col-form-label control-label">Doanh thu đạt được trong tháng</label>
-                        <div class="col-sm-6">
-                          <input type="number" step="100000" class="form-control" name="revenue" id="revenue"
-                            min="100000" max="1000000000" required>
+                        <label class="col-sm-8 col-form-label control-label">Doanh thu đạt được trong tháng:
+                          <h5 th:text="*{#numbers.formatDecimal(revenue, 0, 'COMMA', 1, 'POINT')} + ' VND'" id="revenue_show">
+                          </h5></label>
+                        <div class="col-sm-4">
+                          <input type="number" step="1000000" class="form-control" min="1000000" max="100000000000" required
+                            th:value="*{revenue}" id="revenue" name="revenue">
                         </div>
                       </div>
                       <a href="#" data-toggle="modal" data-target="#modal-setting" class="btn btn-primary">Thiết lập</a>
@@ -132,6 +134,8 @@
   <script src="/assets/js/vendor.js"></script>
 
   <script src="/assets/js/app.min.js"></script>
+
+  <script src="/assets/js/goal-setting.js"></script>
 
   <!-- page js -->
 

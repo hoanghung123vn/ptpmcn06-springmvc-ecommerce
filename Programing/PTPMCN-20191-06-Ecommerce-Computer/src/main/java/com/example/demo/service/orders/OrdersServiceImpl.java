@@ -1,5 +1,6 @@
 package com.example.demo.service.orders;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -124,14 +125,66 @@ public class OrdersServiceImpl implements OrdersService {
 
 	@Override
 	public List<Orders> findByShipperId(int id) {
-		// TODO Auto-generated method stub
 		return ordersRepository.findByShipperId(id);
 	}
 
 	@Override
 	public List<Orders> findByShipperIdAndStatus(int id, int status) {
-		// TODO Auto-generated method stub
 		return ordersRepository.findByShipperIdAndStatus(id, status);
 	}
+
+    @Override
+    public List<Long> getNumberOrderOfMonths(int year) {
+        List<Long> result = new ArrayList<Long>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        for(int i = 0; i <= calendar.get(Calendar.MONTH); i++) {
+            calendar.set(Calendar.MONTH, i);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            Date start = calendar.getTime();
+            if(i < 12) {
+                calendar.set(Calendar.MONTH, i + 1);
+            } else {
+                calendar.set(Calendar.DAY_OF_MONTH, 31);
+                calendar.set(Calendar.HOUR_OF_DAY, 23);
+                calendar.set(Calendar.MINUTE, 59);
+                calendar.set(Calendar.SECOND, 59);
+            }
+            Date end = calendar.getTime();
+            result.add(ordersRepository.countByCreatingDateBetweenAndStatusNot(start, end, Const.DESTROYED));
+        }
+        return result;
+    }
+
+    @Override
+    public List<Long> getSumPriceOfMonths(int year) {
+        List<Long> result = new ArrayList<Long>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        for(int i = 0; i <= calendar.get(Calendar.MONTH); i++) {
+            calendar.set(Calendar.MONTH, i);
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+            calendar.set(Calendar.MILLISECOND, 0);
+            Date start = calendar.getTime();
+            if(i < 12) {
+                calendar.set(Calendar.MONTH, i + 1);
+            } else {
+                calendar.set(Calendar.DAY_OF_MONTH, 31);
+                calendar.set(Calendar.HOUR_OF_DAY, 23);
+                calendar.set(Calendar.MINUTE, 59);
+                calendar.set(Calendar.SECOND, 59);
+            }
+            Date end = calendar.getTime();
+            result.add(sumPriceOrders(end, start));
+        }
+        return result;
+    }
 
 }
