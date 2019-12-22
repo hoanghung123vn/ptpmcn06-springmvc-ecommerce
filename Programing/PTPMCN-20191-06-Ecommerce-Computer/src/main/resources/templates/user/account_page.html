@@ -109,7 +109,8 @@
             <div class="box-authentication">
               <form th:action="@{/login}" method="post">
                 <h4>Login</h4>
-                <p th:if="${param.error}" class="alert alert-danger">Invalid email or password</p>
+                <p th:if="${param.error}" class="alert alert-danger">Invalid email or password or your account was
+                  blocked</p>
                 <p th:if="${param.logout}" class="alert alert-danger">You have been logged out</p>
                 <p class="before-login-text">Welcome back! Sign in to your account</p>
                 <label for="email">Email address<span class="required">*</span></label>
