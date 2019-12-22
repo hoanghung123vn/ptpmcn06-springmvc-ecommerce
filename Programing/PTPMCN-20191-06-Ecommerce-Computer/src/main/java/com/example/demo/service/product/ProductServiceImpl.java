@@ -1,7 +1,6 @@
 package com.example.demo.service.product;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,25 +15,13 @@ public class ProductServiceImpl implements ProductService {
 	ProductRepository productRepository;
 
 	@Override
-	public List<Product> findAll() {
-		return productRepository.findAll();
+	public Product findByCode(int code) {
+		return productRepository.findByCode(code);
 	}
 
 	@Override
-	public Product findByCode(int code) {
-		Optional<Product> result = productRepository.findByCode(code);
-
-		Product product = null;
-
-		if (result.isPresent()) {
-			product = result.get();
-		}
-		else {
-			// we didn't find the employee
-			throw new RuntimeException("Did not find product code - " + code);
-		}
-
-		return product;
+	public List<Product> findAll() {
+		return productRepository.findAll();
 	}
 
 	@Override
@@ -51,5 +38,15 @@ public class ProductServiceImpl implements ProductService {
 	public void addProduct(Product product) {
 
 	}
+
+    @Override
+    public long countAll() {
+        return productRepository.count();
+    }
+
+    @Override
+    public List<Product> findTop5BestSeller() {
+        return productRepository.findTop5BestSeller();
+    }
 
 }

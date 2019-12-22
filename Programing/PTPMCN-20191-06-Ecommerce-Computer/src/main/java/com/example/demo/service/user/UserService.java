@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.entity.Cart;
 import com.example.demo.entity.User;
 
 /**
@@ -19,12 +20,17 @@ public interface UserService {
     
     Optional<User> findById(Integer id);
     
+    User findByEmail(String email);
+    
     long countAll();
     
     void deleteById(Integer id);
     
     boolean register(User customer);
     
+    void save(User user);
+    
+//    List<Cart> getItems(int id);
     boolean createEmployee(User user);
     
     boolean toggleStatus(Integer id);
@@ -34,4 +40,8 @@ public interface UserService {
     void update(User user);
     
     boolean setRoles(Integer id, ArrayList<String> roles);
+    
+    long countMember();
+    
+    long countEmployee();
 };

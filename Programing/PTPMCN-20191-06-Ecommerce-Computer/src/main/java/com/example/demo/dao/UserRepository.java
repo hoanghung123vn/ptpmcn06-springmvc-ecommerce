@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.example.demo.entity.Cart;
 import com.example.demo.entity.User;
 
 /**

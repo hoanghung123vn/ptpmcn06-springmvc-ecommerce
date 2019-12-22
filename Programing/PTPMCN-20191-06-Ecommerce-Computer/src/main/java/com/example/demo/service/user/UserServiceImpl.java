@@ -37,6 +37,9 @@ public class UserServiceImpl implements UserService {
     @Autowired 
     private PasswordEncoder passwordEncoder;
     
+//    @Autowired
+//    private CartRepository cartRepository;
+    
     @Override
     @Transactional(readOnly = true)
     public List<User> findAll() {
@@ -47,6 +50,11 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
+    }
+    
+    @Override
+    public User findByEmail(String email){
+    	return userRepository.findByEmail(email);
     }
 
     @Override
@@ -152,6 +160,33 @@ public class UserServiceImpl implements UserService {
         oldUser.setRoles(newRoles);
         userRepository.save(oldUser);
         return true;
+    }
+
+	@Override
+	@Transactional
+	public void save(User user) {
+		userRepository.save(user);
+		
+	}
+    
+    
+
+    @Override
+    public long countMember() {
+        int count = 0;
+        List<User> list = userRepository.findAll();
+        Role roleMember = roleRepository.findByName(Const.ROLE_MEMBER);
+        for (User user : list) {
+            if (user.getRoles().contains(roleMember)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public long countEmployee() {
+        return userRepository.count() - countMember() - 1;
     }
     
 }

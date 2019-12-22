@@ -14,4 +14,8 @@ public interface ProductService {
 
 	void deleteByCode(Integer id);
 	void addProduct(Product product);
+	
+	long countAll();
+	
+	List<Product> findTop5BestSeller(); 
 }
