@@ -677,6 +677,7 @@
                                                                             </div>
                                                                             <div align="right">
                                                                                 <a th:if="${order.status==3}"
+                                                                                onclick="if (!(confirm('Xác nhận giao hàng?'))) return false"
                                                                                     class="btn btn-success col-sm-3"
                                                                                     th:href="@{/stocker/order/xacNhanGiaoHang(id=${order.id})}">Xác
                                                                                     nhận giao hàng</a>
@@ -684,6 +685,7 @@
                                                                             <div>
                                                                                 <span>
                                                                                     <a th:if="${order.status==4}"
+                                                                                    onclick="if (!(confirm('Xác nhận hoàn thành?'))) return false"
                                                                                         class="btn btn-success col-sm-3"
                                                                                         th:href="@{/stocker/order/hoanThanh(id=${order.id})}">Xác
                                                                                         nhận hoàn thành</a>
