@@ -42,7 +42,6 @@ function updateCart(){
     console.log(total);
 }
 
-
 // remove products in cart
 function removeFromCart(){
     const iconCloses = $(".icon-close");
