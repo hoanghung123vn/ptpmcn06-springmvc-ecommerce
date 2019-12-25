@@ -116,8 +116,7 @@
                     <img src="/assets/images/avatars/thumb-9.jpg" alt="">
                   </div>
                   <div class="info">
-                    <span class="title text-semibold">Marshall Nichols</span>
-                    <span class="sub-title">UI/UX Desinger</span>
+                    <span th:text="${currentUser.name}" class="title text-semibold"></span>
                   </div>
                 </li>
               </ul>
@@ -143,7 +142,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/logout">
                 <i class="ti-power-off p-r-10"></i>
                 <span>Logout</span>
               </a>
