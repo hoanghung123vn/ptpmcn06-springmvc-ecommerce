@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,13 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import com.example.demo.service.product.ProductService;
 import com.example.demo.service.user.UserService;
-
-import javassist.expr.NewArray;
 
 /**
  * @author Hung Hoang
@@ -41,7 +42,9 @@ public class MainController {
     
     @GetMapping(value = {"/", ""})
     public String user(Model model) {
-    	model.addAttribute("products", productService.findAll());
+    	List<Product> products = productService.findAll();
+    	model.addAttribute("products", products);
+    	model.addAttribute("specials", products.subList(5, 8));
         return "user/index";
     }
     
