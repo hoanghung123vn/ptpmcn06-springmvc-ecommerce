@@ -597,7 +597,7 @@
                                                                 <form th:action="@{/manager/orders/phanCongShipper}" method="POST">
                                                                 <input type="text" name="orderId" th:value="${order.id}" hidden>
                                                                 <select name="shipperId" class="form-control">
-                                                                    <option value="0" disabled selected>Chưa phân công shipper
+                                                                    <option value="0" selected>Chưa phân công shipper
                                                                     </option>
                                                                     <option th:each="shipper : ${shippers}" th:value="${shipper.id}"
                                                                         th:text="${shipper.name}"></option>
@@ -665,8 +665,8 @@
                                                     </td>
 
                                                     <td>
-                                                        <th:block>
-                                                            <button type="submit" class="btn btn-danger" th:if="${order.status==1}">Phân
+                                                        <th:block th:if="${order.status==1}">
+                                                            <button type="submit" class="btn btn-danger" onclick="if (!(confirm('Bạn có chắc chắn muốn phân công cho đơn hàng này?'))) return false">Phân
                                                                 công</button>
                                                             </form>
                                                         </th:block>
@@ -729,7 +729,7 @@
                                                                             <div align="right">
                                                                                 <a th:if="${order.status==4}"
                                                                                     class="btn btn-success col-sm-3"
-                                                                                    th:href="@{/manager/orders/hoanThanhDonHang(id=${order.id})}">Hoàn thành đơn hàng</a>
+                                                                                    th:href="@{/manager/orders/hoanThanhDonHang(id=${order.id})}" onclick="if (!(confirm('Bạn có chắc chắn muốn hoàn thành đơn hàng này'))) return false">Hoàn thành đơn hàng</a>
                                                                             </div>
                                                                             <div>
                                                                                 <span>

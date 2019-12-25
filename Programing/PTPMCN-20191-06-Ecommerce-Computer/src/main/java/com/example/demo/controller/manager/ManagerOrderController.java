@@ -57,7 +57,7 @@ public class ManagerOrderController {
 	@PostMapping("/orders/phanCongShipper")
 	public String phanCongShipper(@RequestParam("orderId")int orderId, @RequestParam("shipperId")int shipperId) {
 		if(shipperId == 0) {
-
+			return "redirect:/manager/orders?status=1";
 		} else {
 			Optional<Orders> order = orderService.findById(orderId);
 			Optional<User> shipper = userService.findById(shipperId);

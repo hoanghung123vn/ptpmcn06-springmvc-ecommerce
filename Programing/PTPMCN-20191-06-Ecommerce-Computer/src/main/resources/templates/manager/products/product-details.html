@@ -371,6 +371,40 @@
 								</li>
 							</ul>
 						</li>
+						<li class="nav-item dropdown">
+							<a class="dropdown-toggle" href="javascript:void(0);">
+								<span class="icon-holder">
+									<i class="mdi mdi-gauge"></i>
+								</span>
+								<span class="title">Quản lý đơn hàng</span>
+								<span class="arrow">
+									<i class="mdi mdi-chevron-right"></i>
+								</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a th:href="@{/manager/orders}">Danh sách đơn hàng</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=0}">Đơn hàng chờ xác nhận</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=1}">Đơn hàng xác nhận</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=3}">Đơn hàng đã phân công</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=4}">Đơn hàng trên đường vận chuyển</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=5}">Đơn hàng đã hoàn thành</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=2}">Đơn hàng đã hủy</a>
+								</li>
+							</ul>
+						</li>
 				</div>
 			</div>
 			<!-- Side Nav END -->
@@ -971,18 +1005,21 @@
 										</div>
 										<div class="form-group col-md-6">
 											<label class="control-label" for="">Manufacturer</label>
-											<p th:text="*{manufacturer} != null ? *{manufacturer.name} : 'Not yet'" class="form-control" />
+											<p th:text="*{manufacturer} != null ? *{manufacturer.name} : 'Not yet'"
+												class="form-control" />
 										</div>
 									</div>
 
 									<div class="form-row">
 										<div class="form-group col-md-6">
 											<label class="control-label" for="">Type</label>
-											<p th:text="*{type} != null ? *{type.name} : 'Not yet'" class="form-control" />
+											<p th:text="*{type} != null ? *{type.name} : 'Not yet'"
+												class="form-control" />
 										</div>
 										<div class="form-group col-md-6">
 											<label class="control-label" for="origin">Origin</label>
-											<p th:text="*{origin} != null ? *{origin.name} : 'Not yet'" class="form-control" />
+											<p th:text="*{origin} != null ? *{origin.name} : 'Not yet'"
+												class="form-control" />
 										</div>
 									</div>
 								</div>

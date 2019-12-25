@@ -2,29 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>List Products</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>List Products</title>
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.html">
-    <link rel="shortcut icon" href="/images/logo/favicon.png">
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.html">
+	<link rel="shortcut icon" href="/images/logo/favicon.png">
 
-    <!-- core dependcies css -->
-    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="/vendor/PACE/themes/blue/pace-theme-minimal.css" />
-    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+	<!-- core dependcies css -->
+	<link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="/vendor/PACE/themes/blue/pace-theme-minimal.css" />
+	<link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
 
-    <!-- page css -->
-    <link rel="stylesheet" href="/vendor/datatables/media/css/dataTables.bootstrap4.min.css" />
+	<!-- page css -->
+	<link rel="stylesheet" href="/vendor/datatables/media/css/dataTables.bootstrap4.min.css" />
 
-    <!-- core css -->
-    <link href="/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/themify-icons.css" rel="stylesheet">
-    <link href="/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="/css/animate.min.css" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+	<!-- core css -->
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/themify-icons.css" rel="stylesheet">
+	<link href="/css/materialdesignicons.min.css" rel="stylesheet">
+	<link href="/css/animate.min.css" rel="stylesheet">
+	<link href="/css/app.css" rel="stylesheet">
 </head>
 
 <body>
@@ -365,6 +366,40 @@
 								</li>
 								<li>
 									<a th:href="@{/manager/products/showFormForAdd}">Add Product</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="dropdown-toggle" href="javascript:void(0);">
+								<span class="icon-holder">
+									<i class="mdi mdi-gauge"></i>
+								</span>
+								<span class="title">Quản lý đơn hàng</span>
+								<span class="arrow">
+									<i class="mdi mdi-chevron-right"></i>
+								</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a th:href="@{/manager/orders}">Danh sách đơn hàng</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=0}">Đơn hàng chờ xác nhận</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=1}">Đơn hàng xác nhận</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=3}">Đơn hàng đã phân công</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=4}">Đơn hàng trên đường vận chuyển</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=5}">Đơn hàng đã hoàn thành</a>
+								</li>
+								<li>
+									<a th:href="@{/manager/orders?status=2}">Đơn hàng đã hủy</a>
 								</li>
 							</ul>
 						</li>
