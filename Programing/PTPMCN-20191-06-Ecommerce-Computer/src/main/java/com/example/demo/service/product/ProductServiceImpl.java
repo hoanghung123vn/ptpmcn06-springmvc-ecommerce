@@ -35,13 +35,14 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-	
-	
-	
-
     @Override
     public long countAll() {
         return productRepository.count();
+    }
+
+    @Override
+    public List<Product> findTop5BestSeller() {
+        return productRepository.findTop5BestSeller();
     }
 
 }
