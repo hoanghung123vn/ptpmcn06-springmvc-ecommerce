@@ -2,12 +2,12 @@ package com.example.demo.service.product;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.example.demo.dao.ProductRepository;
 import com.example.demo.entity.Manufacturer;
 import com.example.demo.entity.Product;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -36,7 +36,6 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
-	
     @Override
     public long countAll() {
         return productRepository.count();
@@ -47,5 +46,10 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findByManufacturer(manufacturer);
 	}
 	
+
+    @Override
+    public List<Product> findTop5BestSeller() {
+        return productRepository.findTop5BestSeller();
+    }
 
 }
