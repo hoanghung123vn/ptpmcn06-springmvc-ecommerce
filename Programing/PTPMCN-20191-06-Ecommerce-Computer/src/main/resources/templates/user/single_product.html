@@ -56,6 +56,14 @@
 <!-- style CSS -->
 <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
 
+<!-- core css -->
+<link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+<link href="/assets/css/themify-icons.css" rel="stylesheet">
+<link href="/assets/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="/assets/css/animate.min.css" rel="stylesheet">
+<link href="/assets/css/app.css" rel="stylesheet">
+</head>
+
 </head>
 
 <body class="product-page">
@@ -303,7 +311,7 @@
         <div class="product-view-area">
           <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
             <div class="icon-sale-label sale-left">Sale</div>
-            <div class="large-image"> <a href="images/products/img03.jpg" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img class="zoom-img" src="/images/products/img03.jpg" alt="products"> </a> </div>
+            <div class="large-image"> <a href="images/products/img03.jpg" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> <img class="zoom-img" th:src="'/images' + ${product.imageLink}" alt="products"> </a> </div>
             <div class="flexslider flexslider-thumb">
               <ul class="previews-list slides">
                 <li><a href='images/products/img01.jpg' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: 'images/products/img01.jpg' "><img src="/images/products/img01.jpg" alt = "Thumbnail 2"/></a></li>
