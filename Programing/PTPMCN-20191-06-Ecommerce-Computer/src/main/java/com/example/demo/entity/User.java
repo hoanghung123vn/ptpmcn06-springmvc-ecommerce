@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import org.hibernate.mapping.Collection;
+
 import com.example.demo.config.Const;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -325,6 +327,27 @@ public class User implements Serializable {
             }
         }
         return count;
+    }
+    
+    public List<OrderDetail> convertCartToOrdersDetail(Orders order){
+    	ArrayList<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
+    	for (Cart item : items) {
+			OrderDetail orderDetail = new OrderDetail();
+			orderDetail.setPrice(item.getPrice());
+			orderDetail.setProduct(item.getProduct());
+			orderDetail.setQuantity(item.getQuantity());
+			orderDetail.setOrder(order);
+			orderDetails.add(orderDetail);
+		}
+    	return orderDetails;
+    }
+    
+    public void EmptyCart() {
+    	while(items.size() > 0) {
+    		for(int i=0; i<items.size(); i++) {
+        		items.remove(i);
+        	}
+    	}
     }
 
     @Override
