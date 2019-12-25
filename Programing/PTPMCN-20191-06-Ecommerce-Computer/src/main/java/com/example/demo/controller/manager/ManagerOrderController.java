@@ -73,6 +73,6 @@ public class ManagerOrderController {
 		Orders orders = orderService.findById(id).get();
 		if (orders.getStatus() == 4) orders.setStatus(5);
 		orderService.save(orders);
-		return "redirect:/manager/orders?status=2";
+		return "redirect:/manager/orders?status=5";
 	}
 }
