@@ -525,9 +525,8 @@
                                                                 th:href="@{/stocker/orders(status=4)}">Trên
                                                                 đường vận chuyển</a>
                                                             <a class="dropdown-item"
-                                                                th:href="@{/stocker/orders(status=5)}">Đã giao hàng</a>
-                                                            <a class="dropdown-item"
-                                                                th:href="@{/stocker/orders(status=6)}">Đã thu tiền</a>
+                                                                th:href="@{/stocker/orders(status=5)}">Đã hoàn thành</a>
+                                                            
                                                             <a class="dropdown-item" th:href="@{/stocker/orders}">Tất cả
                                                                 trạng thái</a>
                                                         </span>
@@ -551,8 +550,8 @@
                                                         <td th:case="2">Đã hủy</td>
                                                         <td th:case="3">Đã phân công</td>
                                                         <td th:case="4">Trên đường vận chuyển</td>
-                                                        <td th:case="5">Đã giao hàng</td>
-                                                        <td th:case="6">Đã thu tiền</td>
+                                                        
+                                                        <td th:case="5">Đã hoàn thành</td>
                                                     </th:block>
                                                     <td>
                                                         <div th:if="${order.shipper==null}">
@@ -683,13 +682,7 @@
                                                                                     nhận giao hàng</a>
                                                                             </div>
                                                                             <div>
-                                                                                <span>
-                                                                                    <a th:if="${order.status==4}"
-                                                                                    onclick="if (!(confirm('Xác nhận hoàn thành?'))) return false"
-                                                                                        class="btn btn-success col-sm-3"
-                                                                                        th:href="@{/stocker/order/hoanThanh(id=${order.id})}">Xác
-                                                                                        nhận hoàn thành</a>
-                                                                                </span>
+                                                                                
                                                                                 <span>
                                                                                     <a th:if="${order.status==4}"
                                                                                         class="btn bg-danger col-sm-3"

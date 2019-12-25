@@ -87,9 +87,9 @@ public class StockerOrderController {
 		for (int i = 0; i< order.getItems().size();i++) {
 			old.getItems().get(i).setQuantity(order.getItems().get(i).getQuantity());
 		}
-		old.setStatus(5);
+		
 		orderService.save(old);
-		return "redirect:/stocker/orders?status=5";
+		return "redirect:/stocker/orders?status=4";
 	}
 	
 	/**
