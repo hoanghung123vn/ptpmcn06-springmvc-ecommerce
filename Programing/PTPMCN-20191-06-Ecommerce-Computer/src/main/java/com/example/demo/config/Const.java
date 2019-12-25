@@ -23,9 +23,8 @@ public class Const {
     public static final int DESTROYED = 2;
     public static final int ASSIGNED = 3;
     public static final int DELIVERING = 4;
-    public static final int DELIVERED = 5;
-    public static final int COMPLETED = 6;
-    
+    public static final int COMPLETED = 5;
+
     // NUMBER DAY OF DELAY CONVENTION
     public static final int DELAY = 3;
     
