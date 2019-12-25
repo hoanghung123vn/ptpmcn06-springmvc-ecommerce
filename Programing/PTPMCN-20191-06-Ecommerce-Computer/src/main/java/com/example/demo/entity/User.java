@@ -20,8 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import org.hibernate.mapping.Collection;
-
 import com.example.demo.config.Const;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
