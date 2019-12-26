@@ -51,9 +51,6 @@ public class ProductController {
 		int mId = Integer.parseInt(code);
 		Manufacturer m = manufacturerRepository.findById(mId);
 		List<Product> products = productService.findByManufacturer(m);
-		for (Product product : products) {
-			System.out.println(product.getCode() + " - " + product.getManufacturer().getId());
-		}
 		model.addAttribute("products", products);
 		return "user/product-manufacturer";
 	}	
