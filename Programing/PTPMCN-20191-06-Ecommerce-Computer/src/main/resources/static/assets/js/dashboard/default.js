@@ -92,31 +92,60 @@
 		goalChartGradient.addColorStop(0, app.colors.gradientInfoStart);
 		goalChartGradient.addColorStop(1, app.colors.gradientInfoStop);
 
-		var donutConfig = new Chart(goalCtx, {
-			type: 'doughnut',
-			data: {
-				labels: ["Sales", "In-Store Sales"],
-				datasets: [{
-					data: [percentNumberOrder, 100 - percentNumberOrder],
-					backgroundColor: [goalChartGradient, app.colors.gray]
-				}]
-			},
-			options: {
-				elements: {
-					center: {
-						text: percentNumberOrder + '%',
-						color: app.colors.dark,
-						sidePadding: 70
-					}
+		if (percentNumberOrder > 100) {
+			var donutConfig = new Chart(goalCtx, {
+				type: 'doughnut',
+				data: {
+					labels: ["Đơn hàng", "Chưa đạt"],
+					datasets: [{
+						data: [100, 0],
+						backgroundColor: [goalChartGradient, app.colors.gray]
+					}]
 				},
-				maintainAspectRatio: false,
-				hover: { mode: null },
-				legend: {
-					display: false
+				options: {
+					elements: {
+						center: {
+							text: percentNumberOrder + '%',
+							color: app.colors.dark,
+							sidePadding: 70
+						}
+					},
+					maintainAspectRatio: false,
+					hover: { mode: null },
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 80,
+				}
+			});
+		} else {
+			var donutConfig = new Chart(goalCtx, {
+				type: 'doughnut',
+				data: {
+					labels: ["Đơn hàng", "Chưa đạt"],
+					datasets: [{
+						data: [percentNumberOrder, 100 - percentNumberOrder],
+						backgroundColor: [goalChartGradient, app.colors.gray]
+					}]
 				},
-				cutoutPercentage: 80,
-			}
-		});
+				options: {
+					elements: {
+						center: {
+							text: percentNumberOrder + '%',
+							color: app.colors.dark,
+							sidePadding: 70
+						}
+					},
+					maintainAspectRatio: false,
+					hover: { mode: null },
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 80,
+				}
+			});
+		}
+
 
 		//Goal Chart revenue 
 		const revenue = document.getElementById("revenue").value;
@@ -128,31 +157,60 @@
 		goalChartGradient1.addColorStop(0, app.colors.gradientInfoStart);
 		goalChartGradient1.addColorStop(1, app.colors.gradientInfoStop);
 
-		var donutConfig1 = new Chart(goalCtx1, {
-			type: 'doughnut',
-			data: {
-				labels: ["Sales", "In-Store Sales"],
-				datasets: [{
-					data: [percentRevenue, 100 - percentRevenue],
-					backgroundColor: [goalChartGradient1, app.colors.gray]
-				}]
-			},
-			options: {
-				elements: {
-					center: {
-						text: percentRevenue + '%',
-						color: app.colors.dark,
-						sidePadding: 70
-					}
+		if (percentRevenue > 100) {
+			var donutConfig1 = new Chart(goalCtx1, {
+				type: 'doughnut',
+				data: {
+					labels: ["Doanh thu", "Chưa đạt"],
+					datasets: [{
+						data: [100, 0],
+						backgroundColor: [goalChartGradient1, app.colors.gray]
+					}]
 				},
-				maintainAspectRatio: false,
-				hover: { mode: null },
-				legend: {
-					display: false
+				options: {
+					elements: {
+						center: {
+							text: percentRevenue + '%',
+							color: app.colors.dark,
+							sidePadding: 70
+						}
+					},
+					maintainAspectRatio: false,
+					hover: { mode: null },
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 80,
+				}
+			});
+		} else {
+			var donutConfig1 = new Chart(goalCtx1, {
+				type: 'doughnut',
+				data: {
+					labels: ["Doanh thu", "Chưa đạt"],
+					datasets: [{
+						data: [percentRevenue, 100 - percentRevenue],
+						backgroundColor: [goalChartGradient1, app.colors.gray]
+					}]
 				},
-				cutoutPercentage: 80,
-			}
-		});
+				options: {
+					elements: {
+						center: {
+							text: percentRevenue + '%',
+							color: app.colors.dark,
+							sidePadding: 70
+						}
+					},
+					maintainAspectRatio: false,
+					hover: { mode: null },
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 80,
+				}
+			});
+		}
+
 
 		//Sales Sparkline
 		var saleSparkLineData = [4, 10, 8, 10, 9, 10, 11, 7, 5, 8, 9, 6, 11];

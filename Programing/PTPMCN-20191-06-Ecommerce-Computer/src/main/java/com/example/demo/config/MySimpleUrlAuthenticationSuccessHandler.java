@@ -81,13 +81,13 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         if (isAdmin) {
             return "/admin/statistical";
         } else if (isManager) {
-            return "/";
+            return "/manager/orders";
         } else if (isStocker) {
             return "/stocker/orders";
         } else if (isShipper) {
             return "/shipper/orders";
         } else if (isEmployee) {
-            return "/";
+            return "/login";
         } else if (isMember) {
             return "/";
         } else {
