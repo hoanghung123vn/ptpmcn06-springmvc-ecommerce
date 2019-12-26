@@ -210,7 +210,7 @@ public class User implements Serializable {
     
     public void removeOrderofCustomer(Orders order) {
         ordersOfCustomer.remove(order);
-        order.setCustomer(null);
+//        order.setCustomer(null);
     }
     
     public void addOrderOfShipper(Orders order) {
