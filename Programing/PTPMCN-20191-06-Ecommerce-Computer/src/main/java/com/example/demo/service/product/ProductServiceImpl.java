@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
+
 	@Autowired
 	ProductRepository productRepository;
-	
+
 	@Override
-	public Product findByCode(Integer code) {
+	public Product findByCode(int code) {
 		return productRepository.findByCode(code);
 	}
 
@@ -24,16 +24,20 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> findAll() {
 		return productRepository.findAll();
 	}
-	
-    @Override
-    public void deleteByCode(Integer id) {
-        // TODO Auto-generated method stub
-        
-    }
+
+	@Override
+	public void save(Product product) {
+		productRepository.save(product);
+	}
+
+	@Override
+	public void deleteByCode(Integer code) {
+		productRepository.deleteById(code);
+	}
 
 	@Override
 	public void addProduct(Product product) {
-		
+
 	}
 
     @Override

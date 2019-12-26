@@ -32,27 +32,27 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_order", nullable = false)
     private int id;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer", referencedColumnName = "id")
     private User customer;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_shipper", referencedColumnName = "id")
     private User shipper;
-    
+
     @OneToMany(mappedBy = "pk.order", cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE, CascadeType.MERGE}, orphanRemoval = true)
     @JsonBackReference
     private List<OrderDetail> items = new ArrayList<OrderDetail>();
-    
+
     @Column(name = "note", nullable = true)
     private String note;
-    
+
     public List<OrderDetail> getItems() {
         return items;
     }
@@ -71,13 +71,13 @@ public class Orders implements Serializable {
 
     @Column(name = "ship_address", nullable = false)
     private String shipAddress;
-    
+
     @Column(name = "status", nullable = false)
     private int status;
-    
-    @Column(name = "ship_date", nullable = false)
+
+    @Column(name = "ship_date")
     private Date shipDate;
-    
+
     @Column(name = "creating_date", nullable = false)
     private Date creatingDate;
 
@@ -136,15 +136,15 @@ public class Orders implements Serializable {
     public void setCreatingDate(Date creatingDate) {
         this.creatingDate = creatingDate;
     }
-    
+
     public void addOrderDetail(OrderDetail item) {
         items.add(item);
     }
-    
+
     public void removeOrderDetail(OrderDetail item) {
         items.remove(item);
     }
-    
+
     public int getTotal() {
         int total = 0;
         for (OrderDetail e : items) {
@@ -174,5 +174,5 @@ public class Orders implements Serializable {
             return false;
         return true;
     }
-    
+
 }

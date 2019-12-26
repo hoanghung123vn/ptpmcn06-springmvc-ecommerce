@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -31,75 +33,76 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Product implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "code", nullable = false)
 	private int code;
-	
+
 	@Column(name = "product_name", nullable = false)
 	private String productName;
-	
+
 	@Column(name = "cpu_name", nullable = false)
 	private String cpuName;
-	
+
 	@Column(name = "number_of_core", nullable = false)
 	private int numberOfCore;
-	
+
 	@Column(name = "number_of_ram", nullable = false)
 	private int numberOfRam;
-	
+
 	@Column(name = "size_of_ram", nullable = false)
 	private int sizeOfRam;
-	
+
 	@Column(name = "disk_name", nullable = false)
 	private String diskName;
-	
+
 	@Column(name = "disk_size", nullable = false)
 	private int diskSize;
-	
+
 	@Column(name = "graphic_card_name", nullable = false)
 	private String graphicCardName;
-	
+
 	@Column(name = "image_link", nullable = false)
 	private String imageLink;
-	
+
+	@DateTimeFormat (pattern="yyyy-MM-dd")
 	@Column(name = "date_of_manufacture", nullable = false)
 	private Date dateOfManufacture;
-	
+
 	@Column(name = "screen_size", nullable = false)
 	private int screenSize;
-	
+
 	@Column(name = "number_in_inventory", nullable = false)
 	private int numberInInventory;
-	
+
 	@Column(name = "description", nullable = false)
 	private String description;
-	
+
 	@Column(name = "standard_price", nullable = false)
 	private int standardPrice;
 
     @Column(name = "pin_size", nullable = false)
     private int pinSize;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_manufacturer", referencedColumnName = "id")
 	private Manufacturer manufacturer;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_type", referencedColumnName = "id")
 	@JsonBackReference
 	private Type type;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_origin", referencedColumnName = "id")
 	@JsonBackReference
 	private Origin origin;
-	
+
 	@OneToMany(mappedBy = "pk.product")
 	@JsonBackReference
     private Set<OrderDetail> orderItems = new HashSet<>();
-	
+
 	@OneToMany(mappedBy = "pk.product")
     @JsonBackReference
     private Set<Cart> cartItems = new HashSet<>();
@@ -254,20 +257,20 @@ public class Product implements Serializable{
 
 	public void setPinSize(int pinSize) {
 		this.pinSize = pinSize;
-	}	
-	
+	}
+
 	public void addOrderItem(OrderDetail item) {
         orderItems.add(item);
     }
-    
+
     public void removeOrderItem(OrderDetail item) {
         orderItems.remove(item);
     }
-    
+
     public void addCartItem(Cart item) {
         cartItems.add(item);
     }
-    
+
     public Set<OrderDetail> getOrderItems() {
         return orderItems;
     }
@@ -287,7 +290,7 @@ public class Product implements Serializable{
     public void removeCartItem(Cart item) {
         cartItems.remove(item);
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -1,5 +1,7 @@
 package com.example.demo.service.type;
 
+import com.example.demo.entity.Type;
+
 /**
  * @author Hung Hoang
  * @version 1.0 Dec 19, 2019
@@ -10,4 +12,5 @@ package com.example.demo.service.type;
  */
 public interface TypeService{
     long countAll();
+    Iterable<Type> findAll();
 }

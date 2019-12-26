@@ -85,7 +85,7 @@
 								</nav>
 							</div>
 						</div>
-						<form th:action="@{/stocker/receiveProduct}" method="get" th:object="${order}">
+						<form th:action="@{/stocker/receiveProduct}" method="post" th:object="${order}">
 							<input type="text" th:field="*{id}" hidden>
 							<div class="card-body">
 
