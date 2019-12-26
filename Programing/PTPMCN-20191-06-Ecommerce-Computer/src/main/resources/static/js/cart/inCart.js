@@ -47,30 +47,43 @@ function removeFromCart(){
     const iconCloses = $(".icon-close");
     iconCloses.each(function(index){
         $(this).on("click", function(){
-            (async() => {
-                const response = await axios({
-                    url: '/user/cart/removeProduct',
-                    method: 'get',
-                    params:{
-                        productCode: iconCloses[index].id.substring(14)
-                    }
-                })
-                // hide line deleted then update cart
-                iconCloses.eq(index).parents('tr').hide(function(){
-                    updateCart();
-                });
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                    (async() => {
+                        const response = await axios({
+                            url: '/user/cart/removeProduct',
+                            method: 'get',
+                            params:{
+                                productCode: iconCloses[index].id.substring(14)
+                            }
+                        })
 
-                // hide product line in top cart
-                const code = iconCloses[index].id.substring(14);
-                $(`#item-quantity${code}`).parents('li').hide();
+                        console.log(response.data);
+                        // hide line deleted then update cart
+                        $.when(iconCloses.eq(index).parents('tr').remove()).then(function(){
+                            updateCart();
+                        });
 
-                if (response.data == 'error'){
-                    notification.deleteFail();
-                }else{
-                    notification.deleteSuccess();
+                        // hide product line in top cart
+                        const code = iconCloses[index].id.substring(14);
+                        $(`#item-quantity${code}`).parents('li').hide();
+
+                        if (response.data == 'error'){
+                            notification.deleteFail("Deleted failed", "Something went wrong");
+                        }else{
+                            notification.deleteSuccess("Deleted successfully", "Your product has been deleted");
+                        }
+                    })()
                 }
-            })()
+            })
         })
     })
-
 }
