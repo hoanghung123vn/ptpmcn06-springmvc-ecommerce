@@ -68,7 +68,7 @@ public class OrdersController {
 
 		model.addAttribute("newOrder", order);
 		
-		return "redirect:/user/orders";
+		return "user/list-orders";
 	}	
 
 	@GetMapping("/orders/cancelOrder")
