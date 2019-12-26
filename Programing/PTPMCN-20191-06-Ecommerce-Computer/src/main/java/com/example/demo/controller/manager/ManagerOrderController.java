@@ -1,5 +1,6 @@
 package com.example.demo.controller.manager;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,7 +72,10 @@ public class ManagerOrderController {
 	@GetMapping("/orders/hoanThanhDonHang")
 	public String hoanThanhDonHang(@RequestParam("id")int id) {
 		Orders orders = orderService.findById(id).get();
-		if (orders.getStatus() == 4) orders.setStatus(5);
+		if (orders.getStatus() == 4) {
+			orders.setStatus(5);
+			orders.setShipDate(new Date());
+		}
 		orderService.save(orders);
 		return "redirect:/manager/orders?status=5";
 	}
