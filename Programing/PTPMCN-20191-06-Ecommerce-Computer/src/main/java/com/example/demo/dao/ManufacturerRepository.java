@@ -1,7 +1,7 @@
 package com.example.demo.dao;
 
-import java.util.List;
 
+import java.util.List;
 import com.example.demo.entity.Manufacturer;
 
 import org.springframework.data.repository.CrudRepository;
@@ -10,3 +10,4 @@ public interface ManufacturerRepository extends CrudRepository<Manufacturer, Int
     public Manufacturer findById(int id);
     public List<Manufacturer> findAll();
 }
+
