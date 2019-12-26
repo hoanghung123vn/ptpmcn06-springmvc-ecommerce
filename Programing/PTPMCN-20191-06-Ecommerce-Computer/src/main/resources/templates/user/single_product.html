@@ -341,9 +341,15 @@
               </div>
               <div class="short-description">
                 <h2>Quick Overview</h2>
-                <p th:text="${product.description}">
-                <!-- <p> Vivamus adipiscing nisl ut dolor dignissim semper. Nulla luctus malesuada tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer enim purus, posuere at ultricies eu, placerat a felis. Suspendisse aliquet urna pretium eros convallis interdum. Quisque in arcu id dui vulputate mollis eget non arcu. Aenean et nulla purus. Mauris vel tellus non nunc mattis lobortis.</p> -->
-               
+                <b>Name: </b> <p style="display:inline" th:text="${product.productName}"></p><br>
+                <b>Depcription: </b> <p style="display:inline" th:text="${product.description}"></p><br>
+                <b>Manufacturer: </b> <p style="display:inline" th:text="${product.manufacturer.name}"></p><br>
+                <b>Origin: </b> <p style="display:inline" th:text="${product.origin.name}"></p><br>
+                <b>Size of RAM: </b><p style="display:inline" th:text="${product.sizeOfRam}"></p><br>
+                <b>Size of DISK: </b> <p style="display:inline" th:text="${product.diskSize}"></p><br>
+                <b>Size of SCREEN: </b> <p style="display:inline" th:text="${product.screenSize}"></p><br>
+                <b>Price: </b> <p style="display:inline" th:text="${product.standardPrice}"></p> VND <br>
+                <span></span>
               </div>
               <div class="product-color-size-area">
                 <div class="color-area">
@@ -390,7 +396,7 @@
           <div class="row">
             <div class="col-xs-12"><div class="product-tab-inner"> 
               <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
-                <li class="active"> <a href="#description" data-toggle="tab"> Description </a> </li>                <li> <a href="#reviews" data-toggle="tab">Reviews</a> </li>
+                <li class="active"> <a href="#description" data-toggle="tab"> Description </a> </li><li> <a href="#reviews" data-toggle="tab">Reviews</a> </li>
                  <li><a href="#product_tags" data-toggle="tab">Tags</a></li>
                 <li> <a href="#custom_tabs" data-toggle="tab">Custom Tab</a> </li>
               </ul>

@@ -9,7 +9,8 @@ import com.example.demo.entity.Manufacturer;
 import com.example.demo.entity.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-    List<Product> findAll();
+    @Override
+	List<Product> findAll();
 
 	Product findByCode(int code);
 

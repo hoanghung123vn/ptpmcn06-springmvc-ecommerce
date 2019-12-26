@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -43,7 +45,6 @@ public class OrdersController {
 
 	@PostMapping("/orders")
 	public String getOrders(@ModelAttribute("currentUser") User currentUser, Model model) {
-		System.out.println("hahahfsdfsdfsdfsdfsdf");	
 		Date now = new Date();
 		User user = getCurrentUser();
 		user.setAddress(currentUser.getAddress());
@@ -64,8 +65,26 @@ public class OrdersController {
 		user.EmptyCart();
 		userService.save(user);
 		orderService.save(order);
+
+		model.addAttribute("newOrder", order);
 		
-		
-		return "redirect:/user/orders";
+		return "user/list-orders";
 	}	
+
+	@GetMapping("/orders/cancelOrder")
+	public @ResponseBody String cancelOrder(@RequestParam(name = "orderId", required = true) String orderId){
+		System.out.println(orderId);
+		try {
+			User user = getCurrentUser();
+			int oId = Integer.parseInt(orderId);
+			Orders order = orderService.findById(oId).get();
+
+			user.removeOrderofCustomer(order);
+			orderService.delete(order);
+			userService.save(user);
+			return "success";
+		} catch (Exception e) {
+			return "error";
+		}
+	}
 }

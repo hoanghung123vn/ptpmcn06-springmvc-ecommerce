@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.TypeRepository;
+import com.example.demo.entity.Type;
 
 /**
  * @author Hung Hoang
@@ -15,13 +16,18 @@ import com.example.demo.dao.TypeRepository;
  */
 @Service
 public class TypeServiceImpl implements TypeService {
-    
+
     @Autowired
     private TypeRepository typeRepository;
-    
+
     @Override
     public long countAll() {
         return typeRepository.count();
     }
+
+    @Override
+	public Iterable<Type> findAll() {
+		return typeRepository.findAll();
+	}
 
 }

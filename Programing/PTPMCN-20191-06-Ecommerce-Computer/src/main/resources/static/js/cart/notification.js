@@ -35,24 +35,35 @@
       confirmButton: 'btn btn-success',
       cancelButton: 'btn btn-danger'
     },
-      buttonsStyling: false
+      buttonsStyling: false,
+      showConfirmButton: false,
+      timer: 1000
     })
     
-  notification.deleteSuccess = function(){
+  notification.success = function(title, msg){
       swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your product has been deleted.',
+          title,
+          msg,
           'success'
         )
   }
 
-  notification.deleteFail = function(){
+  notification.fail = function(title, msg){
       swalWithBootstrapButtons.fire(
-          'Delete product faild',
-          'Some thing went wrong',
+          title,
+          msg,
           'error'
         )
   }
+
+  notification.warning = function(title, msg){
+    swalWithBootstrapButtons.fire(
+        title,
+        msg,
+        'warning'
+      )
+}
+
   window.notification = notification;
 
 }(jQuery, window);

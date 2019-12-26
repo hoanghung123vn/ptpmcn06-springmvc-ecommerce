@@ -81,7 +81,7 @@ public class StockerOrderController {
 	 * @param id
 	 * @return html to see result
 	 */
-	@GetMapping("/receiveProduct")
+	@PostMapping("/receiveProduct")
 	public String changeItemsOrders(@ModelAttribute("order") Orders order) {
 		Orders old = orderService.findById(order.getId()).get();
 		for (int i = 0; i< order.getItems().size();i++) {
