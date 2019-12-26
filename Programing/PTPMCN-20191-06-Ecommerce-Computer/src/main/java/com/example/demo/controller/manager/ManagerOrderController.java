@@ -75,4 +75,9 @@ public class ManagerOrderController {
 		orderService.save(orders);
 		return "redirect:/manager/orders?status=5";
 	}
+
+	@GetMapping(value={"", "/", "index"})
+	public String index() {
+		return "redirect:/manager/orders";
+	}
 }
