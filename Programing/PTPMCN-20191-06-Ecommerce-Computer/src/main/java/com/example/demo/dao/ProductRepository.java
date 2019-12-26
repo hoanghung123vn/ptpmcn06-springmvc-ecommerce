@@ -8,7 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import com.example.demo.entity.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-    List<Product> findAll();
+    @Override
+	List<Product> findAll();
 
     Product findByProductName(String name);
 
