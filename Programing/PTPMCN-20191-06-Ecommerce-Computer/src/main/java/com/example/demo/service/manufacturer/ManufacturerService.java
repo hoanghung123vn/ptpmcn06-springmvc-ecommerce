@@ -8,13 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ManufacturerService{
-    Manufacturer findById(int id);
-
-<<<<<<< HEAD
     List<Manufacturer> findAll();
-=======
-    Manufacturer findById(int id){
-        return manufacturerRepository.findById(id);
-    }
->>>>>>> develop
+    
+    Manufacturer findById(int id);
 }
