@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quản lý đơn hàng</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.html">
+    <link rel="shortcut icon" href="/images/logo/favicon.png">
+
+    <!-- core dependcies css -->
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/vendor/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+
+    <!-- page css -->
+    <link rel="stylesheet" href="/vendor/datatables/media/css/dataTables.bootstrap4.min.css" />
+
+    <!-- core css -->
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/themify-icons.css" rel="stylesheet">
+    <link href="/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/stocker.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app header-success-gradient">
+        <div class="layout">
+            <!-- Header START -->
+            <div th:insert="admin/fragments :: header"></div>
+            <!-- Header END -->
+
+            <!-- Side Nav START -->
+            <div class="side-nav expand-lg">
+                <div class="side-nav-inner">
+                    <ul class="side-nav-menu scrollable">
+                        <li class="side-nav-header">
+                            <span>Navigation</span>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-gauge"></i>
+                                </span>
+                                <span class="title">Product</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a th:href="@{/manager/products/list}">List Product</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/products/showFormForAdd}">Add Product</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="mdi mdi-gauge"></i>
+                                </span>
+                                <span class="title">Quản lý đơn hàng</span>
+                                <span class="arrow">
+                                    <i class="mdi mdi-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a th:href="@{/manager/orders}">Danh sách đơn hàng</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/orders?status=0}">Đơn hàng chờ xác nhận</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/orders?status=1}">Đơn hàng xác nhận</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/orders?status=3}">Đơn hàng đã phân công</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/orders?status=4}">Đơn hàng trên đường vận chuyển</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/orders?status=5}">Đơn hàng đã hoàn thành</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/manager/orders?status=2}">Đơn hàng đã hủy</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Side Nav END -->
+
+            <!-- Page Container START -->
+            <div class="page-container">
+                <!-- Quick View START -->
+                <div th:insert="admin/fragments :: quick-view"></div>
+                <!-- Side Panel END -->
+
+                <!-- Content Wrapper START -->
+                <div class="main-content">
+                    <div class="container-fluid">
+                        <div class="page-header">
+                            <h2 class="header-title">Danh sách đơn hàng</h2>
+                            <div class="header-sub-title">
+                                <nav class="breadcrumb breadcrumb-dash">
+                                    <a href="#" class="breadcrumb-item"><i class="ti-home p-r-5"></i>Home</a>
+
+                                    <span class="breadcrumb-item active">Danh sách đơn hàng</span>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body" style="background-color:rgb(255, 255, 255);">
+                                <span class="table-overflow">
+                                    <table id="dt-opt" class="table table-hover table-xl table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th style="background-color:rgb(255, 255, 255);">ID</th>
+                                                <th style="background-color:rgb(255, 255, 255)">Thời điểm giao hàng</th>
+                                                <th style="background-color: rgb(255, 255, 255);">
+                                                    <div scope="col" class="dropdown dropdown-animated">
+                                                        <span style="border-style:none" class="dropdown-toggle pointer"
+                                                            data-toggle="dropdown" aria-expanded="false">
+                                                            <span>Trạng thái</span>
+                                                        </span>
+                                                        <span class="dropdown-menu" x-placement="top-start"
+                                                            style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/manager/orders(status=0)}">Chưa xác
+                                                                nhận</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/manager/orders(status=1)}">Đã xác
+                                                                nhận</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/manager/orders(status=2)}">Đã
+                                                                hủy</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/manager/orders(status=3)}">Đã phân
+                                                                công</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/manager/orders(status=4)}">Trên
+                                                                đường vận chuyển</a>
+                                                            <a class="dropdown-item"
+                                                                th:href="@{/manager/orders(status=5)}">Đã hoàn thành</a>
+                                                            <a class="dropdown-item" th:href="@{/manager/orders}">Tất cả
+                                                                trạng thái</a>
+                                                        </span>
+                                                    </div>
+
+                                                </th>
+                                                <th style="background-color:rgb(255, 255, 255);">Tên Shipper</th>
+                                                <th style="background-color: rgb(255, 255, 255);">Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+                                            <th:block th:each="order : ${Orders}">
+                                                <tr>
+                                                    <td th:text="${order.id}"></td>
+                                                    <td th:text="${order.shipDate}"></td>
+                                                    <th:block th:switch="${order.status}">
+                                                        <td th:case="0">Chưa xác nhận</td>
+                                                        <td th:case="1">Đã xác nhận</td>
+                                                        <td th:case="2">Đã hủy</td>
+                                                        <td th:case="3">Đã phân công</td>
+                                                        <td th:case="4">Trên đường vận chuyển</td>
+                                                        <td th:case="5">Đã hoàn thành</td>
+                                                    </th:block>
+                                                    <td>
+                                                        <div th:if="${order.shipper==null}">
+                                                            <div th:if="${order.status!=1}">
+                                                                Chưa phân công shipper
+                                                            </div>
+                                                            <div th:if="${order.status==1}">
+                                                                <form th:action="@{/manager/orders/phanCongShipper}" method="POST">
+                                                                <input type="text" name="orderId" th:value="${order.id}" hidden>
+                                                                <select name="shipperId" class="form-control">
+                                                                    <option value="0" selected>Chưa phân công shipper
+                                                                    </option>
+                                                                    <option th:each="shipper : ${shippers}" th:value="${shipper.id}"
+                                                                        th:text="${shipper.name}"></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div th:unless="${order.shipper==null}">
+                                                            <div th:text="${order.shipper.name}" data-toggle="modal"
+                                                                th:data-target="'#modal-detail-shipper'+${order.shipper.id}"
+                                                                title="xem chi tiết"></div>
+                                                            <div class="modal fade"
+                                                                th:id="'modal-detail-shipper'+${order.shipper.id}">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="card">
+                                                                                <div class="card-header border bottom">
+                                                                                    <h4 class="card-title">Thông tin
+                                                                                        Shipper
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div class="card-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-md-12">
+                                                                                            <div class="form-group row">
+                                                                                                <label
+                                                                                                    class="col-sm-3 col-form-label control-label text-dark">Tên
+                                                                                                    Shipper: </label>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <p class="form-control-plaintext"
+                                                                                                        th:text="${order.shipper.name}">
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group row">
+                                                                                                <label
+                                                                                                    class="col-sm-3 col-form-label control-label text-dark">Số
+                                                                                                    điện thoại: </label>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <p class="form-control-plaintext"
+                                                                                                        th:text="${order.shipper.phone}">
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group row">
+                                                                                                <label
+                                                                                                    class="col-sm-3 col-form-label control-label text-dark">Email
+                                                                                                    liên lạc: </label>
+                                                                                                <div class="col-sm-9">
+                                                                                                    <p class="form-control-plaintext"
+                                                                                                        th:text="${order.shipper.email}">
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <th:block th:if="${order.status==1}">
+                                                            <button type="submit" class="btn btn-danger" onclick="if (!(confirm('Bạn có chắc chắn muốn phân công cho đơn hàng này?'))) return false">Phân
+                                                                công</button>
+                                                            </form>
+                                                        </th:block>
+                                                        <button data-toggle="modal"
+                                                            th:data-target="'#modal-detail-orders'+${order.id}"
+                                                            class="btn btn-info">Chi tiết</button>
+                                                        <div class="modal fade"
+                                                            th:id="'modal-detail-orders'+${order.id}">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="card">
+                                                                            <div class="card-header border bottom">
+                                                                                <h4 class="card-title">Chi tiết Đơn hàng
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="card-body">
+                                                                                <table class="table">
+                                                                                    <thead class="thead-light">
+                                                                                        <tr>
+                                                                                            <th scope="col">STT</th>
+                                                                                            <th scope="col">Mã Sản phẩm
+                                                                                            </th>
+                                                                                            <th scope="col">Tên Sản phẩm
+                                                                                            </th>
+                                                                                            <th scope="col">Số lượng
+                                                                                            </th>
+                                                                                            <th scope="col">Đơn Giá</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr
+                                                                                            th:each="item,iter: ${order.items}">
+                                                                                            <th th:text="${iter.index + 1}"
+                                                                                                scope="row"></th>
+                                                                                            <td
+                                                                                                th:text="${item.product.code}">
+                                                                                            </td>
+                                                                                            <td
+                                                                                                th:text="${item.product.productName}">
+                                                                                            </td>
+                                                                                            <td
+                                                                                                th:text="${item.quantity}">
+                                                                                            </td>
+                                                                                            <td th:text="${item.price}">
+                                                                                            </td>
+
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div
+                                                                                class="card-header border top text-right">
+                                                                                <h4 class="card-title">Tổng số tiền:
+                                                                                    <span
+                                                                                        th:text="${order.getTotal()}"></span>
+                                                                                    VND</h4>
+
+                                                                            </div>
+                                                                            <div align="right">
+                                                                                <a th:if="${order.status==4}"
+                                                                                    class="btn btn-success col-sm-3"
+                                                                                    th:href="@{/manager/orders/hoanThanhDonHang(id=${order.id})}" onclick="if (!(confirm('Bạn có chắc chắn muốn hoàn thành đơn hàng này'))) return false">Hoàn thành đơn hàng</a>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span>
+                                                                                    <a th:if="${order.status==0}"
+                                                                                        class="btn btn-success col-sm-3"
+                                                                                        th:href="@{/manager/orders/xacNhanDonHang(id=${order.id})}">Xác
+                                                                                        nhận đơn hàng</a>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <a th:if="${order.status==0}"
+                                                                                        class="btn bg-danger col-sm-3"
+                                                                                        th:href="@{/manager/orders/huyDonHang(id=${order.id})}">Hủy
+                                                                                        đơn hàng</a>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </th:block>
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer START -->
+                <footer th:insert="admin/fragments :: footer"></footer>
+                <!-- Footer END -->
+            </div>
+            <!-- Content Wrapper END -->
+
+        </div>
+        <!-- Page Container END -->
+
+    </div>
+    </div>
+
+    <script src="/js/vendor.js"></script>
+
+    <script src="/js/app.min.js"></script>
+
+    <!-- page js -->
+    <script src="/vendor/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/tables/data-table.js"></script>
+
+</body>
+
+
+<!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
+
+</html>

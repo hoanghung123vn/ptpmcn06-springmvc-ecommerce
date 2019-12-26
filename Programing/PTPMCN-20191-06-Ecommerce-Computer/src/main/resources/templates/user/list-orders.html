@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Applicator - Admin Dashboard Template</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MyStore premium HTML5 &amp; CSS3 template</title>
+    <meta name="description" content="best template, template free, responsive theme, fashion store, responsive theme, responsive html theme, Premium website templates, web templates, Multi-Purpose Responsive HTML5 Template">
+    <meta name="keywords" content="bootstrap, ecommerce, fashion, layout, responsive, responsive template, responsive template download, responsive theme, retail, shop, shopping, store, Premium website templates, web templates, Multi-Purpose Responsive HTML5 Template"/>
+
+    <!-- Mobile specific metas  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon  -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,300,200,500,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- CSS Style -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+
+    <!-- font-awesome & simple line icons CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/simple-line-icons.css" media="all">
+
+    <!-- owl.carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.theme.css">
+
+    <!-- animate CSS  -->
+    <link rel="stylesheet" type="text/css" href="/css/animate.css" media="all">
+
+    <!-- flexslider CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/flexslider.css" >
+
+    <!-- jquery-ui.min CSS  -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
+
+    <!-- Revolution Slider CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/revolution-slider.css">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/checkout.css" media="all">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="/assets/images/logo/apple-touch-icon.html">
+    <link rel="shortcut icon" href="/assets/images/logo/favicon.png">
+
+    <!-- core dependcies css -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/assets/vendor/PACE/themes/blue/pace-theme-minimal.css" />
+    <link rel="stylesheet" href="/assets/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+
+    <!-- page css -->
+    <link rel="stylesheet" href="/assets/vendor/datatables/media/css/dataTables.bootstrap4.min.css" />
+
+    <!-- core css -->
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="/assets/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.min.css" rel="stylesheet">
+    <link href="/assets/css/app.css" rel="stylesheet">
+</head>
+
+<body>
+     <!-- Header START -->
+     <div th:insert="user/included_header :: header"></div>
+     <!-- Header END -->
+
+     <!-- Navbar -->
+     <div th:insert="user/included_nav :: nav"></div>
+     <!-- end nav -->  
+    <section class="main-container col1-layout">
+        <div class="main container">
+            <div class="app header-success-gradient">
+                <div class="layout">
+                    <!-- Page Container START -->
+                    <div class="main-content" style="width: 100%;">
+                        <!-- Quick View START -->
+                        <!-- Side Panel END -->
+
+                        <!-- Content Wrapper START -->
+                        <div class="main-content" style="width: 100%;">
+                            <div class="container-fluid">
+                                <div class="page-header">
+                                    <h2 class="header-title">Orders</h2>
+                                </div>  
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-overflow">
+                                            <p th:unless="${newOrder == null}" class="new-order" hidden>new order</p>
+                                            <table id="dt-opt" class="table table-hover table-xl" style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Order ID</th>
+                                                        <th>Status</th>
+                                                        <th>Creating Date</th>
+                                                        <th>Shpping Date</th>
+                                                        <th>Amount</th>
+                                                        <th style="text-align: center;">Detail</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody th:each="order: ${currentUser.getOrdersOfCustomer()}">
+                                                    <tr>
+                                                        <td style="text-align: center; vertical-align: middle;">
+                                                            <div class="">
+                                                                <div class="" style="text-align: center; vertical-align: middle;">
+                                                                    <div class="info">
+                                                                        <span class="title"><h4 th:text="'ID 000' + ${order.id}"></h4></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <th:block th:switch="${order.status}">
+                                                            <td th:case="0" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-info">Chưa xác nhận</span></td>
+                                                            <td th:case="1" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-info">Đã xác nhận</span></td>
+                                                            <td th:case="2" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-danger">Đã huỷ</span></td>
+                                                            <td th:case="3" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-warning">Đang chờ xuất</span></td>
+                                                            <td th:case="4" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-info">Đang vận chuyển</span></td>
+                                                            <td th:case="5" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-success">Đã giao hàng</span></td>
+                                                            <td th:case="6" style="text-align: center; vertical-align: middle;"><span class="badge badge-pill badge-gradient-success">Đã giao hàng</span></td>
+                                                        </th:block>
+                                                        <td th:text="${order.creatingDate}" style="text-align: center; vertical-align: middle;"></td>
+                                                        <td th:text="${order.shipDate}" style="text-align: center; vertical-align: middle;"></td>
+                                                        <td th:text="${order.getTotal()}" style="text-align: center; vertical-align: middle;"></td>
+                                                        <td>
+                                                            <button data-toggle="modal"
+                                                                    th:data-target="'#modal-detail-orders'+${order.id}"
+                                                                    class="btn btn-info btn-rounded">Chi tiết
+                                                            </button>
+                                                            <button class="btn btn-danger btn-rounded cancel-order" th:id="'cancel-order' + ${order.id}" th:if="${order.status} &lt; 2">Huỷ đơn hàng</button>
+                                                            <div class="modal fade"
+                                                                th:id="'modal-detail-orders'+${order.id}">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <div class="card">
+                                                                                <div class="card-header border bottom">
+                                                                                    <h4 class="card-title">Chi tiết Đơn hàng
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div class="card-body">
+                                                                                    <table class="table">
+                                                                                        <thead class="thead-light">
+                                                                                            <tr>
+                                                                                                <th scope="col">STT</th>
+                                                                                                <th scope="col">Mã Sản phẩm
+                                                                                                </th>
+                                                                                                <th scope="col">Tên Sản phẩm
+                                                                                                </th>
+                                                                                                <th scope="col">Số lượng
+                                                                                                </th>
+                                                                                                <th scope="col">Đơn Giá</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <tr
+                                                                                                th:each="item,iter: ${order.items}">
+                                                                                                <th th:text="${iter.index + 1}"
+                                                                                                    scope="row"></th>
+                                                                                                <td
+                                                                                                    th:text="${item.product.code}">
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    th:text="${item.product.productName}">
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    th:text="${item.quantity}">
+                                                                                                </td>
+                                                                                                <td th:text="${item.price}">
+                                                                                                </td>
+
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="card-header border top text-right">
+                                                                                    <h4 class="card-title">Tổng số tiền:
+                                                                                        <span
+                                                                                            th:text="${order.getTotal()}"></span>
+                                                                                        VND</h4>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div> 
+                                    </div>       
+                                </div>   
+                            </div>
+                        </div>
+                        <!-- Content Wrapper END -->
+
+                       
+
+                    </div>
+                    <!-- Page Container END -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br>
+     <!-- Footer START -->
+     <div th:insert="user/included_footer :: footer"></div>
+     <!-- Footer END -->
+
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- jquery js --> 
+    <script type="text/javascript" src="/js/jquery.min.js"></script> 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+
+
+    <script src="/assets/js/vendor.js"></script>
+
+    <script src="/assets/js/app.min.js"></script>
+
+    <!-- page js -->
+    <script src="/assets/vendor/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/assets/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <!-- <script src="/assets/js/tables/data-table.js"></script> -->
+
+    <!-- order js -->
+    <script src="/js/cart/notification.js"></script>
+    <script src="/js/cart/cancelOrder.js"></script>
+    <script src="/js/cart/createOrderSuccess.js"></script>
+    
+</body>
+
+
+<!-- Mirrored from themenate.com/applicator/dist/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 07 Jul 2018 12:06:08 GMT -->
+</html>
