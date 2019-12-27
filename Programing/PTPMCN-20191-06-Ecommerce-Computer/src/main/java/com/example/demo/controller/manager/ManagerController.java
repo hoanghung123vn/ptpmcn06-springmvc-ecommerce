@@ -99,7 +99,7 @@ public class ManagerController {
 	public String saveEmployee(@ModelAttribute("product") Product product, @RequestParam("image") MultipartFile fileData) {
 		if(!fileData.isEmpty()) {
 			// Thư mục gốc upload file.
-	        String uploadRootPath = "src/main/resources/static/products";
+	        String uploadRootPath = "src/main/resources/static/images/products";
 	        System.out.println("uploadRootPath=" + uploadRootPath);
 
 	        File uploadRootDir = new File(uploadRootPath);
