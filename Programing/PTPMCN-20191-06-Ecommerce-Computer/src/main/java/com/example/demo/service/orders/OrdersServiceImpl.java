@@ -61,8 +61,12 @@ public class OrdersServiceImpl implements OrdersService {
     public long countOrderInMonth() {
         Calendar calendar = Calendar.getInstance();
         Date end = new Date();
-        Date start = new Date(end.getTime() - (calendar.get(Calendar.DAY_OF_MONTH) - 1) * 24 * 60 * 60 * 1000
-                - calendar.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 - calendar.get(Calendar.MINUTE) * 60 * 1000);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date start = calendar.getTime();
         return ordersRepository.countByCreatingDateBetweenAndStatusNot(start, end, Const.DESTROYED);
     }
 
@@ -98,8 +102,12 @@ public class OrdersServiceImpl implements OrdersService {
     public long sumPriceOrdersInMonth() {
         Calendar calendar = Calendar.getInstance();
         Date end = new Date();
-        Date start = new Date(end.getTime() - (calendar.get(Calendar.DAY_OF_MONTH) - 1) * 24 * 60 * 60 * 1000
-                - calendar.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 - calendar.get(Calendar.MINUTE) * 60 * 1000);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date start = calendar.getTime();
         return sumPriceOrders(end, start);
     }
 

@@ -8,8 +8,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.dao.GoalRepository;
 import com.example.demo.dao.RoleRepository;
 import com.example.demo.dao.UserRepository;
+import com.example.demo.entity.Goal;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 
@@ -32,9 +34,20 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 
     @Autowired 
     private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private GoalRepository goalRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
+        // Goal
+        if(goalRepository.findByName("GOAL_OF_MONTH") == null) {
+            Goal goal = new Goal();
+            goal.setName("GOAL_OF_MONTH");
+            goal.setNumberOrder(20);
+            goal.setRevenue(200000000);
+            goalRepository.save(goal);
+        }
         // Roles
         if (roleRepository.findByName("ROLE_ADMIN") == null) {
             roleRepository.save(new Role("ROLE_ADMIN"));

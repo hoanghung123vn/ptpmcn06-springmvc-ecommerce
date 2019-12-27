@@ -210,7 +210,7 @@ public class User implements Serializable {
     
     public void removeOrderofCustomer(Orders order) {
         ordersOfCustomer.remove(order);
-        order.setCustomer(null);
+//        order.setCustomer(null);
     }
     
     public void addOrderOfShipper(Orders order) {
@@ -325,6 +325,27 @@ public class User implements Serializable {
             }
         }
         return count;
+    }
+    
+    public List<OrderDetail> convertCartToOrdersDetail(Orders order){
+    	ArrayList<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
+    	for (Cart item : items) {
+			OrderDetail orderDetail = new OrderDetail();
+			orderDetail.setPrice(item.getPrice());
+			orderDetail.setProduct(item.getProduct());
+			orderDetail.setQuantity(item.getQuantity());
+			orderDetail.setOrder(order);
+			orderDetails.add(orderDetail);
+		}
+    	return orderDetails;
+    }
+    
+    public void EmptyCart() {
+    	while(items.size() > 0) {
+    		for(int i=0; i<items.size(); i++) {
+        		items.remove(i);
+        	}
+    	}
     }
 
     @Override

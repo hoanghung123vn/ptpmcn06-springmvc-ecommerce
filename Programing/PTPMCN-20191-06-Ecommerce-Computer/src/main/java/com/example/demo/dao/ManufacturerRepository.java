@@ -1,11 +1,13 @@
 package com.example.demo.dao;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import com.example.demo.entity.Manufacturer;
 
-@Repository
-public interface ManufacturerRepository extends CrudRepository<Manufacturer, Integer> {
+import org.springframework.data.repository.CrudRepository;
 
+public interface ManufacturerRepository extends CrudRepository<Manufacturer, Integer> {
+    public Manufacturer findById(int id);
+    public List<Manufacturer> findAll();
 }
+

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
-<!-- Mirrored from htmlmystore.justthemevalley.com/shopping_cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 18:39:47 GMT -->
+<!-- Mirrored from htmlmystore.justthemevalley.com/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 18:40:30 GMT -->
 <head>
 <!-- Basic page needs -->
 <meta charset="utf-8">
@@ -40,30 +40,36 @@
 <!-- animate CSS  -->
 <link rel="stylesheet" type="text/css" href="/css/animate.css" media="all">
 
-<!-- flexslider CSS -->
-<link rel="stylesheet" type="text/css" href="/css/flexslider.css" >
-
 <!-- jquery-ui.min CSS  -->
 <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css">
 
-<!-- Revolution Slider CSS -->
-<link rel="stylesheet" type="text/css" href="/css/revolution-slider.css">
+
 
 <!-- style CSS -->
 <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
 
-
+<!-- style CSS -->
+<link rel="stylesheet" type="text/css" href="/css/blog.css" media="all">
 </head>
 
-<body class="shopping_cart_page">
+<body class="blog_page">
 <!--[if lt IE 8]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]--> 
-  
+
 <!-- mobile menu -->
 <div id="mobile-menu">
   <ul>
-    <li><a href="/index.html" class="home1">Home</a>
+    <li><a href="index-2.html" class="home1">Home</a>
+      <ul>
+        <li><a href="index-2.html"><span>Home Version 1</span></a></li>
+        <li><a href="Version2/index.html"><span>Home Version 2</span></a></li>
+        <li><a href="Version3/index.html"><span>Home Version 3</span></a></li>
+        <li><a href="Version4/index.html"><span>Home Version 4</span></a></li>
+        <li><a href="Version5/index.html"><span>Home Version 5</span></a></li>
+        <li><a href="rtl-version/index.html"><span>RTL Version</span></a></li>
+        <li><a href="rtl-version1/index.html"><span>Home Version 1 RTL</span></a></li>
+      </ul>
     </li>
     <li><a href="shop_grid.html">Pages</a>
       <ul>
@@ -259,84 +265,70 @@
 <!-- end mobile menu -->
 <div id="page"> 
   <!-- Header -->
-  <div th:insert="user/included_header :: header"></div>
-  <!-- end header --> 
+<div th:insert="user/included_header :: header"></div>
+<!-- end header --> 
+
+<!-- Navbar -->
+<div th:insert="user/included_nav :: nav"></div>
+<!-- end nav --> 
+ <!-- Main Container -->
   
-  <!-- Navbar -->
-  <div th:insert="user/included_nav :: nav"></div>
-  <!-- end nav -->  
-  
-  <!-- Main Container -->
-  <section class="main-container col1-layout">
-    <div class="main container">
-      <div class="col-main">
-        <div class="cart">
+  <section class="blog_post">
+    <div class="container"> 
+      
+    
+       
+        <!-- Center colunm-->
+        <div class="blog-wrapper">
+      
+          <div class="page-title">
+            <h2>Blog post</h2>
+          </div>
           
-          <div class="page-content page-order"><div class="page-title">
-            <h2>Shopping Cart</h2>
+          <ul class="blog-posts" th:each="product: ${products}">  
+            <li class="post-item col-lg-4">
+              <article class="entry"> 
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="entry-thumb image-hover2"> <a th:href="@{/view-details/{code}/(code=${product.code})}"> <figure><img th:src="'/images' + ${product.imageLink}" alt="Blog"></figure> </a> </div>
+                  </div>
+                  <div class="col-sm-12">
+                
+                      <h3 class="entry-title" th:text="${product.productName}"><a th:href="@{/view-details/{code}/(code=${product.code})}">Aliquam Et Metus Pharetra, Bibendum Massa</a></h3>
+                      <div class="entry-meta-data"> <span class="author"> <i class="fa fa-user"></i>&nbsp; by: <a href="#">Admin</a></span>  <span class="comment-count"> <i class="fa fa-comment"></i>&nbsp; 3 </span> <span class="date"><i class="fa fa-calendar"></i>&nbsp; 2015-08-05</span> </div>
+                      <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>&nbsp; <span>(5 votes)</span></div>
+                      
+                      <div class="entry-excerpt" th:text="${product.description}"></div>
+                      <div class="entry-excerpt"> 🎯 You know what is sucky about regular flashlights? They only come in two colors: white or that yellowish-white 
+                        that reminds us of the teeth of an avid coffee drinker. 
+                        What fun is that kind of flashlight? We'll answer that: </div>
+                      <div class="entry-more"> <a href="#" class="button">Read more&nbsp; <i class="fa fa-angle-double-right"></i></a> </div>
+                
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+          <div class="sortPagiBar"><div class="pagination-area" style="visibility: visible;">
+            <ul>
+              <li><a class="active" href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
           </div>
             
-          <form th:action="@{/user/cart/checkout}" th:object="${currentUser}" method="POST">
-            <div class="order-detail-content">
-              <div class="table-responsive">
-                <table class="table table-bordered cart_summary">
-                  <thead>
-                    <tr>
-                      <th class="cart_product">Product</th>
-                      <th>Description</th>
-                      <th>Avail.</th>
-                      <th>Unit price</th>
-                      <th>Qty</th>
-                      <th>Total</th>
-                      <th  class="action"><i class="fa fa-trash-o"></i></th>
-                    </tr>
-                  </thead>
-                    <tbody th:each="item, rowStat: *{items}">
-                      <tr>
-                        <td class="cart_product"><a href="#"><img th:src="'/images' + ${item.product.imageLink}" alt="Product"></a></td>
-                        <td class="cart_description"><p class="product-name" th:text="${item.product.productName}"><a href="#"></a></p>
-                          <small><a href="#">Color : Red</a></small><br>
-                          <small><a href="#">Size : M</a></small></td>
-                        <td class="availability in-stock"><span class="label">In stock</span></td>
-                        <td class="price"><span th:text="${item.price}" th:id="'price' + ${item.product.code}"></span></td>
-                        <td class="qty"><input class="form-control input-sm quantity" min="1" max="10" type="number" th:field="*{items[__${rowStat.index}__].quantity}" th:id="${item.product.code}"></td>
-                        <td class="price"><span th:id="'subtotal'+${item.product.code}"></span></td>
-                        <td class="action"><a href="#"><i class="icon-close" th:id="'remove-product' + ${item.product.code}"></i></a></td>
-                      </tr>
-                    </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="2" rowspan="2"></td>
-                      <td colspan="3">Total products (tax incl.)</td>
-                      <td colspan="2" id="total1"></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3"><strong>Total</strong></td>
-                      <td colspan="2"><strong id="total2"></strong></td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-              <div class="cart_navigation"> 
-                <a class="continue-btn" th:href="@{/}"><i class="fa fa-arrow-left"> </i>&nbsp; Continue shopping</a>
-                <button type="submit" class="checkout-btn" href="#"><i class="fa fa-check"></i> Proceed to checkout</button>
-              </div>
-            </div>
-          </form>
           </div>
         </div>
-      </div>
+        <!-- ./ Center colunm --> 
+   
     </div>
   </section>
-
-<!-- Footer -->
-<div th:insert="user/included_footer :: footer"></div>
-<!-- End Footer --> 
+  <!-- Main Container End -->
+  <!-- Footer -->
+  <div th:insert="user/included_footer :: footer"></div>
+  <!-- End Footer --> 
 <!-- JS --> 
-<!-- axios sync -->
-<!-- axios -->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 
 <!-- jquery js --> 
 <script type="text/javascript" src="/js/jquery.min.js"></script> 
@@ -373,17 +365,20 @@
 <!-- main js --> 
 <script type="text/javascript" src="/js/main.js"></script> 
 
-<!-- sweet alert library -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="sweetalert2.all.min.js"></script>
+  
 
-<!-- cart manipulating -->
-<script type="text/javascript" src="/js/cart/notification.js"></script> 
-<script type="text/javascript" src="/js/cart/inCart.js"></script> 
-<script type="text/javascript" src="/js/cart/topCart.js"></script> 
+<!-- TimeCircles js --> 
+<script type="text/javascript" src="/js/TimeCircles.html"></script> 
+<script>
+            jQuery("#DateCountdown").TimeCircles({
+                fg_width: 0.05, //  sets the width of the foreground circle.
+                bg_width: 1, // sets the width of the backgroundground circle.
+                text_size: 0.07, // This option sets the font size of the text in the circles.
+                total_duration: "Auto", // This option can be set to change how much time will fill the largest visible circle.
+            });
 
- 
+        </script>
 </body>
 
-<!-- Mirrored from htmlmystore.justthemevalley.com/shopping_cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 18:39:47 GMT -->
+<!-- Mirrored from htmlmystore.justthemevalley.com/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 May 2018 18:40:30 GMT -->
 </html>

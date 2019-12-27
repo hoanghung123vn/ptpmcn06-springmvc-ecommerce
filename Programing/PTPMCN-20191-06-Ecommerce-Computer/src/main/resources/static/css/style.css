@@ -155,7 +155,8 @@ caption, th, td {
 thead tr th {
 	font-weight: bold;
 	text-transform: uppercase;
-	font-size: 12px
+	font-size: 12px;
+	text-align: center;
 }
 p {
 	margin: 0 0 10px

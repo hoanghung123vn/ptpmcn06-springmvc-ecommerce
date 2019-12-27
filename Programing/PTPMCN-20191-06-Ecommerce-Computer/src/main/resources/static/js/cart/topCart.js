@@ -1,5 +1,7 @@
 $(document).ready(function(){
-    removeTopCart();
+    document.addEventListener('DOMNodeInserted', function(){
+        removeTopCart();
+    })
  })
  
  // remove products on top cart
