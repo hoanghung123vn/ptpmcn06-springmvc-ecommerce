@@ -190,7 +190,7 @@
 
 										<div class="form-group col-md-6">
 											<input type="text" th:field="*{imageLink}" class="form-control" hidden>
-											<img th:src="*{imageLink}" alt="" width="200" height="200">
+											<img th:src="'/images' + *{imageLink}" alt="" width="200" height="200">
 										</div>
 									</div>
 
