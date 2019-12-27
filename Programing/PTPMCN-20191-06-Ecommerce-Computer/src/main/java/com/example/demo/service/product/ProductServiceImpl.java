@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.dao.ProductRepository;
 import com.example.demo.entity.Manufacturer;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.Type;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,20 +41,24 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
-    @Override
-    public long countAll() {
-        return productRepository.count();
+	@Override
+	public long countAll() {
+		return productRepository.count();
 	}
 
 	@Override
 	public List<Product> findByManufacturer(Manufacturer manufacturer) {
 		return productRepository.findByManufacturer(manufacturer);
 	}
-	
 
-    @Override
-    public List<Product> findTop5BestSeller() {
-        return productRepository.findTop5BestSeller();
-    }
+	@Override
+	public List<Product> findTop5BestSeller() {
+		return productRepository.findTop5BestSeller();
+	}
+
+	@Override
+	public List<Product> findByCategory(Type category) {
+		return productRepository.findByType(category);
+	}
 
 }

@@ -2,11 +2,12 @@ package com.example.demo.dao;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-
 import com.example.demo.entity.Manufacturer;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.Type;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
     @Override
@@ -21,4 +22,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
             + "inner join order_detail po on p.code = po.product_code group by p.code, p.product_name "
             + "order by total_quantity desc limit 5", nativeQuery = true)
     List<Product> findTop5BestSeller();
+
+    List<Product> findByType(Type type);
 }

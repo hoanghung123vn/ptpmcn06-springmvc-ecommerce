@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.entity.Manufacturer;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.Type;
 
 public interface ProductService {
 
@@ -17,6 +18,8 @@ public interface ProductService {
 	void addProduct(Product product);
 	long countAll();
 	List<Product> findByManufacturer(Manufacturer manufacturer);
+
+	List<Product> findByCategory(Type category);
 	
 	List<Product> findTop5BestSeller(); 
 }
