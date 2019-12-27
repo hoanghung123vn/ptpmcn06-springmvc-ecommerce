@@ -68,7 +68,7 @@
             <!-- Page Container START -->
             <div class="page-container">
                 <!-- Quick View START -->
-                <div th:insert="admin/fragments :: quick-view"></div>
+                <!-- <div th:insert="admin/fragments :: quick-view"></div> -->
                 <!-- Side Panel END -->
 
                 <!-- Content Wrapper START -->
@@ -117,7 +117,7 @@
                                                                 đường vận chuyển</a>
                                                             <a class="dropdown-item"
                                                                 th:href="@{/stocker/orders(status=5)}">Đã hoàn thành</a>
-                                                            
+
                                                             <a class="dropdown-item" th:href="@{/stocker/orders}">Tất cả
                                                                 trạng thái</a>
                                                         </span>
@@ -141,7 +141,7 @@
                                                         <td th:case="2">Đã hủy</td>
                                                         <td th:case="3">Đã phân công</td>
                                                         <td th:case="4">Trên đường vận chuyển</td>
-                                                        
+
                                                         <td th:case="5">Đã hoàn thành</td>
                                                     </th:block>
                                                     <td>
@@ -267,13 +267,13 @@
                                                                             </div>
                                                                             <div style="text-align: right;">
                                                                                 <a th:if="${order.status==3}"
-                                                                                onclick="if (!(confirm('Xác nhận giao hàng?'))) return false"
+                                                                                    onclick="if (!(confirm('Xác nhận giao hàng?'))) return false"
                                                                                     class="btn btn-success col-sm-3"
                                                                                     th:href="@{/stocker/order/xacNhanGiaoHang(id=${order.id})}">Xác
                                                                                     nhận giao hàng</a>
                                                                             </div>
                                                                             <div style="text-align: center;">
-                                                                                
+
                                                                                 <span>
                                                                                     <a th:if="${order.status==4}"
                                                                                         class="btn bg-danger col-sm-3"
@@ -298,7 +298,7 @@
                 </div>
                 <!-- Footer START -->
                 <footer th:insert="admin/fragments :: footer">
-                    
+
                 </footer>
                 <!-- Footer END -->
             </div>

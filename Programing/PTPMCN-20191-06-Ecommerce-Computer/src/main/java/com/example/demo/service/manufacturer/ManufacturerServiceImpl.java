@@ -1,8 +1,6 @@
 package com.example.demo.service.manufacturer;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ManufacturerRepository;
 import com.example.demo.entity.Manufacturer;
@@ -25,7 +23,4 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 	public List<Manufacturer> findAll() {
 		return manufacturerRepository.findAll();
 	}
-
-	
-
 }

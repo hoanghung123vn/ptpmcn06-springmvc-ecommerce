@@ -68,7 +68,7 @@
             <!-- Page Container START -->
             <div class="page-container">
                 <!-- Quick View START -->
-                <div th:insert="admin/fragments :: quick-view"></div>
+                <!-- <div th:insert="admin/fragments :: quick-view"></div> -->
                 <!-- Side Panel END -->
 
                 <!-- Content Wrapper START -->
@@ -101,14 +101,14 @@
                                                         </span>
                                                         <span class="dropdown-menu" x-placement="top-start"
                                                             style="position: absolute; transform: translate3d(0px, -139px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                            
+
                                                             <a class="dropdown-item"
                                                                 th:href="@{/shipper/orders(status=3)}">Đã phân
                                                                 công</a>
                                                             <a class="dropdown-item"
                                                                 th:href="@{/shipper/orders(status=4)}">Trên
                                                                 đường vận chuyển</a>
-                                                           
+
                                                             <a class="dropdown-item"
                                                                 th:href="@{/shipper/orders(status=5)}">Đã hoàn thành</a>
                                                             <a class="dropdown-item" th:href="@{/shipper/orders}">Tất cả
