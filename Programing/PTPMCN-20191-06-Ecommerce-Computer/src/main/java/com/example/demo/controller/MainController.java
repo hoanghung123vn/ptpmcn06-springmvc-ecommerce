@@ -44,7 +44,7 @@ public class MainController {
     public String user(Model model) {
     	List<Product> products = productService.findAll();
     	model.addAttribute("products", products);
-    	model.addAttribute("specials", products.subList(5, 8));
+    	model.addAttribute("specials", products.subList(0, 3));
         return "user/index";
     }
     
